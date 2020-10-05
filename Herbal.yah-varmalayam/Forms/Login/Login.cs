@@ -14,6 +14,7 @@ namespace Herbal.yah_varmalayam.Forms.Login
     {
         public Login()
         {
+            //this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
         }
 

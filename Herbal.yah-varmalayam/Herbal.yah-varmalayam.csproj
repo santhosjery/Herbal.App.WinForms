@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,11 +36,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Refrences\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -95,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="Models\HerbalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -118,6 +126,64 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\123.ico" />
+    <Content Include="Images\164577 .png.png" />
+    <Content Include="Images\164577 .png1.png" />
+    <Content Include="Images\293.gif" />
+    <Content Include="Images\3.gif" />
+    <Content Include="Images\About_24px.png" />
+    <Content Include="Images\Add File_48px.png" />
+    <Content Include="Images\Add New_48px.png" />
+    <Content Include="Images\Add New_48px1.png" />
+    <Content Include="Images\Add User Male_48px.png" />
+    <Content Include="Images\b7c34a0fad179c020ae3adb7993a8d4e.jpg" />
+    <Content Include="Images\Billing_48px.png" />
+    <Content Include="Images\cash.ico" />
+    <Content Include="Images\cash.png" />
+    <Content Include="Images\Close Window_48px.png" />
+    <Content Include="Images\Delete.png" />
+    <Content Include="Images\Delete1.png" />
+    <Content Include="Images\download.png" />
+    <Content Include="Images\download1.png" />
+    <Content Include="Images\Edit Property_48px.png" />
+    <Content Include="Images\Edit Row_48px.png" />
+    <Content Include="Images\Edit Row_48px1.png" />
+    <Content Include="Images\Full_Glass_blue_contacts.png" />
+    <Content Include="Images\Gaim.png" />
+    <Content Include="Images\Go Back_48px.png" />
+    <Content Include="Images\Home.png" />
+    <Content Include="Images\Home_48px.png" />
+    <Content Include="Images\icons8-export-50%281%29.png" />
+    <Content Include="Images\icons8-export-50.png" />
+    <Content Include="Images\icons8-export-filled-50.png" />
+    <Content Include="Images\icons8-import-50.png" />
+    <Content Include="Images\icons8-Login-64.png" />
+    <Content Include="Images\Info_48px.png" />
+    <Content Include="Images\MainMenu.ico" />
+    <Content Include="Images\MainMenu.png" />
+    <Content Include="Images\Mobiles %281%29.ico" />
+    <Content Include="Images\Mobiles.jpg" />
+    <Content Include="Images\mobiles_efz_icon.ico" />
+    <Content Include="Images\Mobiles__1557245354_42.106.84.222.jpg" />
+    <Content Include="Images\newlogin.png" />
+    <Content Include="Images\online-payment.ico" />
+    <Content Include="Images\online-payment.png" />
+    <Content Include="Images\pass.png" />
+    <Content Include="Images\Passenger_24px.png" />
+    <Content Include="Images\Print_48px.png" />
+    <Content Include="Images\Product.png" />
+    <Content Include="Images\Product_48px.png" />
+    <Content Include="Images\profile.png" />
+    <Content Include="Images\rupee-indian.ico" />
+    <Content Include="Images\Save_48px.png" />
+    <Content Include="Images\Search_24px.png" />
+    <Content Include="Images\spin_u_alphabet_letter_black_animation_clipart.GIF" />
+    <Content Include="Images\Submit Progress_48px.png" />
+    <Content Include="Images\Trash_48px.png" />
+    <Content Include="Images\uname.png" />
+    <Content Include="Images\user-image-with-black-background.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\Windows Live Messenger.png" />
     <Content Include="Models\HerbalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HerbalModel.Context.cs</LastGenOutput>
@@ -128,6 +194,7 @@
       <DependentUpon>HerbalModel.edmx</DependentUpon>
       <LastGenOutput>HerbalModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Refrences\Bunifu_UI_v1.5.3.dll" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -138,4 +205,12 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

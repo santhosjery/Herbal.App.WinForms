@@ -11,5 +11,9 @@ namespace Herbal.yah_varmalayam.Forms
     public class FormBase : Form
     {
         protected HerbalEntities herbalContext = new HerbalEntities();
+        public FormBase()
+        {
+            
+        }
     }
 }
