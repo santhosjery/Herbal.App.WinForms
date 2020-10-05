@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3a11a1c6b6524a3ca1507aa2c1efbaf7" Name="Diagram1">
-        <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HerbalModel.AccessRole" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="HerbalModel.FK_User_AccessRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

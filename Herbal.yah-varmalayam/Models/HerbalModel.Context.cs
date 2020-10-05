@@ -25,6 +25,7 @@ namespace Herbal.yah_varmalayam.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccessRole> AccessRoles { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
     }
 }

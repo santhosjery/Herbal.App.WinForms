@@ -71,6 +71,9 @@
     <Compile Include="Forms\Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccessRole.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppUser.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
@@ -126,6 +129,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB\Sprint-1\01_Tables\AccessRole.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\AppUser.sql" />
+    <Content Include="DB\Sprint-1\02_Alter Scripts\01_AlterScripts.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />
     <Content Include="Images\164577 .png1.png" />
