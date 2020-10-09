@@ -13,6 +13,7 @@ namespace Herbal.yah_varmalayam.Forms
     {
         protected HerbalEntities herbalContext = new HerbalEntities();
         public MsgBoxMessages showMessageBox = new MsgBoxMessages();
+        public UserViewModel userViewModel = new UserViewModel();
         public FormBase()
         {
             

@@ -33,7 +33,9 @@ namespace Herbal.yah_varmalayam.Forms.Login
                 if (userDetail != null)
                 {
                     var loggedInUserDetail = new UserViewModel(userDetail.Id);
-                    showMessageBox.ShowMessage("Success");
+                    var home = new Forms.Home.Home(loggedInUserDetail);
+                    this.Hide();
+                    home.Show();
                 }
                 else
                 {

@@ -65,6 +65,66 @@
     <Compile Include="Forms\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Home\Adminstration\ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Adminstration\ManageUsers.Designer.cs">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Master\CompanyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Master\CompanyDetails.Designer.cs">
+      <DependentUpon>CompanyDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Master\Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Master\Products.Designer.cs">
+      <DependentUpon>Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Master\Taxes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Master\Taxes.Designer.cs">
+      <DependentUpon>Taxes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\PurchaseReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\PurchaseReport.Designer.cs">
+      <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\SalesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\SalesReport.Designer.cs">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\StockReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\StockReport.Designer.cs">
+      <DependentUpon>StockReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Transactions\Purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Transactions\Purchase.Designer.cs">
+      <DependentUpon>Purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Transactions\Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Transactions\Sales.Designer.cs">
+      <DependentUpon>Sales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +164,36 @@
     <Compile Include="Util\Utility.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <EmbeddedResource Include="Forms\Home\Adminstration\ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Master\CompanyDetails.resx">
+      <DependentUpon>CompanyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Master\Products.resx">
+      <DependentUpon>Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Master\Taxes.resx">
+      <DependentUpon>Taxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\PurchaseReport.resx">
+      <DependentUpon>PurchaseReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\SalesReport.resx">
+      <DependentUpon>SalesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\StockReport.resx">
+      <DependentUpon>StockReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Transactions\Purchase.resx">
+      <DependentUpon>Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Transactions\Sales.resx">
+      <DependentUpon>Sales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,6 +268,7 @@
     <Content Include="Images\icons8-import-50.png" />
     <Content Include="Images\icons8-Login-64.png" />
     <Content Include="Images\Info_48px.png" />
+    <None Include="Images\logo.png" />
     <Content Include="Images\MainMenu.ico" />
     <Content Include="Images\MainMenu.png" />
     <Content Include="Images\Mobiles %281%29.ico" />

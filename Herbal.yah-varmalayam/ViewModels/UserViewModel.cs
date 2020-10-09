@@ -15,6 +15,11 @@ namespace Herbal.yah_varmalayam
         public string AccessRoleName { get; set; }
         public DateTime CreatedOn { get; set; }
 
+        public UserViewModel()
+        {
+
+        }
+
         public UserViewModel(int userId)
         {
             var userDetail = herbalContext.AppUsers.Where(_ => _.Id == userId).Single();
