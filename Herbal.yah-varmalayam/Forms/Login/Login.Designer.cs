@@ -31,10 +31,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.loginbtnexit = new System.Windows.Forms.Button();
-            this.btnloginmain = new System.Windows.Forms.Button();
-            this.hmetxtlogpass = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.hmetxtloguname = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.BtnExit = new System.Windows.Forms.Button();
+            this.BtnLogin = new System.Windows.Forms.Button();
+            this.TxtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.TxtUserName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -76,10 +76,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.loginbtnexit);
-            this.panel2.Controls.Add(this.btnloginmain);
-            this.panel2.Controls.Add(this.hmetxtlogpass);
-            this.panel2.Controls.Add(this.hmetxtloguname);
+            this.panel2.Controls.Add(this.BtnExit);
+            this.panel2.Controls.Add(this.BtnLogin);
+            this.panel2.Controls.Add(this.TxtPassword);
+            this.panel2.Controls.Add(this.TxtUserName);
             this.panel2.Controls.Add(this.pictureBox4);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.pictureBox2);
@@ -89,74 +89,76 @@
             this.panel2.Size = new System.Drawing.Size(620, 452);
             this.panel2.TabIndex = 1;
             // 
-            // loginbtnexit
+            // BtnExit
             // 
-            this.loginbtnexit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(121)))), ((int)(((byte)(254)))));
-            this.loginbtnexit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.loginbtnexit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginbtnexit.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginbtnexit.ForeColor = System.Drawing.Color.White;
-            this.loginbtnexit.Location = new System.Drawing.Point(342, 323);
-            this.loginbtnexit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.loginbtnexit.Name = "loginbtnexit";
-            this.loginbtnexit.Size = new System.Drawing.Size(188, 74);
-            this.loginbtnexit.TabIndex = 4;
-            this.loginbtnexit.Text = "Exit";
-            this.loginbtnexit.UseVisualStyleBackColor = false;
+            this.BtnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(121)))), ((int)(((byte)(254)))));
+            this.BtnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExit.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExit.ForeColor = System.Drawing.Color.White;
+            this.BtnExit.Location = new System.Drawing.Point(342, 323);
+            this.BtnExit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnExit.Name = "BtnExit";
+            this.BtnExit.Size = new System.Drawing.Size(188, 74);
+            this.BtnExit.TabIndex = 4;
+            this.BtnExit.Text = "Exit";
+            this.BtnExit.UseVisualStyleBackColor = false;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
-            // btnloginmain
+            // BtnLogin
             // 
-            this.btnloginmain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(121)))), ((int)(((byte)(254)))));
-            this.btnloginmain.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnloginmain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnloginmain.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnloginmain.ForeColor = System.Drawing.Color.White;
-            this.btnloginmain.Location = new System.Drawing.Point(106, 323);
-            this.btnloginmain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnloginmain.Name = "btnloginmain";
-            this.btnloginmain.Size = new System.Drawing.Size(188, 74);
-            this.btnloginmain.TabIndex = 3;
-            this.btnloginmain.Text = "LogIn";
-            this.btnloginmain.UseVisualStyleBackColor = false;
+            this.BtnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(121)))), ((int)(((byte)(254)))));
+            this.BtnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLogin.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLogin.ForeColor = System.Drawing.Color.White;
+            this.BtnLogin.Location = new System.Drawing.Point(106, 323);
+            this.BtnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnLogin.Name = "BtnLogin";
+            this.BtnLogin.Size = new System.Drawing.Size(188, 74);
+            this.BtnLogin.TabIndex = 3;
+            this.BtnLogin.Text = "LogIn";
+            this.BtnLogin.UseVisualStyleBackColor = false;
+            this.BtnLogin.Click += new System.EventHandler(this.btnloginmain_Click);
             // 
-            // hmetxtlogpass
+            // TxtPassword
             // 
-            this.hmetxtlogpass.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.hmetxtlogpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.hmetxtlogpass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.hmetxtlogpass.HintForeColor = System.Drawing.Color.Empty;
-            this.hmetxtlogpass.HintText = "";
-            this.hmetxtlogpass.isPassword = true;
-            this.hmetxtlogpass.LineFocusedColor = System.Drawing.Color.Blue;
-            this.hmetxtlogpass.LineIdleColor = System.Drawing.Color.Gray;
-            this.hmetxtlogpass.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.hmetxtlogpass.LineThickness = 3;
-            this.hmetxtlogpass.Location = new System.Drawing.Point(196, 235);
-            this.hmetxtlogpass.Margin = new System.Windows.Forms.Padding(6);
-            this.hmetxtlogpass.Name = "hmetxtlogpass";
-            this.hmetxtlogpass.Size = new System.Drawing.Size(382, 51);
-            this.hmetxtlogpass.TabIndex = 2;
-            this.hmetxtlogpass.Text = "Password";
-            this.hmetxtlogpass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TxtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.TxtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtPassword.HintForeColor = System.Drawing.Color.Empty;
+            this.TxtPassword.HintText = "";
+            this.TxtPassword.isPassword = true;
+            this.TxtPassword.LineFocusedColor = System.Drawing.Color.Blue;
+            this.TxtPassword.LineIdleColor = System.Drawing.Color.Gray;
+            this.TxtPassword.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.TxtPassword.LineThickness = 3;
+            this.TxtPassword.Location = new System.Drawing.Point(196, 235);
+            this.TxtPassword.Margin = new System.Windows.Forms.Padding(6);
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.Size = new System.Drawing.Size(382, 51);
+            this.TxtPassword.TabIndex = 2;
+            this.TxtPassword.Text = "Password";
+            this.TxtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
-            // hmetxtloguname
+            // TxtUserName
             // 
-            this.hmetxtloguname.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.hmetxtloguname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.hmetxtloguname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.hmetxtloguname.HintForeColor = System.Drawing.Color.Empty;
-            this.hmetxtloguname.HintText = "Username";
-            this.hmetxtloguname.isPassword = false;
-            this.hmetxtloguname.LineFocusedColor = System.Drawing.Color.Blue;
-            this.hmetxtloguname.LineIdleColor = System.Drawing.Color.Gray;
-            this.hmetxtloguname.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.hmetxtloguname.LineThickness = 3;
-            this.hmetxtloguname.Location = new System.Drawing.Point(196, 138);
-            this.hmetxtloguname.Margin = new System.Windows.Forms.Padding(6);
-            this.hmetxtloguname.Name = "hmetxtloguname";
-            this.hmetxtloguname.Size = new System.Drawing.Size(382, 51);
-            this.hmetxtloguname.TabIndex = 1;
-            this.hmetxtloguname.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TxtUserName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TxtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.TxtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TxtUserName.HintForeColor = System.Drawing.Color.Empty;
+            this.TxtUserName.HintText = "Username";
+            this.TxtUserName.isPassword = false;
+            this.TxtUserName.LineFocusedColor = System.Drawing.Color.Blue;
+            this.TxtUserName.LineIdleColor = System.Drawing.Color.Gray;
+            this.TxtUserName.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.TxtUserName.LineThickness = 3;
+            this.TxtUserName.Location = new System.Drawing.Point(196, 138);
+            this.TxtUserName.Margin = new System.Windows.Forms.Padding(6);
+            this.TxtUserName.Name = "TxtUserName";
+            this.TxtUserName.Size = new System.Drawing.Size(382, 51);
+            this.TxtUserName.TabIndex = 1;
+            this.TxtUserName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // pictureBox4
             // 
@@ -231,10 +233,10 @@
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button loginbtnexit;
-        private System.Windows.Forms.Button btnloginmain;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox hmetxtlogpass;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox hmetxtloguname;
+        private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.Button BtnLogin;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox TxtPassword;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox TxtUserName;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;

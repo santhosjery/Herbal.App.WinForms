@@ -1,4 +1,5 @@
-﻿using Herbal.yah_varmalayam.Models;
+﻿using Herbal.yah_varmalayam.MessageBox;
+using Herbal.yah_varmalayam.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Herbal.yah_varmalayam.Forms
     public class FormBase : Form
     {
         protected HerbalEntities herbalContext = new HerbalEntities();
+        public MsgBoxMessages showMessageBox = new MsgBoxMessages();
         public FormBase()
         {
             
