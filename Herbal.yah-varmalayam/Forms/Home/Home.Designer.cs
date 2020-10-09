@@ -86,24 +86,28 @@
             this.MenuItemLogOut.Name = "MenuItemLogOut";
             this.MenuItemLogOut.Size = new System.Drawing.Size(115, 34);
             this.MenuItemLogOut.Text = "LogOut";
+            this.MenuItemLogOut.Click += new System.EventHandler(this.MenuItemLogOut_Click);
             // 
             // MenuItemExit
             // 
             this.MenuItemExit.Name = "MenuItemExit";
-            this.MenuItemExit.Size = new System.Drawing.Size(270, 38);
+            this.MenuItemExit.Size = new System.Drawing.Size(310, 38);
             this.MenuItemExit.Text = "Exit";
+            this.MenuItemExit.Click += new System.EventHandler(this.MenuItemExit_Click);
             // 
             // MenuItemAbout
             // 
             this.MenuItemAbout.Name = "MenuItemAbout";
-            this.MenuItemAbout.Size = new System.Drawing.Size(270, 38);
-            this.MenuItemAbout.Text = "About";
+            this.MenuItemAbout.Size = new System.Drawing.Size(310, 38);
+            this.MenuItemAbout.Text = "About Developer";
+            this.MenuItemAbout.Click += new System.EventHandler(this.MenuItemAbout_Click);
             // 
             // MenuItemHone
             // 
             this.MenuItemHone.Name = "MenuItemHone";
             this.MenuItemHone.Size = new System.Drawing.Size(270, 38);
             this.MenuItemHone.Text = "Home";
+            this.MenuItemHone.Click += new System.EventHandler(this.MenuItemHone_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -120,6 +124,7 @@
             this.MenuItemManageUsers.Name = "MenuItemManageUsers";
             this.MenuItemManageUsers.Size = new System.Drawing.Size(285, 38);
             this.MenuItemManageUsers.Text = " Manage Users";
+            this.MenuItemManageUsers.Click += new System.EventHandler(this.MenuItemManageUsers_Click);
             // 
             // adminstrationToolStripMenuItem
             // 
@@ -134,18 +139,21 @@
             this.MenuItemStockReport.Name = "MenuItemStockReport";
             this.MenuItemStockReport.Size = new System.Drawing.Size(308, 38);
             this.MenuItemStockReport.Text = "Stock Report";
+            this.MenuItemStockReport.Click += new System.EventHandler(this.MenuItemStockReport_Click);
             // 
             // MenuItemSalesReport
             // 
             this.MenuItemSalesReport.Name = "MenuItemSalesReport";
             this.MenuItemSalesReport.Size = new System.Drawing.Size(308, 38);
             this.MenuItemSalesReport.Text = "Sales Report";
+            this.MenuItemSalesReport.Click += new System.EventHandler(this.MenuItemSalesReport_Click);
             // 
             // MenuItemPurchaseReport
             // 
             this.MenuItemPurchaseReport.Name = "MenuItemPurchaseReport";
             this.MenuItemPurchaseReport.Size = new System.Drawing.Size(308, 38);
             this.MenuItemPurchaseReport.Text = "Purchase Report";
+            this.MenuItemPurchaseReport.Click += new System.EventHandler(this.MenuItemPurchaseReport_Click);
             // 
             // detailsToolStripMenuItem
             // 
@@ -162,12 +170,14 @@
             this.MenuItemSales.Name = "MenuItemSales";
             this.MenuItemSales.Size = new System.Drawing.Size(270, 38);
             this.MenuItemSales.Text = "Sales ";
+            this.MenuItemSales.Click += new System.EventHandler(this.MenuItemSales_Click);
             // 
             // MenuItemPurchase
             // 
             this.MenuItemPurchase.Name = "MenuItemPurchase";
             this.MenuItemPurchase.Size = new System.Drawing.Size(270, 38);
             this.MenuItemPurchase.Text = "Purchase";
+            this.MenuItemPurchase.Click += new System.EventHandler(this.MenuItemPurchase_Click);
             // 
             // transactionToolStripMenuItem
             // 
@@ -183,18 +193,21 @@
             this.MenuItemCompanyDetail.Name = "MenuItemCompanyDetail";
             this.MenuItemCompanyDetail.Size = new System.Drawing.Size(301, 38);
             this.MenuItemCompanyDetail.Text = "Company Detail";
+            this.MenuItemCompanyDetail.Click += new System.EventHandler(this.MenuItemCompanyDetail_Click);
             // 
             // MenuItemTaxes
             // 
             this.MenuItemTaxes.Name = "MenuItemTaxes";
             this.MenuItemTaxes.Size = new System.Drawing.Size(301, 38);
             this.MenuItemTaxes.Text = "Taxes";
+            this.MenuItemTaxes.Click += new System.EventHandler(this.MenuItemTaxes_Click);
             // 
             // MenuItemProduct
             // 
             this.MenuItemProduct.Name = "MenuItemProduct";
             this.MenuItemProduct.Size = new System.Drawing.Size(301, 38);
             this.MenuItemProduct.Text = "Products";
+            this.MenuItemProduct.Click += new System.EventHandler(this.MenuItemProduct_Click);
             // 
             // masterToolStripMenuItem
             // 
@@ -233,7 +246,7 @@
             this.toolStripMenuItem6});
             this.mainmenu.Location = new System.Drawing.Point(0, 0);
             this.mainmenu.Name = "mainmenu";
-            this.mainmenu.Size = new System.Drawing.Size(1372, 40);
+            this.mainmenu.Size = new System.Drawing.Size(1372, 38);
             this.mainmenu.TabIndex = 2;
             this.mainmenu.Text = "MainMenu";
             // 
