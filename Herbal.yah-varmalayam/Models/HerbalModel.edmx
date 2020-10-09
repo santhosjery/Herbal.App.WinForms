@@ -30,6 +30,44 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_Product_AppUser">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_AppUser1">
+          <End Role="AppUser" Type="Self.AppUser" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_AccessRole">
           <End Role="AccessRole" Type="Self.AccessRole" Multiplicity="1" />
           <End Role="AppUser" Type="Self.AppUser" Multiplicity="*" />
@@ -45,6 +83,15 @@
         <EntityContainer Name="HerbalModelStoreContainer">
           <EntitySet Name="AccessRole" EntityType="Self.AccessRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Product_AppUser" Association="Self.FK_Product_AppUser">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_AppUser1" Association="Self.FK_Product_AppUser1">
+            <End Role="AppUser" EntitySet="AppUser" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_AccessRole" Association="Self.FK_User_AccessRole">
             <End Role="AccessRole" EntitySet="AccessRole" />
             <End Role="AppUser" EntitySet="AppUser" />
@@ -60,6 +107,15 @@
           <AssociationSet Name="FK_User_AccessRole" Association="HerbalModel.FK_User_AccessRole">
             <End Role="AccessRole" EntitySet="AccessRoles" />
             <End Role="AppUser" EntitySet="AppUsers" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="HerbalModel.Product" />
+          <AssociationSet Name="FK_Product_AppUser" Association="HerbalModel.FK_Product_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_AppUser1" Association="HerbalModel.FK_Product_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccessRole">
@@ -88,6 +144,8 @@
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="ModifiedBy" Type="Int32" />
           <NavigationProperty Name="AccessRole" Relationship="HerbalModel.FK_User_AccessRole" FromRole="AppUser" ToRole="AccessRole" />
+          <NavigationProperty Name="Products" Relationship="HerbalModel.FK_Product_AppUser" FromRole="AppUser" ToRole="Product" />
+          <NavigationProperty Name="Products1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="AppUser" ToRole="Product" />
         </EntityType>
         <Association Name="FK_User_AccessRole">
           <End Type="HerbalModel.AccessRole" Role="AccessRole" Multiplicity="1" />
@@ -98,6 +156,46 @@
             </Principal>
             <Dependent Role="AppUser">
               <PropertyRef Name="AccessRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Product_AppUser" FromRole="Product" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="Product" ToRole="AppUser" />
+        </EntityType>
+        <Association Name="FK_Product_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModifiedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -130,6 +228,21 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessRoleId" ColumnName="AccessRoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="HerbalModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -14,6 +14,13 @@ namespace Herbal.yah_varmalayam.Models
     
     public partial class AppUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AppUser()
+        {
+            this.Products = new HashSet<Product>();
+            this.Products1 = new HashSet<Product>();
+        }
+    
         public int Id { get; set; }
         public int AccessRoleId { get; set; }
         public string UserName { get; set; }
@@ -25,5 +32,9 @@ namespace Herbal.yah_varmalayam.Models
         public Nullable<int> ModifiedBy { get; set; }
     
         public virtual AccessRole AccessRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products1 { get; set; }
     }
 }

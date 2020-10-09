@@ -27,5 +27,6 @@ namespace Herbal.yah_varmalayam.Models
     
         public virtual DbSet<AccessRole> AccessRoles { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

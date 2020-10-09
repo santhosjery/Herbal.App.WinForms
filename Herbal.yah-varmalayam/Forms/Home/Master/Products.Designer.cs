@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.SuspendLayout();
+            // 
+            // LblHeaderText
+            // 
+            this.LblHeaderText.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.LblHeaderText.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LblHeaderText.Font = new System.Drawing.Font("Segoe UI", 17F, System.Drawing.FontStyle.Bold);
+            this.LblHeaderText.ForeColor = System.Drawing.Color.Blue;
+            this.LblHeaderText.Location = new System.Drawing.Point(0, 0);
+            this.LblHeaderText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblHeaderText.Name = "LblHeaderText";
+            this.LblHeaderText.Size = new System.Drawing.Size(1644, 48);
+            this.LblHeaderText.TabIndex = 38;
+            this.LblHeaderText.Text = "Product Master";
+            this.LblHeaderText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1644, 854);
+            this.Controls.Add(this.LblHeaderText);
             this.Name = "Products";
             this.Text = "Products";
             this.Load += new System.EventHandler(this.Products_Load);
@@ -43,5 +59,7 @@
         }
 
         #endregion
+
+        private Bunifu.Framework.UI.BunifuCustomLabel LblHeaderText;
     }
 }

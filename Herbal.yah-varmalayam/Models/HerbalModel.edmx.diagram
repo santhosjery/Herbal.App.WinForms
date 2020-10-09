@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="HerbalModel.AccessRole" Width="1.5" PointX="0.75" PointY="1.25" />
         <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="HerbalModel.FK_User_AccessRole" />
+        <EntityTypeShape EntityType="HerbalModel.Product" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="HerbalModel.FK_Product_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_Product_AppUser1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
