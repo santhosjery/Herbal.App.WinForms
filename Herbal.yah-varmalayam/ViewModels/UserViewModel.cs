@@ -13,7 +13,6 @@ namespace Herbal.yah_varmalayam
         public string UserName { get; set; }
         public long MobileNumber { get; set; }
         public string AccessRoleName { get; set; }
-        public DateTime CreatedOn { get; set; }
 
         public UserViewModel()
         {
@@ -28,6 +27,7 @@ namespace Herbal.yah_varmalayam
             MobileNumber = userDetail.MobileNumber;
             AccessRoleName = userDetail.AccessRole.RoleName;
             AccessRoleId = userDetail.AccessRole.Id;
+            IsActive = userDetail.IsActive;
             CreatedOn = userDetail.CreatedOn;
         }
     }

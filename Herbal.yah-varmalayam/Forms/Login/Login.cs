@@ -20,7 +20,8 @@ namespace Herbal.yah_varmalayam.Forms.Login
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            TxtUserName.Text = "admin";
+            TxtPassword.Text = "admin";
         }
 
         private void btnloginmain_Click(object sender, EventArgs e)
