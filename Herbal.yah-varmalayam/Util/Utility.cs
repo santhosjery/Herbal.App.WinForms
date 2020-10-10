@@ -21,6 +21,13 @@ namespace Herbal.yah_varmalayam
         public const string UnableToDeleteMessage = "Unable to delete the {0} since it's assosiated to {1}";
         public const string DeleteSuccessMessage = "'{0}' deleted successfully.";
 
+        ///
+        ///Button Names
+        ///
+        public const string SaveButton = "Save";
+        public const string UpdateButton = "Update";
+        public const string ControlResetButton = "Reset";
+
         /// <summary>
         /// Top form names
         public const string ProductFormName = "Product Master";

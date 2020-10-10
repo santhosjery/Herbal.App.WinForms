@@ -18,22 +18,20 @@ namespace Herbal.yah_varmalayam.Forms
         {
             this.userViewModel = userViewModel;
             InitializeComponent();
+            dataGridViewStyle(DataGridProductMaster);
         }
 
         private void Products_Load(object sender, EventArgs e)
         {
+            AcceptButton = BtnSaveProduct;
+            panelPosition(PanelProductMaster);
+            BtnSaveProduct.Text = Utility.SaveButton;
+            BtnReset.Text = Utility.ControlResetButton;
             LblHeaderText.BackColor = Color.FromName(Utility.LblBackColor);
             LblHeaderText.Font = new Font(Utility.LblFontStyle, Utility.LblFontSize); //, 17pt, style=Bold
             LblHeaderText.Font = new Font(LblHeaderText.Font, FontStyle.Bold);
             LblHeaderText.ForeColor = Color.FromName(Utility.LblFontColor);
-            GenerateProductCode();
-            GetGridList();
-            panelPosition(PanelProductMaster);
-        }
-
-        private void GenerateProductCode()
-        {
-            TxtProductCode.Text = "Test";
+            _resetControls();
         }
 
         private void BtnSaveProduct_Click(object sender, EventArgs e)
@@ -46,6 +44,7 @@ namespace Herbal.yah_varmalayam.Forms
                     TxtProductName.Focus();
                     return;
                 }
+                //Check product name already exists or not
                 if (_isProductNameAlreadyExists(TxtProductName.Text))
                 {
                     showMessageBox.ShowMessage(string.Format(Utility.AlreadyExists, "Product Name"));
@@ -79,21 +78,29 @@ namespace Herbal.yah_varmalayam.Forms
             }
         }
 
+        private void _resetControls()
+        {
+            try
+            {
+                BtnSaveProduct.Text = Utility.SaveButton;
+                productId = 0;
+                TxtProductCode.Text = "test2";
+                TxtProductName.Text = "";
+                ChkIsActive.Checked = true;
+                TxtProductCode.Text = BaseRepository.GetNextProductCode();
+                GetGridList();
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
         private bool _isProductNameAlreadyExists(string productName)
         {
             return herbalContext.Products.Where(_ => _.ProductName == productName
                                         && (productId == 0 || _.Id != productId)).Any();
         }
-
-        private void _resetControls()
-        {
-            productId = 0;
-            TxtProductCode.Text = "test2";
-            TxtProductName.Text = "";
-            ChkIsActive.Checked = true;
-            GetGridList();
-        }
-
         private void BtnReset_Click(object sender, EventArgs e)
         {
             _resetControls();
@@ -102,18 +109,19 @@ namespace Herbal.yah_varmalayam.Forms
         {
             try
             {
+                dataTable.Clear();
                 DataGridProductMaster.Refresh();
                 DataGridProductMaster.AutoGenerateColumns = false;
                 var productList = new ProductViewModel(TxtSearchItem.text ?? "");
-                dataGridViewStyle(DataGridProductMaster);
-                DataGridProductMaster.DataSource = productList.productViewList;
+                dataTable = ConvertListToDataTable.ToDataTable(productList.productViewList);
+                bindingSource.DataSource = dataTable;
+                DataGridProductMaster.DataSource = bindingSource;
             }
             catch(Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
-
         private void TxtSearchItem_OnTextChange(object sender, EventArgs e)
         {
             GetGridList();
@@ -141,6 +149,7 @@ namespace Herbal.yah_varmalayam.Forms
                 }
                 if(text.Equals("Edit"))
                 {
+                    BtnSaveProduct.Text = Utility.UpdateButton;
                     _editProduct();
                 }
             }
@@ -192,6 +201,10 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
+        }
+
+        private void DataGridProductMaster_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
         }
     }
 }

@@ -43,12 +43,14 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsActiveText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ChkIsActive = new Bunifu.Framework.UI.BunifuCheckbox();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelProductMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridProductMaster)).BeginInit();
             this.SuspendLayout();
@@ -201,13 +203,14 @@
             this.Id,
             this.ProductCode,
             this.ProductName,
-            this.IsActiveText,
+            this.IsActive,
             this.CreatedOn,
             this.Edit,
             this.Delete});
             this.DataGridProductMaster.EnableHeadersVisualStyles = false;
             this.DataGridProductMaster.Location = new System.Drawing.Point(49, 172);
             this.DataGridProductMaster.Name = "DataGridProductMaster";
+            this.DataGridProductMaster.ReadOnly = true;
             this.DataGridProductMaster.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.DataGridProductMaster.RowHeadersVisible = false;
             this.DataGridProductMaster.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
@@ -215,6 +218,7 @@
             this.DataGridProductMaster.Size = new System.Drawing.Size(1404, 595);
             this.DataGridProductMaster.TabIndex = 68;
             this.DataGridProductMaster.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridProductMaster_CellMouseClick);
+            this.DataGridProductMaster.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridProductMaster_ColumnHeaderMouseClick);
             this.DataGridProductMaster.Click += new System.EventHandler(this.DataGridProductMaster_Click);
             this.DataGridProductMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridProductMaster_MouseClick);
             // 
@@ -224,6 +228,7 @@
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 8;
             this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
             // ProductCode
@@ -232,29 +237,36 @@
             this.ProductCode.HeaderText = "Product Code";
             this.ProductCode.MinimumWidth = 8;
             this.ProductCode.Name = "ProductCode";
+            this.ProductCode.ReadOnly = true;
             // 
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.FillWeight = 180F;
+            this.ProductName.FillWeight = 220F;
             this.ProductName.HeaderText = "Product Name";
             this.ProductName.MinimumWidth = 8;
             this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
             // 
-            // IsActiveText
+            // IsActive
             // 
-            this.IsActiveText.DataPropertyName = "IsActiveText";
-            this.IsActiveText.HeaderText = "Is Active";
-            this.IsActiveText.MinimumWidth = 8;
-            this.IsActiveText.Name = "IsActiveText";
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.FillWeight = 50F;
+            this.IsActive.HeaderText = "Is Active";
+            this.IsActive.MinimumWidth = 8;
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // CreatedOn
             // 
             this.CreatedOn.DataPropertyName = "CreatedOn";
-            this.CreatedOn.FillWeight = 120F;
+            this.CreatedOn.FillWeight = 130F;
             this.CreatedOn.HeaderText = "Created On";
             this.CreatedOn.MinimumWidth = 8;
             this.CreatedOn.Name = "CreatedOn";
+            this.CreatedOn.ReadOnly = true;
             // 
             // Edit
             // 
@@ -263,6 +275,7 @@
             this.Edit.HeaderText = "Edit";
             this.Edit.MinimumWidth = 8;
             this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
             this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Delete
@@ -272,6 +285,7 @@
             this.Delete.HeaderText = "Delete";
             this.Delete.MinimumWidth = 8;
             this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
             this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // ChkIsActive
@@ -308,6 +322,8 @@
             this.Name = "Products";
             this.Text = "Products";
             this.Load += new System.EventHandler(this.Products_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.PanelProductMaster.ResumeLayout(false);
             this.PanelProductMaster.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridProductMaster)).EndInit();
@@ -332,7 +348,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsActiveText;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;

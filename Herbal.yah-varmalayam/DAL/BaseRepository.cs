@@ -16,5 +16,16 @@ namespace Herbal.yah_varmalayam
             //TO implement the purchase table check validation
             return false;
         }
+
+        public static string GetNextProductCode()
+        {
+            var lstProductCode = herbalContext.Products.OrderByDescending(_ => _.Id).FirstOrDefault();
+            if(lstProductCode != null)
+            {
+                return CodeGenerator.NextID(lstProductCode.ProductCode);
+            }
+            return CodeGenerator.NextID();
+        }
+
     }
 }
