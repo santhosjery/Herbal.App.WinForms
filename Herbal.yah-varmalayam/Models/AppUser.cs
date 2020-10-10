@@ -19,6 +19,14 @@ namespace Herbal.yah_varmalayam.Models
         {
             this.Products = new HashSet<Product>();
             this.Products1 = new HashSet<Product>();
+            this.CompanyDetails = new HashSet<CompanyDetail>();
+            this.CompanyDetails1 = new HashSet<CompanyDetail>();
+            this.Taxes = new HashSet<Tax>();
+            this.Taxes1 = new HashSet<Tax>();
+            this.Scales = new HashSet<Scale>();
+            this.Scales1 = new HashSet<Scale>();
+            this.PurchaseHeaders = new HashSet<PurchaseHeader>();
+            this.PurchaseHeaders1 = new HashSet<PurchaseHeader>();
         }
     
         public int Id { get; set; }
@@ -36,5 +44,21 @@ namespace Herbal.yah_varmalayam.Models
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyDetail> CompanyDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyDetail> CompanyDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tax> Taxes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tax> Taxes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Scale> Scales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Scale> Scales1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseHeader> PurchaseHeaders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseHeader> PurchaseHeaders1 { get; set; }
     }
 }

@@ -4,13 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a11a1c6b6524a3ca1507aa2c1efbaf7" Name="Diagram1">
+      <Diagram DiagramId="3a11a1c6b6524a3ca1507aa2c1efbaf7" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="HerbalModel.AccessRole" Width="1.5" PointX="0.75" PointY="1.25" />
         <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="HerbalModel.FK_User_AccessRole" />
         <EntityTypeShape EntityType="HerbalModel.Product" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="HerbalModel.FK_Product_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_Product_AppUser1" />
+        <EntityTypeShape EntityType="HerbalModel.CompanyDetail" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="HerbalModel.Tax" Width="1.5" PointX="5.25" PointY="12.375" />
+        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser1" />
+        <EntityTypeShape EntityType="HerbalModel.Scale" Width="1.5" PointX="5.25" PointY="16.75" />
+        <AssociationConnector Association="HerbalModel.FK_Scale_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_Scale_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_Product_Scale" />
+        <EntityTypeShape EntityType="HerbalModel.PurchaseHeader" Width="1.5" PointX="5.25" PointY="21.125" />
+        <EntityTypeShape EntityType="HerbalModel.PurchaseLineItem" Width="1.5" PointX="7.5" PointY="21.625" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

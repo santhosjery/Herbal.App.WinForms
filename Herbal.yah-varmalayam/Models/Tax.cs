@@ -12,21 +12,19 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Tax
     {
         public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public string ProductCode { get; set; }
-        public string ProductName { get; set; }
+        public Nullable<decimal> CGSTPercentage { get; set; }
+        public Nullable<decimal> SGSTPercentage { get; set; }
+        public Nullable<decimal> IGSTPercentage { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public int ScaleId { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
-        public virtual Scale Scale { get; set; }
     }
 }

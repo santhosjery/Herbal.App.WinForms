@@ -25,8 +25,6 @@ namespace Herbal.yah_varmalayam.Forms
         {
             AcceptButton = BtnSaveProduct;
             panelPosition(PanelProductMaster);
-            BtnSaveProduct.Text = Utility.SaveButton;
-            BtnReset.Text = Utility.ControlResetButton;
             LblHeaderText.BackColor = Color.FromName(Utility.LblBackColor);
             LblHeaderText.Font = new Font(Utility.LblFontStyle, Utility.LblFontSize); //, 17pt, style=Bold
             LblHeaderText.Font = new Font(LblHeaderText.Font, FontStyle.Bold);
@@ -42,6 +40,12 @@ namespace Herbal.yah_varmalayam.Forms
                 {
                     showMessageBox.ShowMessage(string.Format(Utility.RequiredMessage, "Product Name"));
                     TxtProductName.Focus();
+                    return;
+                }
+                if((int)DropDownScaleName.SelectedValue <= 0)
+                {
+                    showMessageBox.ShowMessage(string.Format(Utility.RequiredMessage, "Scale Name"));
+                    DropDownScaleName.Focus();
                     return;
                 }
                 //Check product name already exists or not
@@ -65,6 +69,7 @@ namespace Herbal.yah_varmalayam.Forms
                     products.ModifiedOn = DateTime.Now;
                 }
                 products.CategoryId = (int)Utility.CategoryTypes.Herbal;
+                products.ScaleId = (int)DropDownScaleName.SelectedValue;
                 products.ProductCode = TxtProductCode.Text.ToString();
                 products.ProductName = TxtProductName.Text.ToString();
                 products.IsActive = ChkIsActive.Checked;
@@ -83,12 +88,13 @@ namespace Herbal.yah_varmalayam.Forms
             try
             {
                 BtnSaveProduct.Text = Utility.SaveButton;
+                BtnReset.Text = Utility.ControlResetButton;
                 productId = 0;
-                TxtProductCode.Text = "test2";
                 TxtProductName.Text = "";
                 ChkIsActive.Checked = true;
                 TxtProductCode.Text = BaseRepository.GetNextProductCode();
                 GetGridList();
+                LoadScaleItemsToDropDown(DropDownScaleName, "");
             }
             catch (Exception ex)
             {
@@ -196,6 +202,7 @@ namespace Herbal.yah_varmalayam.Forms
                 TxtProductCode.Text = productDetail.ProductCode;
                 TxtProductName.Text = productDetail.ProductName;
                 ChkIsActive.Checked = productDetail.IsActive;
+                DropDownScaleName.SelectedValue = productDetail.ScaleId;
             }
             catch(Exception ex)
             {

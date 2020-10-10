@@ -28,5 +28,10 @@ namespace Herbal.yah_varmalayam.Models
         public virtual DbSet<AccessRole> AccessRoles { get; set; }
         public virtual DbSet<AppUser> AppUsers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<CompanyDetail> CompanyDetails { get; set; }
+        public virtual DbSet<Tax> Taxes { get; set; }
+        public virtual DbSet<Scale> Scales { get; set; }
+        public virtual DbSet<PurchaseHeader> PurchaseHeaders { get; set; }
+        public virtual DbSet<PurchaseLineItem> PurchaseLineItems { get; set; }
     }
 }

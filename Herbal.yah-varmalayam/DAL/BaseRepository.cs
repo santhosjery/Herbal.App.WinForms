@@ -11,7 +11,7 @@ namespace Herbal.yah_varmalayam
     {
         internal static HerbalEntities herbalContext = new HerbalEntities();
 
-        public static bool IsProductHasPurchaseOrSales(int productId)
+        internal static bool IsProductHasPurchaseOrSales(int productId)
         {
             //TO implement the purchase table check validation
             return false;
@@ -27,5 +27,9 @@ namespace Herbal.yah_varmalayam
             return CodeGenerator.NextID();
         }
 
+        internal static bool IsScaleHasPurchaseOrSales(int scaleId)
+        {
+            return herbalContext.Products.Where(_ => _.ScaleId == scaleId).Any();
+        }       
     }
 }

@@ -117,5 +117,11 @@ namespace Herbal.yah_varmalayam.Forms.Home
             LoginHome.Show();
             this.Close();
         }
+
+        private void scaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Text = Utility.ScaleFormName;
+            ShowAppropriateForm(new Scale(this.userViewModel));
+        }
     }
 }

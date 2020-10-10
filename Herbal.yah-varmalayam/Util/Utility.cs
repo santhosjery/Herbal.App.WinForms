@@ -13,6 +13,7 @@ namespace Herbal.yah_varmalayam
         public const string ExitTitleMessage = "Do you want to Exit?";
         public const string InvalidMessage = "Invalid {0}"; 
         public const string RequiredMessage = "{0} is required";
+        public const string MulripleRequiredMessage = "Following fields are {0}";
         public const string SaveMessage = "New {0} added successfully";
         public const string UpdateMessage = "{0} details updated successfully";
         public const string AlreadyExists = "{0} already exists!";
@@ -20,17 +21,19 @@ namespace Herbal.yah_varmalayam
         public const string DeleteMessage = "Delete the '{0}' permanently?";
         public const string UnableToDeleteMessage = "Unable to delete the {0} since it's assosiated to {1}";
         public const string DeleteSuccessMessage = "'{0}' deleted successfully.";
-
+        public const string NotFoundMessage = "{0} not found.";
         ///
         ///Button Names
         ///
         public const string SaveButton = "Save";
         public const string UpdateButton = "Update";
         public const string ControlResetButton = "Reset";
+        public const string DropDownFirstItem = "--Select--";
 
         /// <summary>
         /// Top form names
         public const string ProductFormName = "Product Master";
+        public const string ScaleFormName = "Scale Master";
         public const string TaxMasterFormName = "Tax Master";
         public const string CompanyDetailFormName = "Company Details";
         public const string ManageUserFormName = "Manage User";

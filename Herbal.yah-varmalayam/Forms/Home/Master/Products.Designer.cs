@@ -39,16 +39,19 @@
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtProductName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.PanelProductMaster = new System.Windows.Forms.Panel();
+            this.DropDownScaleName = new System.Windows.Forms.ComboBox();
+            this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.ChkIsActive = new System.Windows.Forms.CheckBox();
             this.DataGridProductMaster = new System.Windows.Forms.DataGridView();
+            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScaleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ChkIsActive = new Bunifu.Framework.UI.BunifuCheckbox();
-            this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelProductMaster.SuspendLayout();
@@ -59,7 +62,7 @@
             // 
             this.bunifuCustomLabel3.AutoSize = true;
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(498, 27);
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(484, 27);
             this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
             this.bunifuCustomLabel3.Size = new System.Drawing.Size(167, 29);
@@ -88,7 +91,7 @@
             this.BtnSaveProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveProduct.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveProduct.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveProduct.Location = new System.Drawing.Point(673, 107);
+            this.BtnSaveProduct.Location = new System.Drawing.Point(1096, 100);
             this.BtnSaveProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnSaveProduct.Name = "BtnSaveProduct";
             this.BtnSaveProduct.Size = new System.Drawing.Size(188, 57);
@@ -104,7 +107,7 @@
             this.BtnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReset.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnReset.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnReset.Location = new System.Drawing.Point(887, 107);
+            this.BtnReset.Location = new System.Drawing.Point(1292, 100);
             this.BtnReset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnReset.Name = "BtnReset";
             this.BtnReset.Size = new System.Drawing.Size(161, 57);
@@ -144,7 +147,7 @@
             this.LblHeaderText.Location = new System.Drawing.Point(0, 0);
             this.LblHeaderText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblHeaderText.Name = "LblHeaderText";
-            this.LblHeaderText.Size = new System.Drawing.Size(1555, 48);
+            this.LblHeaderText.Size = new System.Drawing.Size(1568, 48);
             this.LblHeaderText.TabIndex = 39;
             this.LblHeaderText.Text = "Product Master";
             this.LblHeaderText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -153,10 +156,10 @@
             // 
             this.TxtProductName.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtProductName.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProductName.Location = new System.Drawing.Point(673, 27);
+            this.TxtProductName.Location = new System.Drawing.Point(659, 23);
             this.TxtProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtProductName.Name = "TxtProductName";
-            this.TxtProductName.Size = new System.Drawing.Size(375, 37);
+            this.TxtProductName.Size = new System.Drawing.Size(424, 37);
             this.TxtProductName.TabIndex = 13;
             // 
             // PanelProductMaster
@@ -164,8 +167,10 @@
             this.PanelProductMaster.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PanelProductMaster.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PanelProductMaster.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelProductMaster.Controls.Add(this.DataGridProductMaster);
+            this.PanelProductMaster.Controls.Add(this.DropDownScaleName);
+            this.PanelProductMaster.Controls.Add(this.bunifuCustomLabel4);
             this.PanelProductMaster.Controls.Add(this.ChkIsActive);
+            this.PanelProductMaster.Controls.Add(this.DataGridProductMaster);
             this.PanelProductMaster.Controls.Add(this.bunifuCustomLabel2);
             this.PanelProductMaster.Controls.Add(this.bunifuCustomLabel3);
             this.PanelProductMaster.Controls.Add(this.TxtProductName);
@@ -174,11 +179,43 @@
             this.PanelProductMaster.Controls.Add(this.BtnSaveProduct);
             this.PanelProductMaster.Controls.Add(this.bunifuCustomLabel1);
             this.PanelProductMaster.Controls.Add(this.TxtProductCode);
-            this.PanelProductMaster.Location = new System.Drawing.Point(54, 89);
+            this.PanelProductMaster.Location = new System.Drawing.Point(39, 89);
             this.PanelProductMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PanelProductMaster.Name = "PanelProductMaster";
-            this.PanelProductMaster.Size = new System.Drawing.Size(1489, 789);
+            this.PanelProductMaster.Size = new System.Drawing.Size(1511, 789);
             this.PanelProductMaster.TabIndex = 38;
+            // 
+            // DropDownScaleName
+            // 
+            this.DropDownScaleName.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DropDownScaleName.FormattingEnabled = true;
+            this.DropDownScaleName.Location = new System.Drawing.Point(838, 115);
+            this.DropDownScaleName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DropDownScaleName.Name = "DropDownScaleName";
+            this.DropDownScaleName.Size = new System.Drawing.Size(245, 32);
+            this.DropDownScaleName.TabIndex = 73;
+            // 
+            // bunifuCustomLabel4
+            // 
+            this.bunifuCustomLabel4.AutoSize = true;
+            this.bunifuCustomLabel4.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel4.Location = new System.Drawing.Point(654, 118);
+            this.bunifuCustomLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bunifuCustomLabel4.Name = "bunifuCustomLabel4";
+            this.bunifuCustomLabel4.Size = new System.Drawing.Size(137, 29);
+            this.bunifuCustomLabel4.TabIndex = 72;
+            this.bunifuCustomLabel4.Text = "Scale Name";
+            // 
+            // ChkIsActive
+            // 
+            this.ChkIsActive.AutoSize = true;
+            this.ChkIsActive.Font = new System.Drawing.Font("Georgia", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChkIsActive.Location = new System.Drawing.Point(1292, 35);
+            this.ChkIsActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ChkIsActive.Name = "ChkIsActive";
+            this.ChkIsActive.Size = new System.Drawing.Size(22, 21);
+            this.ChkIsActive.TabIndex = 71;
+            this.ChkIsActive.UseVisualStyleBackColor = true;
             // 
             // DataGridProductMaster
             // 
@@ -203,6 +240,7 @@
             this.Id,
             this.ProductCode,
             this.ProductName,
+            this.ScaleName,
             this.IsActive,
             this.CreatedOn,
             this.Edit,
@@ -221,6 +259,17 @@
             this.DataGridProductMaster.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridProductMaster_ColumnHeaderMouseClick);
             this.DataGridProductMaster.Click += new System.EventHandler(this.DataGridProductMaster_Click);
             this.DataGridProductMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridProductMaster_MouseClick);
+            // 
+            // bunifuCustomLabel2
+            // 
+            this.bunifuCustomLabel2.AutoSize = true;
+            this.bunifuCustomLabel2.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(1147, 30);
+            this.bunifuCustomLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
+            this.bunifuCustomLabel2.Size = new System.Drawing.Size(104, 29);
+            this.bunifuCustomLabel2.TabIndex = 66;
+            this.bunifuCustomLabel2.Text = "Is Active";
             // 
             // Id
             // 
@@ -242,16 +291,25 @@
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.FillWeight = 220F;
+            this.ProductName.FillWeight = 190F;
             this.ProductName.HeaderText = "Product Name";
             this.ProductName.MinimumWidth = 8;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             // 
+            // ScaleName
+            // 
+            this.ScaleName.DataPropertyName = "ScaleName";
+            this.ScaleName.FillWeight = 80F;
+            this.ScaleName.HeaderText = "Scale Name";
+            this.ScaleName.MinimumWidth = 8;
+            this.ScaleName.Name = "ScaleName";
+            this.ScaleName.ReadOnly = true;
+            // 
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
-            this.IsActive.FillWeight = 50F;
+            this.IsActive.FillWeight = 70F;
             this.IsActive.HeaderText = "Is Active";
             this.IsActive.MinimumWidth = 8;
             this.IsActive.Name = "IsActive";
@@ -288,35 +346,11 @@
             this.Delete.ReadOnly = true;
             this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // ChkIsActive
-            // 
-            this.ChkIsActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(205)))), ((int)(((byte)(117)))));
-            this.ChkIsActive.ChechedOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(135)))), ((int)(((byte)(140)))));
-            this.ChkIsActive.Checked = true;
-            this.ChkIsActive.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(205)))), ((int)(((byte)(117)))));
-            this.ChkIsActive.ForeColor = System.Drawing.Color.White;
-            this.ChkIsActive.Location = new System.Drawing.Point(1205, 36);
-            this.ChkIsActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ChkIsActive.Name = "ChkIsActive";
-            this.ChkIsActive.Size = new System.Drawing.Size(20, 20);
-            this.ChkIsActive.TabIndex = 67;
-            // 
-            // bunifuCustomLabel2
-            // 
-            this.bunifuCustomLabel2.AutoSize = true;
-            this.bunifuCustomLabel2.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(1080, 30);
-            this.bunifuCustomLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
-            this.bunifuCustomLabel2.Size = new System.Drawing.Size(104, 29);
-            this.bunifuCustomLabel2.TabIndex = 66;
-            this.bunifuCustomLabel2.Text = "Is Active";
-            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1555, 892);
+            this.ClientSize = new System.Drawing.Size(1568, 892);
             this.Controls.Add(this.LblHeaderText);
             this.Controls.Add(this.PanelProductMaster);
             this.Name = "Products";
@@ -343,11 +377,14 @@
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtProductName;
         private System.Windows.Forms.Panel PanelProductMaster;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
-        private Bunifu.Framework.UI.BunifuCheckbox ChkIsActive;
         private System.Windows.Forms.DataGridView DataGridProductMaster;
+        private System.Windows.Forms.CheckBox ChkIsActive;
+        private System.Windows.Forms.ComboBox DropDownScaleName;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ScaleName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;

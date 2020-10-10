@@ -90,6 +90,12 @@
     <Compile Include="Forms\Home\Master\Products.Designer.cs">
       <DependentUpon>Products.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Home\Master\Scale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Master\Scale.Designer.cs">
+      <DependentUpon>Scale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home\Master\Taxes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <Compile Include="Models\AppUser.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDetail.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HerbalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,13 +172,28 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PurchaseHeader.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PurchaseLineItem.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Scale.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CodeGenerator.cs" />
     <Compile Include="Util\ConvertListToDataTable.cs" />
     <Compile Include="Util\Utility.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ScaleViewModel.cs" />
+    <Compile Include="ViewModels\TaxViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <EmbeddedResource Include="Forms\Home\Adminstration\ManageUsers.resx">
       <DependentUpon>ManageUsers.cs</DependentUpon>
@@ -182,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home\Master\Products.resx">
       <DependentUpon>Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Master\Scale.resx">
+      <DependentUpon>Scale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home\Master\Taxes.resx">
       <DependentUpon>Taxes.cs</DependentUpon>
@@ -242,6 +269,10 @@
     <Content Include="DB\Sprint-1\01_Tables\03_Product.sql" />
     <Content Include="DB\Sprint-1\01_Tables\01_AccessRole.sql" />
     <Content Include="DB\Sprint-1\01_Tables\02_AppUser.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\04_Tax.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\05_CompanyDetail.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\06_PurchaseHeader.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\07_PurchaseLineItem.sql" />
     <Content Include="DB\Sprint-1\02_Alter Scripts\01_AlterScripts.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />

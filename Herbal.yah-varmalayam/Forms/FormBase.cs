@@ -41,5 +41,33 @@ namespace Herbal.yah_varmalayam.Forms
                 this.ClientSize.Height / 2 - panel.Size.Height / 2);
             panel.Anchor = AnchorStyles.None;
         }
+            
+        internal void LoadScaleItemsToDropDown(ComboBox combobox, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
+                combobox.Refresh();
+                listItemDictionary.Clear();
+                var scaleList = new ScaleViewModel(searchText).scaleViewModel;
+                var dt = ConvertListToDataTable.ToDataTable(scaleList);
+                if(dt.Rows.Count > 0)
+                {
+                    listItemDictionary.Add(0, Utility.DropDownFirstItem);
+                    foreach (DataRow DtCol in dt.Rows)
+                    {
+                        listItemDictionary.Add(Convert.ToInt32(DtCol["Id"]), DtCol["ScaleName"].ToString());
+                    }
+                    combobox.DataSource = new BindingSource(listItemDictionary, null);
+                    combobox.DisplayMember = "Value";
+                    combobox.ValueMember = "Key";
+                }
+            }
+            catch(Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
     }
 }

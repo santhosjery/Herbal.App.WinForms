@@ -47,12 +47,14 @@
             this.MenuItemPurchase = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemCompanyDetail = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemTaxes = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainmenu = new System.Windows.Forms.MenuStrip();
             this.PictureBoxHome = new System.Windows.Forms.PictureBox();
+            this.scaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.mainmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxHome)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +107,7 @@
             // MenuItemHone
             // 
             this.MenuItemHone.Name = "MenuItemHone";
-            this.MenuItemHone.Size = new System.Drawing.Size(270, 38);
+            this.MenuItemHone.Size = new System.Drawing.Size(310, 38);
             this.MenuItemHone.Text = "Home";
             this.MenuItemHone.Click += new System.EventHandler(this.MenuItemHone_Click);
             // 
@@ -168,14 +170,14 @@
             // MenuItemSales
             // 
             this.MenuItemSales.Name = "MenuItemSales";
-            this.MenuItemSales.Size = new System.Drawing.Size(270, 38);
+            this.MenuItemSales.Size = new System.Drawing.Size(222, 38);
             this.MenuItemSales.Text = "Sales ";
             this.MenuItemSales.Click += new System.EventHandler(this.MenuItemSales_Click);
             // 
             // MenuItemPurchase
             // 
             this.MenuItemPurchase.Name = "MenuItemPurchase";
-            this.MenuItemPurchase.Size = new System.Drawing.Size(270, 38);
+            this.MenuItemPurchase.Size = new System.Drawing.Size(222, 38);
             this.MenuItemPurchase.Text = "Purchase";
             this.MenuItemPurchase.Click += new System.EventHandler(this.MenuItemPurchase_Click);
             // 
@@ -195,13 +197,6 @@
             this.MenuItemCompanyDetail.Text = "Company Detail";
             this.MenuItemCompanyDetail.Click += new System.EventHandler(this.MenuItemCompanyDetail_Click);
             // 
-            // MenuItemTaxes
-            // 
-            this.MenuItemTaxes.Name = "MenuItemTaxes";
-            this.MenuItemTaxes.Size = new System.Drawing.Size(301, 38);
-            this.MenuItemTaxes.Text = "Taxes";
-            this.MenuItemTaxes.Click += new System.EventHandler(this.MenuItemTaxes_Click);
-            // 
             // MenuItemProduct
             // 
             this.MenuItemProduct.Name = "MenuItemProduct";
@@ -212,8 +207,8 @@
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scaleToolStripMenuItem,
             this.MenuItemProduct,
-            this.MenuItemTaxes,
             this.MenuItemCompanyDetail});
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(110, 34);
@@ -265,6 +260,13 @@
             this.PictureBoxHome.TabIndex = 3;
             this.PictureBoxHome.TabStop = false;
             // 
+            // scaleToolStripMenuItem
+            // 
+            this.scaleToolStripMenuItem.Name = "scaleToolStripMenuItem";
+            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(301, 38);
+            this.scaleToolStripMenuItem.Text = "Scale";
+            this.scaleToolStripMenuItem.Click += new System.EventHandler(this.scaleToolStripMenuItem_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -277,6 +279,8 @@
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Home_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.mainmenu.ResumeLayout(false);
             this.mainmenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxHome)).EndInit();
@@ -307,10 +311,10 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemPurchase;
         private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuItemCompanyDetail;
-        private System.Windows.Forms.ToolStripMenuItem MenuItemTaxes;
         private System.Windows.Forms.ToolStripMenuItem MenuItemProduct;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.MenuStrip mainmenu;
+        private System.Windows.Forms.ToolStripMenuItem scaleToolStripMenuItem;
     }
 }

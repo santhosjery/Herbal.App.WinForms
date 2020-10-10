@@ -5,12 +5,12 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
 CREATE TABLE [dbo].[Product](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[CategoryId] [int] NOT NULL,
 	[ProductCode] [varchar](50) NOT NULL,
 	[ProductName] [nvarchar](250) NOT NULL,
+	[ScaleId] [int] NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[CreatedBy] [int] NOT NULL,
@@ -37,4 +37,10 @@ GO
 ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_AppUser1]
 GO
 
+ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Scale] FOREIGN KEY([ScaleId])
+REFERENCES [dbo].[Scale] ([Id])
+GO
+
+ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Scale]
+GO
 

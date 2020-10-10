@@ -11,6 +11,8 @@ namespace Herbal.yah_varmalayam
         public int Id { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
+        public int ScaleId { get; set; }
+        public string ScaleName { get; set; }
 
         public List<ProductViewModel> productViewList = new List<ProductViewModel>();
 
@@ -37,6 +39,8 @@ namespace Herbal.yah_varmalayam
             ProductCode = product.ProductCode;
             ProductName = product.ProductName;
             IsActive = product.IsActive;
+            ScaleId = product.ScaleId;
+            ScaleName = product.Scale.ScaleName;
             CreatedOn = product.CreatedOn;
             CreatedBy = product.CreatedBy;
             ModifiedOn = product.ModifiedOn;
