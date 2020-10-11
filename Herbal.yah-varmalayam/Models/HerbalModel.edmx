@@ -67,6 +67,7 @@
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PurchaseHeader">
           <Key>
@@ -105,7 +106,7 @@
           <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalTax" Type="decimal" Precision="18" Scale="2" />
           <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Scale">
           <Key>
@@ -483,6 +484,7 @@
           <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="Product" ToRole="AppUser" />
           <Property Name="ScaleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Scale" Relationship="HerbalModel.FK_Product_Scale" FromRole="Product" ToRole="Scale" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_Product_AppUser">
           <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
@@ -688,7 +690,7 @@
           <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalTax" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="PurchaseHeader" Relationship="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" FromRole="PurchaseLineItem" ToRole="PurchaseHeader" />
         </EntityType>
         <Association Name="FK_PurchaseHeader_AppUser">
@@ -763,6 +765,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="HerbalModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
                 <ScalarProperty Name="ScaleId" ColumnName="ScaleId" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />

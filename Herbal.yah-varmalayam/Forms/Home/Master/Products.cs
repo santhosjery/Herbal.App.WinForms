@@ -42,10 +42,16 @@ namespace Herbal.yah_varmalayam.Forms
                     TxtProductName.Focus();
                     return;
                 }
-                if((int)DropDownScaleName.SelectedValue <= 0)
+                if ((int)DropDownScaleName.SelectedValue <= 0)
                 {
                     showMessageBox.ShowMessage(string.Format(Utility.RequiredMessage, "Scale Name"));
                     DropDownScaleName.Focus();
+                    return;
+                }
+                if (string.IsNullOrEmpty(TxtSellingPrice.Text))
+                {
+                    showMessageBox.ShowMessage(string.Format(Utility.RequiredMessage, "Selling Price per item"));
+                    TxtSellingPrice.Focus();
                     return;
                 }
                 //Check product name already exists or not
@@ -72,6 +78,7 @@ namespace Herbal.yah_varmalayam.Forms
                 products.ScaleId = (int)DropDownScaleName.SelectedValue;
                 products.ProductCode = TxtProductCode.Text.ToString();
                 products.ProductName = TxtProductName.Text.ToString();
+                products.SellingPrice = string.IsNullOrEmpty(TxtSellingPrice.Text) ? 0 : Convert.ToDecimal(TxtSellingPrice.Text);
                 products.IsActive = ChkIsActive.Checked;
                 herbalContext.SaveChanges();
                 showMessageBox.ShowMessage(string.Format((productId > 0 ? Utility.UpdateMessage : Utility.SaveMessage), "product"));
@@ -91,6 +98,8 @@ namespace Herbal.yah_varmalayam.Forms
                 BtnReset.Text = Utility.ControlResetButton;
                 productId = 0;
                 TxtProductName.Text = "";
+                LblScaleName.Text = "";
+                TxtSellingPrice.Text = "";
                 ChkIsActive.Checked = true;
                 TxtProductCode.Text = BaseRepository.GetNextProductCode();
                 GetGridList();
@@ -201,6 +210,7 @@ namespace Herbal.yah_varmalayam.Forms
                 var productDetail = new ProductViewModel(productId);
                 TxtProductCode.Text = productDetail.ProductCode;
                 TxtProductName.Text = productDetail.ProductName;
+                TxtSellingPrice.Text = productDetail.SellingPrice.ToString(); 
                 ChkIsActive.Checked = productDetail.IsActive;
                 DropDownScaleName.SelectedValue = productDetail.ScaleId;
             }
@@ -212,6 +222,28 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void DataGridProductMaster_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+        }
+
+        private void DropDownScaleName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(DropDownScaleName.SelectedIndex > 0)
+            {
+               LblScaleName.Text = string.Concat("Per 1 ", DropDownScaleName.Text.ToString());
+            }
+            else
+            {
+                LblScaleName.Text = "";
+            }
+        }
+
+        private void TxtSellingPrice_TextChanged(object sender, EventArgs e)
+        {
+            decimal a;
+            if (!decimal.TryParse(TxtSellingPrice.Text, out a))
+            {
+                // If not int clear textbox text or Undo() last operation
+                TxtSellingPrice.Clear();
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ CREATE TABLE [dbo].[Product](
 	[ProductCode] [varchar](50) NOT NULL,
 	[ProductName] [nvarchar](250) NOT NULL,
 	[ScaleId] [int] NOT NULL,
+	[SellingPrice] decimal(18,2) NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[CreatedBy] [int] NOT NULL,

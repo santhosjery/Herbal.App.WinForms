@@ -24,6 +24,7 @@ namespace Herbal.yah_varmalayam.Models
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
         public int ScaleId { get; set; }
+        public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }

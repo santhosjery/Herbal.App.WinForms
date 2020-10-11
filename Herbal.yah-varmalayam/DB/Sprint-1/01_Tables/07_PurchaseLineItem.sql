@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[PurchaseLineItem](
 	[IGST] [decimal](18, 2) NULL,
 	[TotalTax] [decimal](18, 2) NULL,
 	[NetAmount] [decimal](18, 2) NOT NULL,
-	[SellingPrice] [decimal](18, 2) NOT NULL,
+	[SellingPrice] [decimal](18, 2) NULL,
  CONSTRAINT [PK_PurchaseLineItem] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

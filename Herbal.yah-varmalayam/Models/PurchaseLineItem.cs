@@ -26,7 +26,7 @@ namespace Herbal.yah_varmalayam.Models
         public Nullable<decimal> IGST { get; set; }
         public Nullable<decimal> TotalTax { get; set; }
         public decimal NetAmount { get; set; }
-        public decimal SellingPrice { get; set; }
+        public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual PurchaseHeader PurchaseHeader { get; set; }
     }

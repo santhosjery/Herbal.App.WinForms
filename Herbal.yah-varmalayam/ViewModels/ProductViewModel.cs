@@ -13,6 +13,8 @@ namespace Herbal.yah_varmalayam
         public string ProductName { get; set; }
         public int ScaleId { get; set; }
         public string ScaleName { get; set; }
+        public decimal SellingPrice { get; set; }
+        public string PriceAndScale { get; set; }
 
         public List<ProductViewModel> productViewList = new List<ProductViewModel>();
 
@@ -41,6 +43,8 @@ namespace Herbal.yah_varmalayam
             IsActive = product.IsActive;
             ScaleId = product.ScaleId;
             ScaleName = product.Scale.ScaleName;
+            SellingPrice = product.SellingPrice ?? 0;
+            PriceAndScale = string.Concat(product.SellingPrice, " per 1", product.Scale.ScaleName);
             CreatedOn = product.CreatedOn;
             CreatedBy = product.CreatedBy;
             ModifiedOn = product.ModifiedOn;
