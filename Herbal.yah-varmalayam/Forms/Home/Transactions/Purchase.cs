@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Herbal.yah_varmalayam.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,10 @@ namespace Herbal.yah_varmalayam.Forms
     public partial class Purchase : FormBase
     {
         int purchaseId = 0;
+        int purchaseLineItemId = 0;
+        decimal existingLineItemPurchaseAmount = 0;
+        decimal existingLineItemDiscountAmount = 0;
+        decimal existingLineItemTaxAmount = 0;
         public Purchase(UserViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
@@ -34,6 +39,7 @@ namespace Herbal.yah_varmalayam.Forms
         {
             try
             {
+                purchaseLineItemId = 0;
                 TxtQuantity.Text = "";
                 LblScaleName.Text = Utility.ScaleNameNotApplicable;
                 TxtPurchaseAmount.Text = "";
@@ -43,7 +49,7 @@ namespace Herbal.yah_varmalayam.Forms
                 TxtNetAmount.Text = "";
                 LoadProductItemsToDropDown(DropDownProductName, "");
                 LoadPaymentTypeToDropDown(DropDownPaymentType, "");
-                
+                GetGridList();
                 //Don't reset other's when line items called. 
                 if (isResetOnlyLineItems == false)
                 {
@@ -67,6 +73,23 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
+        private void GetGridList()
+        {
+            try
+            {
+                dataTable.Clear();
+                DataGridPurchaseMaster.Refresh();
+                DataGridPurchaseMaster.AutoGenerateColumns = false;
+                var purchaseList = new PurchaseLineItemViewModel(purchaseId);
+                dataTable = ConvertListToDataTable.ToDataTable(purchaseList.purchaseLineItemViewList);
+                bindingSource.DataSource = dataTable;
+                DataGridPurchaseMaster.DataSource = bindingSource;
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
 
         private void BtnSaveLineItem_Click(object sender, EventArgs e)
         {
@@ -80,18 +103,93 @@ namespace Herbal.yah_varmalayam.Forms
                 }
                 _calculateValuesToHeader();
                 _calculateValuesToLineItem();
+                _updatePurchaseHeader();
+                _resetAllControls(true);
             }
             catch(Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
-
+        private void _updatePurchaseHeader()
+        {
+            PurchaseHeader purchaseHeader = new PurchaseHeader();
+            if(purchaseId == 0)
+            {
+                herbalContext.PurchaseHeaders.Add(purchaseHeader);
+                purchaseHeader.CreatedBy = userViewModel.UserId;
+                purchaseHeader.CreatedOn = DateTime.Now;
+                purchaseHeader.IsActive = true;
+            }
+            else
+            {
+                purchaseHeader = herbalContext.PurchaseHeaders.Where(_ => _.Id == purchaseId).Single();
+                purchaseHeader.ModifiedBy = userViewModel.UserId;
+                purchaseHeader.ModifiedOn = DateTime.Now;
+            }
+            Int64? _clientMobileNumber = null;
+            if(string.IsNullOrEmpty(TxtClientMobileNumber.Text) == false)
+            {
+                _clientMobileNumber = Convert.ToInt64(TxtClientMobileNumber.Text);
+            }
+            int? paymentTypeId = null;
+            if((int)DropDownPaymentType.SelectedIndex > 0)
+            {
+                paymentTypeId = (int)DropDownPaymentType.SelectedValue;
+            }
+            purchaseHeader.PurchaseCode = TxtPurchaseCode.Text.ToString();
+            purchaseHeader.ClientName = TxtClientName.Text.ToString();
+            purchaseHeader.ClientMobileNumber = _clientMobileNumber;
+            purchaseHeader.ClientInvoiceNumber = TxtClientInvoiceNo.Text.ToString();
+            purchaseHeader.PaymentTypeId = paymentTypeId;
+            purchaseHeader.PurchaseDate = DtPickerInvoiceDate.Value;
+            purchaseHeader.TotalPurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
+            purchaseHeader.TotalDiscount = StringToDecimal(TxtDiscount.Text);
+            purchaseHeader.TotalGrossAmount = StringToDecimal(TxtTotalGrossAmount.Text);
+            purchaseHeader.TotalTaxAmount = StringToDecimal(TxtTotalTax.Text);
+            purchaseHeader.TotalNetAmount = StringToDecimal(TxtNetAmount.Text);
+            purchaseHeader.AmountPaid = StringToDecimal(TxtPaidAmount.Text);
+            purchaseHeader.DueAmount = StringToDecimal(TxtDuesAmount.Text);
+            herbalContext.SaveChanges();
+            purchaseId = purchaseHeader.Id;
+            _updatePurchaseLineItem();
+        }
+        private void _updatePurchaseLineItem()
+        {
+            PurchaseLineItem purchaseLineItem = new PurchaseLineItem();
+            if(purchaseLineItemId == 0)
+            {
+                herbalContext.PurchaseLineItems.Add(purchaseLineItem);
+                purchaseLineItem.CreatedBy = userViewModel.UserId;
+                purchaseLineItem.CreatedOn = DateTime.Now;
+                purchaseLineItem.IsActive = true;
+            }
+            else
+            {
+                purchaseLineItem = herbalContext.PurchaseLineItems.Where(_ => _.Id == purchaseLineItemId).Single();
+                purchaseLineItem.ModifiedBy = userViewModel.UserId;
+                purchaseLineItem.ModifiedOn = DateTime.Now;
+            }
+            purchaseLineItem.PurchaseLineItemCode = null;
+            purchaseLineItem.PurchaseId = purchaseId;
+            purchaseLineItem.ProductId = (int)DropDownProductName.SelectedValue;
+            purchaseLineItem.Quantity = StringToDecimal(TxtQuantity.Text);
+            purchaseLineItem.PurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
+            purchaseLineItem.Discount = StringToDecimal(TxtDiscount.Text);
+            purchaseLineItem.GrossAmount = _getLineItemGrossAmount();
+            purchaseLineItem.CGST = StringToDecimal(TxtCgstPercentage.Text); 
+            purchaseLineItem.SGST = StringToDecimal(TxtSgstPercentage.Text);
+            purchaseLineItem.IGST = null;
+            purchaseLineItem.TotalTax = _getLineItemTaxAmount();
+            purchaseLineItem.NetAmount = StringToDecimal(TxtNetAmount.Text);
+            purchaseLineItem.SellingPrice = null;
+            herbalContext.SaveChanges();
+        }
         private string _validateLineItemInputs()
         {
             string message = "";
             List<string> requiredFields = new List<string>();
-            if ((int)DropDownProductName.SelectedValue <= 0)
+            if ((int)DropDownProductName.SelectedIndex <= 0)
             {
                 requiredFields.Add("Product Name");
             }
@@ -117,7 +215,7 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 TxtTotalPurchaseAmount.Text = TxtPurchaseAmount.Text;
                 TxtTotalDiscount.Text = TxtDiscount.Text;
-                TxtTotalTax.Text = _getTaxAmount().ToString();
+                TxtTotalTax.Text = _getLineItemTaxAmount().ToString();
                 TxtTotalGrossAmount.Text = (_getLineItemGrossAmount()).ToString();
                 TxtTotalNetAmount.Text = (StringToDecimal(TxtTotalGrossAmount.Text) + StringToDecimal(TxtTotalTax.Text)).ToString();
                 TxtPaidAmount.Text = TxtTotalNetAmount.Text;
@@ -125,12 +223,18 @@ namespace Herbal.yah_varmalayam.Forms
             }
             else
             {
-                var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + StringToDecimal(TxtPurchaseAmount.Text);
+                if(purchaseLineItemId > 0)
+                {
+                    TxtTotalPurchaseAmount.Text = (StringToDecimal(TxtTotalPurchaseAmount.Text) - existingLineItemPurchaseAmount).ToString();
+                    TxtTotalDiscount.Text = (StringToDecimal(TxtTotalDiscount.Text) - existingLineItemDiscountAmount).ToString();
+                    TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) - existingLineItemTaxAmount).ToString();
+                }
+                var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + (_getLineItemGrossAmount());
                 var totalDiscountAmount = StringToDecimal(TxtTotalDiscount.Text) + StringToDecimal(TxtDiscount.Text);
                 TxtTotalPurchaseAmount.Text = totalPurchaseAmount.ToString();
                 TxtTotalDiscount.Text = totalDiscountAmount.ToString();
 
-                TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) + _getTaxAmount()).ToString();
+                TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) + _getLineItemTaxAmount()).ToString();
 
                 var totalGrossAmount = totalPurchaseAmount - totalDiscountAmount;
                 TxtTotalGrossAmount.Text = totalGrossAmount.ToString();
@@ -145,10 +249,10 @@ namespace Herbal.yah_varmalayam.Forms
         private void _calculateValuesToLineItem()
         {
             var grossAmount = _getLineItemGrossAmount();
-            var taxAmount = _getTaxAmount();
+            var taxAmount = _getLineItemTaxAmount();
             TxtNetAmount.Text = (grossAmount + taxAmount).ToString();
         }
-        private decimal _getTaxAmount()
+        private decimal _getLineItemTaxAmount()
         {
             var cgstTax = StringToDecimal(TxtCgstPercentage.Text);
             var sgstTax = StringToDecimal(TxtSgstPercentage.Text);
