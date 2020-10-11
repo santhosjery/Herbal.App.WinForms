@@ -169,6 +169,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HerbalModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaymentType.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
@@ -181,6 +184,9 @@
     <Compile Include="Models\Scale.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StockDetail.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tax.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
@@ -191,6 +197,7 @@
     <Compile Include="Util\Utility.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
+    <Compile Include="ViewModels\PaymentTypeViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ScaleViewModel.cs" />
     <Compile Include="ViewModels\TaxViewModel.cs" />
@@ -273,6 +280,8 @@
     <Content Include="DB\Sprint-1\01_Tables\05_CompanyDetail.sql" />
     <Content Include="DB\Sprint-1\01_Tables\06_PurchaseHeader.sql" />
     <Content Include="DB\Sprint-1\01_Tables\07_PurchaseLineItem.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\08_PaymentType.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\09_StockDetail.sql" />
     <Content Include="DB\Sprint-1\02_Alter Scripts\01_AlterScripts.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />

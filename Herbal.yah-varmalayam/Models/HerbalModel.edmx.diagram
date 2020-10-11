@@ -26,6 +26,14 @@
         <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser1" />
         <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" />
+        <EntityTypeShape EntityType="HerbalModel.PaymentType" Width="1.5" PointX="5.25" PointY="27.125" />
+        <AssociationConnector Association="HerbalModel.FK_PaymentType_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_PaymentType_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_PaymentType" />
+        <EntityTypeShape EntityType="HerbalModel.StockDetail" Width="1.5" PointX="7.5" PointY="2" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

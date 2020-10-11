@@ -27,6 +27,10 @@ namespace Herbal.yah_varmalayam.Models
             this.Scales1 = new HashSet<Scale>();
             this.PurchaseHeaders = new HashSet<PurchaseHeader>();
             this.PurchaseHeaders1 = new HashSet<PurchaseHeader>();
+            this.PaymentTypes = new HashSet<PaymentType>();
+            this.PaymentTypes1 = new HashSet<PaymentType>();
+            this.StockDetails = new HashSet<StockDetail>();
+            this.StockDetails1 = new HashSet<StockDetail>();
         }
     
         public int Id { get; set; }
@@ -60,5 +64,13 @@ namespace Herbal.yah_varmalayam.Models
         public virtual ICollection<PurchaseHeader> PurchaseHeaders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseHeader> PurchaseHeaders1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaymentType> PaymentTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaymentType> PaymentTypes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StockDetail> StockDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StockDetail> StockDetails1 { get; set; }
     }
 }

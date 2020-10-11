@@ -10,7 +10,8 @@ CREATE TABLE [dbo].[PurchaseHeader](
 	[PurchaseCode] [nvarchar](50) NOT NULL,
 	[ClientName] [nvarchar](150) NULL,
 	[ClientMobileNumber] [bigint] NOT NULL,
-	[IsActive] [bit] NOT NULL,
+	[ClientInvoiceNumber] [nvarchar](100) NULL,
+	[PaymentTypeId] [int] NULL,
 	[PurchaseDate] [datetime] NOT NULL,
 	[TotalGrossAmount] [decimal](18, 2) NOT NULL,
 	[TotalDiscount] [decimal](18, 2) NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE [dbo].[PurchaseHeader](
 	[TotalNetAmount] [decimal](18, 2) NOT NULL,
 	[AmountPaid] [decimal](18, 2) NOT NULL,
 	[DueAmount] [decimal](18, 2) NOT NULL,
+	[IsActive] [bit] NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[CreatedBy] [int] NOT NULL,
 	[ModifiedOn] [datetime] NULL,
@@ -41,6 +43,13 @@ REFERENCES [dbo].[AppUser] ([Id])
 GO
 
 ALTER TABLE [dbo].[PurchaseHeader] CHECK CONSTRAINT [FK_PurchaseHeader_AppUser1]
+GO
+
+ALTER TABLE [dbo].[PurchaseHeader]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseHeader_PaymentType] FOREIGN KEY([PaymentTypeId])
+REFERENCES [dbo].[PaymentType] ([Id])
+GO
+
+ALTER TABLE [dbo].[PurchaseHeader] CHECK CONSTRAINT [FK_PurchaseHeader_PaymentType]
 GO
 
 

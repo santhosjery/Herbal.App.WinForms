@@ -23,3 +23,14 @@ Values('YAH HERBALS','SIDDHA, AYURVEDA & UNANI MEDICINES','IMPCOPS Limited Autho
 				1,GetDate(),1)
 
 GO
+--Insert into PaymentType
+Insert into PaymentType([PaymentTypeName],[IsActive],[CreatedOn],[CreatedBy])
+	Values ('Cash',1,Getdate(),1)
+GO
+Insert into PaymentType([PaymentTypeName],[IsActive],[CreatedOn],[CreatedBy])
+	Values ('Card',1,Getdate(),1)
+GO
+GO
+Insert into PaymentType([PaymentTypeName],[IsActive],[CreatedOn],[CreatedBy])
+	Values ('GPay',1,Getdate(),1)
+GO

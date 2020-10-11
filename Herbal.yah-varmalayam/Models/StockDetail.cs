@@ -12,30 +12,21 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class StockDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.StockDetails = new HashSet<StockDetail>();
-        }
-    
         public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public string ProductCode { get; set; }
-        public string ProductName { get; set; }
+        public int ProductId { get; set; }
+        public Nullable<decimal> TotalPurchaseQuantity { get; set; }
+        public Nullable<decimal> TotalSalesQuantity { get; set; }
+        public Nullable<decimal> AvilableQuantity { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public int ScaleId { get; set; }
-        public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
-        public virtual Scale Scale { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StockDetail> StockDetails { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

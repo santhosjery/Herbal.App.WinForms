@@ -12,37 +12,25 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PurchaseHeader
+    public partial class PaymentType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PurchaseHeader()
+        public PaymentType()
         {
-            this.PurchaseLineItems = new HashSet<PurchaseLineItem>();
+            this.PurchaseHeaders = new HashSet<PurchaseHeader>();
         }
     
         public int Id { get; set; }
-        public string PurchaseCode { get; set; }
-        public string ClientName { get; set; }
-        public long ClientMobileNumber { get; set; }
+        public string PaymentTypeName { get; set; }
         public bool IsActive { get; set; }
-        public System.DateTime PurchaseDate { get; set; }
-        public decimal TotalGrossAmount { get; set; }
-        public decimal TotalDiscount { get; set; }
-        public Nullable<decimal> TotalTaxAmount { get; set; }
-        public decimal TotalNetAmount { get; set; }
-        public decimal AmountPaid { get; set; }
-        public decimal DueAmount { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public string ClientInvoiceNumber { get; set; }
-        public Nullable<int> PaymentTypeId { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
-        public virtual PaymentType PaymentType { get; set; }
+        public virtual ICollection<PurchaseHeader> PurchaseHeaders { get; set; }
     }
 }
