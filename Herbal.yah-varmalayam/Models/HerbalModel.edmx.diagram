@@ -34,6 +34,9 @@
         <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser1" />
         <AssociationConnector Association="HerbalModel.FK_StockDetail_Product" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItems_Product" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_AppUser1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

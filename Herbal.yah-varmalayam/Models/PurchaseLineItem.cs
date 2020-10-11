@@ -27,7 +27,15 @@ namespace Herbal.yah_varmalayam.Models
         public Nullable<decimal> TotalTax { get; set; }
         public decimal NetAmount { get; set; }
         public Nullable<decimal> SellingPrice { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
     
         public virtual PurchaseHeader PurchaseHeader { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual AppUser AppUser { get; set; }
+        public virtual AppUser AppUser1 { get; set; }
     }
 }

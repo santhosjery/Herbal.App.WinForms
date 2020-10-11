@@ -69,5 +69,62 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
+
+
+        internal void LoadProductItemsToDropDown(ComboBox combobox, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
+                combobox.Refresh();
+                listItemDictionary.Clear();
+                var list = new ProductViewModel(searchText).productViewList;
+                var dt = ConvertListToDataTable.ToDataTable(list);
+                if (dt.Rows.Count > 0)
+                {
+                    listItemDictionary.Add(0, Utility.DropDownFirstItem);
+                    foreach (DataRow DtCol in dt.Rows)
+                    {
+                        listItemDictionary.Add(Convert.ToInt32(DtCol["Id"]), DtCol["ProductName"].ToString());
+                    }
+                    combobox.DataSource = new BindingSource(listItemDictionary, null);
+                    combobox.DisplayMember = "Value";
+                    combobox.ValueMember = "Key";
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        internal void LoadPaymentTypeToDropDown(ComboBox combobox, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
+                combobox.Refresh();
+                listItemDictionary.Clear();
+                var list = new PaymentTypeViewModel(searchText).paymentTypeViewModel;
+                var dt = ConvertListToDataTable.ToDataTable(list);
+                if (dt.Rows.Count > 0)
+                {
+                    listItemDictionary.Add(0, Utility.DropDownFirstItem);
+                    foreach (DataRow DtCol in dt.Rows)
+                    {
+                        listItemDictionary.Add(Convert.ToInt32(DtCol["Id"]), DtCol["PaymentTypeName"].ToString());
+                    }
+                    combobox.DataSource = new BindingSource(listItemDictionary, null);
+                    combobox.DisplayMember = "Value";
+                    combobox.ValueMember = "Key";
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
     }
 }

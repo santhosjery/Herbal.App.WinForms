@@ -48,7 +48,7 @@
             this.DropDownProductName = new System.Windows.Forms.ComboBox();
             this.bunifuCustomLabel5 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtMobileNumber = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.TxtClientMobileNumber = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.TxtClientName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.TxtClientInvoiceNo = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -76,6 +76,8 @@
             this.BtnPrintSummary = new System.Windows.Forms.Button();
             this.DataGridPurchaseMaster = new System.Windows.Forms.DataGridView();
             this.LblScale = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.bunifuCustomLabel18 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.DtPickerInvoiceDate = new System.Windows.Forms.DateTimePicker();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,8 +90,6 @@
             this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.bunifuCustomLabel18 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.DtPickerInvoiceDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelPurchase.SuspendLayout();
@@ -339,7 +339,7 @@
             this.groupBox1.Controls.Add(this.bunifuCustomLabel7);
             this.groupBox1.Controls.Add(this.TxtPurchaseCode);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel2);
-            this.groupBox1.Controls.Add(this.TxtMobileNumber);
+            this.groupBox1.Controls.Add(this.TxtClientMobileNumber);
             this.groupBox1.Controls.Add(this.TxtClientName);
             this.groupBox1.Controls.Add(this.TxtClientInvoiceNo);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel6);
@@ -357,15 +357,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Header Info";
             // 
-            // TxtMobileNumber
+            // TxtClientMobileNumber
             // 
-            this.TxtMobileNumber.BorderColor = System.Drawing.Color.SeaGreen;
-            this.TxtMobileNumber.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtMobileNumber.Location = new System.Drawing.Point(1381, 72);
-            this.TxtMobileNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtMobileNumber.Name = "TxtMobileNumber";
-            this.TxtMobileNumber.Size = new System.Drawing.Size(350, 33);
-            this.TxtMobileNumber.TabIndex = 23;
+            this.TxtClientMobileNumber.BorderColor = System.Drawing.Color.SeaGreen;
+            this.TxtClientMobileNumber.Font = new System.Drawing.Font("Verdana", 10.5F);
+            this.TxtClientMobileNumber.Location = new System.Drawing.Point(1381, 72);
+            this.TxtClientMobileNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtClientMobileNumber.Name = "TxtClientMobileNumber";
+            this.TxtClientMobileNumber.Size = new System.Drawing.Size(350, 33);
+            this.TxtClientMobileNumber.TabIndex = 23;
             // 
             // TxtClientName
             // 
@@ -712,6 +712,27 @@
             this.LblScale.TabIndex = 66;
             this.LblScale.Text = "Scale";
             // 
+            // bunifuCustomLabel18
+            // 
+            this.bunifuCustomLabel18.AutoSize = true;
+            this.bunifuCustomLabel18.Font = new System.Drawing.Font("Georgia", 10F);
+            this.bunifuCustomLabel18.Location = new System.Drawing.Point(624, 28);
+            this.bunifuCustomLabel18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bunifuCustomLabel18.Name = "bunifuCustomLabel18";
+            this.bunifuCustomLabel18.Size = new System.Drawing.Size(123, 24);
+            this.bunifuCustomLabel18.TabIndex = 61;
+            this.bunifuCustomLabel18.Text = "Invoice Date";
+            // 
+            // DtPickerInvoiceDate
+            // 
+            this.DtPickerInvoiceDate.Font = new System.Drawing.Font("Georgia", 10.5F, System.Drawing.FontStyle.Bold);
+            this.DtPickerInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtPickerInvoiceDate.Location = new System.Drawing.Point(628, 71);
+            this.DtPickerInvoiceDate.Name = "DtPickerInvoiceDate";
+            this.DtPickerInvoiceDate.Size = new System.Drawing.Size(275, 31);
+            this.DtPickerInvoiceDate.TabIndex = 62;
+            this.DtPickerInvoiceDate.Value = new System.DateTime(2020, 10, 11, 13, 25, 57, 0);
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -724,6 +745,7 @@
             // SrNo
             // 
             this.SrNo.DataPropertyName = "SrNo";
+            this.SrNo.FillWeight = 50F;
             this.SrNo.HeaderText = "Sr.No";
             this.SrNo.MinimumWidth = 8;
             this.SrNo.Name = "SrNo";
@@ -732,7 +754,7 @@
             // ProductName
             // 
             this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.FillWeight = 190F;
+            this.ProductName.FillWeight = 230F;
             this.ProductName.HeaderText = "Product Name";
             this.ProductName.MinimumWidth = 8;
             this.ProductName.Name = "ProductName";
@@ -768,6 +790,7 @@
             // CGSTPercentage
             // 
             this.CGSTPercentage.DataPropertyName = "CGSTPercentage";
+            this.CGSTPercentage.FillWeight = 80F;
             this.CGSTPercentage.HeaderText = "CGST%";
             this.CGSTPercentage.MinimumWidth = 8;
             this.CGSTPercentage.Name = "CGSTPercentage";
@@ -776,6 +799,7 @@
             // SGSTPercentage
             // 
             this.SGSTPercentage.DataPropertyName = "SGSTPercentage";
+            this.SGSTPercentage.FillWeight = 80F;
             this.SGSTPercentage.HeaderText = "SGST%";
             this.SGSTPercentage.MinimumWidth = 8;
             this.SGSTPercentage.Name = "SGSTPercentage";
@@ -784,6 +808,7 @@
             // NetAmount
             // 
             this.NetAmount.DataPropertyName = "NetAmount";
+            this.NetAmount.FillWeight = 120F;
             this.NetAmount.HeaderText = "Net Amount";
             this.NetAmount.MinimumWidth = 8;
             this.NetAmount.Name = "NetAmount";
@@ -792,7 +817,7 @@
             // CreatedOn
             // 
             this.CreatedOn.DataPropertyName = "CreatedOn";
-            this.CreatedOn.FillWeight = 130F;
+            this.CreatedOn.FillWeight = 140F;
             this.CreatedOn.HeaderText = "Created On";
             this.CreatedOn.MinimumWidth = 8;
             this.CreatedOn.Name = "CreatedOn";
@@ -801,7 +826,7 @@
             // Edit
             // 
             this.Edit.DataPropertyName = "Edit";
-            this.Edit.FillWeight = 50F;
+            this.Edit.FillWeight = 55F;
             this.Edit.HeaderText = "Edit";
             this.Edit.MinimumWidth = 8;
             this.Edit.Name = "Edit";
@@ -811,33 +836,12 @@
             // Delete
             // 
             this.Delete.DataPropertyName = "Delete";
-            this.Delete.FillWeight = 50F;
+            this.Delete.FillWeight = 55F;
             this.Delete.HeaderText = "Delete";
             this.Delete.MinimumWidth = 8;
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
             this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // bunifuCustomLabel18
-            // 
-            this.bunifuCustomLabel18.AutoSize = true;
-            this.bunifuCustomLabel18.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel18.Location = new System.Drawing.Point(624, 28);
-            this.bunifuCustomLabel18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.bunifuCustomLabel18.Name = "bunifuCustomLabel18";
-            this.bunifuCustomLabel18.Size = new System.Drawing.Size(123, 24);
-            this.bunifuCustomLabel18.TabIndex = 61;
-            this.bunifuCustomLabel18.Text = "Invoice Date";
-            // 
-            // DtPickerInvoiceDate
-            // 
-            this.DtPickerInvoiceDate.Font = new System.Drawing.Font("Georgia", 10.5F, System.Drawing.FontStyle.Bold);
-            this.DtPickerInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtPickerInvoiceDate.Location = new System.Drawing.Point(628, 71);
-            this.DtPickerInvoiceDate.Name = "DtPickerInvoiceDate";
-            this.DtPickerInvoiceDate.Size = new System.Drawing.Size(275, 31);
-            this.DtPickerInvoiceDate.TabIndex = 62;
-            this.DtPickerInvoiceDate.Value = new System.DateTime(2020, 10, 11, 13, 25, 57, 0);
             // 
             // Purchase
             // 
@@ -889,7 +893,7 @@
         private System.Windows.Forms.Panel PanelPurchase;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel15;
         private System.Windows.Forms.GroupBox Grouppurchase;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtMobileNumber;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtClientMobileNumber;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtClientName;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtPurchaseCode;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
@@ -913,6 +917,8 @@
         private System.Windows.Forms.Button BtnSaveSummary;
         private System.Windows.Forms.DataGridView DataGridPurchaseMaster;
         private Bunifu.Framework.UI.BunifuCustomLabel LblScale;
+        private System.Windows.Forms.DateTimePicker DtPickerInvoiceDate;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
@@ -925,7 +931,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.DateTimePicker DtPickerInvoiceDate;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel18;
     }
 }

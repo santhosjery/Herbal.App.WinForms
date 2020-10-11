@@ -30,6 +30,16 @@ namespace Herbal.yah_varmalayam
         internal static bool IsScaleHasPurchaseOrSales(int scaleId)
         {
             return herbalContext.Products.Where(_ => _.ScaleId == scaleId).Any();
-        }       
+        }
+
+        public static string GetNextPurchaseCode()
+        {
+            var lstProductCode = herbalContext.PurchaseHeaders.OrderByDescending(_ => _.Id).FirstOrDefault();
+            if (lstProductCode != null)
+            {
+                return CodeGenerator.NextID(lstProductCode.PurchaseCode);
+            }
+            return CodeGenerator.NextID();
+        }
     }
 }

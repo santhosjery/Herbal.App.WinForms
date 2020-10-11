@@ -31,7 +31,33 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void _resetControls()
         {
-            //throw new NotImplementedException();
+            try
+            {
+                TxtPurchaseCode.Text = BaseRepository.GetNextPurchaseCode();
+                TxtClientInvoiceNo.Text = "";
+                TxtClientName.Text = "";
+                TxtClientMobileNumber.Text = "";
+                DtPickerInvoiceDate.Value = DateTime.Now;
+                TxtTotalGrossAmount.Text = "";
+                TxtTotalDiscount.Text = "";
+                TxtTotalTax.Text = "";
+                TxtPaidAmount.Text = "";
+                TxtDuesAmount.Text = "";
+                TxtTotalNetAmount.Text = "";
+                TxtQuantity.Text = "";
+                LblScale.Text = "N/A";
+                TxtGrossAmount.Text = "";
+                TxtGrossAmount.Text = "";
+                TxtCgstPercentage.Text = "";
+                TxtSgstPercentage.Text = "";
+                TxtNetAmount.Text = "";
+                LoadProductItemsToDropDown(DropDownProductName, "");
+                LoadPaymentTypeToDropDown(DropDownPaymentType, "");
+            }
+            catch(Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
         }
     }
 }

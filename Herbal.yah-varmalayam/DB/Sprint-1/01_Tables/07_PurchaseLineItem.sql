@@ -20,6 +20,11 @@ CREATE TABLE [dbo].[PurchaseLineItem](
 	[TotalTax] [decimal](18, 2) NULL,
 	[NetAmount] [decimal](18, 2) NOT NULL,
 	[SellingPrice] [decimal](18, 2) NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[CreatedBy] [int] NOT NULL,
+	[ModifiedOn] [datetime] NULL,
+	[ModifiedBy] [int] NULL,
  CONSTRAINT [PK_PurchaseLineItem] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -35,3 +40,22 @@ ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_Purch
 GO
 
 
+ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItems_Product] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Product] ([Id])
+GO
+ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItems_Product]
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItem_AppUser] FOREIGN KEY([CreatedBy])
+REFERENCES [dbo].[AppUser] ([Id])
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_AppUser]
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItem_AppUser1] FOREIGN KEY([ModifiedBy])
+REFERENCES [dbo].[AppUser] ([Id])
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_AppUser1]
+GO
