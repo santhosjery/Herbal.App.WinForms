@@ -126,5 +126,14 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
+
+        internal decimal StringToDecimal(string text)
+        {
+            if(string.IsNullOrEmpty(text))
+            {
+                text = "0";
+            }
+            return Convert.ToDecimal(text);
+        }
     }
 }

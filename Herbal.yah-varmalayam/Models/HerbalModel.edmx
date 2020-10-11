@@ -88,12 +88,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PurchaseCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ClientName" Type="nvarchar" MaxLength="150" />
-          <Property Name="ClientMobileNumber" Type="bigint" Nullable="false" />
+          <Property Name="ClientMobileNumber" Type="bigint" />
           <Property Name="ClientInvoiceNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="PaymentTypeId" Type="int" />
           <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
-          <Property Name="TotalGrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPurchaseAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalDiscount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalGrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalTaxAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalNetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -113,8 +114,9 @@
           <Property Name="PurchaseId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="GrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PurchaseAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
@@ -883,7 +885,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PurchaseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClientName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ClientMobileNumber" Type="Int64" Nullable="false" />
+          <Property Name="ClientMobileNumber" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TotalGrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
@@ -902,6 +904,7 @@
           <Property Name="ClientInvoiceNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PaymentTypeId" Type="Int32" />
           <NavigationProperty Name="PaymentType" Relationship="HerbalModel.FK_PurchaseHeader_PaymentType" FromRole="PurchaseHeader" ToRole="PaymentType" />
+          <Property Name="TotalPurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PurchaseLineItem">
           <Key>
@@ -929,6 +932,7 @@
           <Property Name="ModifiedBy" Type="Int32" />
           <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser" FromRole="PurchaseLineItem" ToRole="AppUser" />
           <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser1" FromRole="PurchaseLineItem" ToRole="AppUser" />
+          <Property Name="PurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_PurchaseHeader_AppUser">
           <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
@@ -1212,6 +1216,7 @@
           <EntitySetMapping Name="PurchaseHeaders">
             <EntityTypeMapping TypeName="HerbalModel.PurchaseHeader">
               <MappingFragment StoreEntitySet="PurchaseHeader">
+                <ScalarProperty Name="TotalPurchaseAmount" ColumnName="TotalPurchaseAmount" />
                 <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
                 <ScalarProperty Name="ClientInvoiceNumber" ColumnName="ClientInvoiceNumber" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
@@ -1236,6 +1241,7 @@
           <EntitySetMapping Name="PurchaseLineItems">
             <EntityTypeMapping TypeName="HerbalModel.PurchaseLineItem">
               <MappingFragment StoreEntitySet="PurchaseLineItem">
+                <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

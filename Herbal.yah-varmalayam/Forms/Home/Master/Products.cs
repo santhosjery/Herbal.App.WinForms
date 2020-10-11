@@ -98,7 +98,7 @@ namespace Herbal.yah_varmalayam.Forms
                 BtnReset.Text = Utility.ControlResetButton;
                 productId = 0;
                 TxtProductName.Text = "";
-                LblScaleName.Text = "";
+                LblScaleName.Text = Utility.ScaleNameNotApplicable;
                 TxtSellingPrice.Text = "";
                 ChkIsActive.Checked = true;
                 TxtProductCode.Text = BaseRepository.GetNextProductCode();
@@ -232,7 +232,7 @@ namespace Herbal.yah_varmalayam.Forms
             }
             else
             {
-                LblScaleName.Text = "";
+                LblScaleName.Text = Utility.ScaleNameNotApplicable;
             }
         }
 

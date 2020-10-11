@@ -32,6 +32,7 @@ namespace Herbal.yah_varmalayam.Models
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
+        public decimal PurchaseAmount { get; set; }
     
         public virtual PurchaseHeader PurchaseHeader { get; set; }
         public virtual Product Product { get; set; }

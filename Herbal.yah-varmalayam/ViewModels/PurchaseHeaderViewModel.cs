@@ -11,12 +11,13 @@ namespace Herbal.yah_varmalayam
         public int Id { get; set; }
         public string PurchaseCode { get; set; }
         public string ClientName { get; set; }
-        public long ClientMobileNumber { get; set; }
+        public long? ClientMobileNumber { get; set; }
         public string ClientInvoiceNumber { get; set; }
         public int? PaymentTypeId { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public decimal TotalGrossAmount { get; set; }
+        public decimal TotalPurchaseAmount { get; set; }
         public decimal TotalDiscount { get; set; }
+        public decimal TotalGrossAmount { get; set; }
         public decimal? TotalTaxAmount { get; set; }
         public decimal TotalNetAmount { get; set; }
         public decimal AmountPaid { get; set; }
@@ -42,8 +43,9 @@ namespace Herbal.yah_varmalayam
             ClientInvoiceNumber = productHeaderDetail.ClientInvoiceNumber;
             PaymentTypeId = productHeaderDetail.PaymentTypeId;
             PurchaseDate = productHeaderDetail.PurchaseDate;
-            TotalGrossAmount = productHeaderDetail.TotalGrossAmount;
+            TotalPurchaseAmount = productHeaderDetail.TotalPurchaseAmount;
             TotalDiscount = productHeaderDetail.TotalDiscount;
+            TotalGrossAmount = productHeaderDetail.TotalGrossAmount;
             TotalTaxAmount = productHeaderDetail.TotalTaxAmount;
             TotalNetAmount = productHeaderDetail.TotalNetAmount;
             AmountPaid = productHeaderDetail.AmountPaid;
