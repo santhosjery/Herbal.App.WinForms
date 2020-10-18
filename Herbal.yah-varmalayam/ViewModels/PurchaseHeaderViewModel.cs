@@ -26,7 +26,8 @@ namespace Herbal.yah_varmalayam
         public List<PurchaseHeaderViewModel> purchaseHeaderViewList = new List<PurchaseHeaderViewModel>();
         public PurchaseHeaderViewModel()
         {
-            var productHeaderList = herbalContext.PurchaseHeaders.OrderByDescending(_ => _.Id).Take(10).ToList();
+            var productHeaderList = herbalContext.PurchaseHeaders.Where(_ => _.IsActive == true)
+                                        .OrderByDescending(_ => _.Id).Take(10).ToList();
             foreach (var productHeader in productHeaderList)
             {
                 purchaseHeaderViewList.Add(new PurchaseHeaderViewModel(productHeader.Id));

@@ -8,6 +8,7 @@ namespace Herbal.yah_varmalayam
 {
     class PurchaseLineItemViewModel : BaseViewModel
     {
+        public int SrNo { get; set; }
         public int Id { get; set; }
         public string PurchaseLineItemCode { get; set; }
         public int PurchaseId { get; set; }
@@ -27,7 +28,7 @@ namespace Herbal.yah_varmalayam
         public List<PurchaseLineItemViewModel> purchaseLineItemViewList = new List<PurchaseLineItemViewModel>();
         public PurchaseLineItemViewModel(int purchaseId)
         {
-            var productLineList = herbalContext.PurchaseLineItems.Where(_ => _.PurchaseId == purchaseId)
+            var productLineList = herbalContext.PurchaseLineItems.Where(_ => _.PurchaseId == purchaseId && _.IsActive == true)
                                         .OrderByDescending(_ => _.Id).ToList();
             foreach(var purchaseLine in productLineList)
             {
@@ -40,6 +41,7 @@ namespace Herbal.yah_varmalayam
             Id = productLineList.Id;
             PurchaseLineItemCode = productLineList.PurchaseLineItemCode;
             PurchaseId = productLineList.PurchaseId;
+            ProductId = productLineList.ProductId;
             ProductName = productLineList.Product.ProductName;
             Quantity = productLineList.Quantity;
             PurchaseAmount = productLineList.PurchaseAmount;

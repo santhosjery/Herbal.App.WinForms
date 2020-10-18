@@ -29,6 +29,8 @@ namespace Herbal.yah_varmalayam
         ///
         public const string SaveButton = "Save";
         public const string UpdateButton = "Update";
+        public const string SaveLineItemButton = "Save Line Item";
+        public const string UpdateLineItemButton = "Update Line Item";
         public const string ControlResetButton = "Reset";
         public const string DropDownFirstItem = "--Select--";
 

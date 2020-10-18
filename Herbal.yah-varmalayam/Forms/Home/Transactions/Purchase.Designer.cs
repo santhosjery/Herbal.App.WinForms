@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.PanelPurchase = new System.Windows.Forms.Panel();
             this.DataGridPurchaseMaster = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quanity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrossAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,21 +142,21 @@
             this.DataGridPurchaseMaster.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DataGridPurchaseMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridPurchaseMaster.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Georgia", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Georgia", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridPurchaseMaster.ColumnHeadersHeight = 40;
             this.DataGridPurchaseMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridPurchaseMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.SrNo,
             this.ProductName,
-            this.Quanity,
+            this.Quantity,
             this.PurchaseAmount,
             this.Discount,
             this.GrossAmount,
@@ -177,6 +177,7 @@
             this.DataGridPurchaseMaster.RowTemplate.Height = 28;
             this.DataGridPurchaseMaster.Size = new System.Drawing.Size(1756, 389);
             this.DataGridPurchaseMaster.TabIndex = 69;
+            this.DataGridPurchaseMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridPurchaseMaster_MouseClick);
             // 
             // Id
             // 
@@ -205,18 +206,18 @@
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
             // 
-            // Quanity
+            // Quantity
             // 
-            this.Quanity.DataPropertyName = "Quanity";
-            this.Quanity.HeaderText = "Quanity";
-            this.Quanity.MinimumWidth = 8;
-            this.Quanity.Name = "Quanity";
-            this.Quanity.ReadOnly = true;
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 8;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
             // 
             // PurchaseAmount
             // 
             this.PurchaseAmount.DataPropertyName = "PurchaseAmount";
-            this.PurchaseAmount.FillWeight = 120F;
+            this.PurchaseAmount.FillWeight = 110F;
             this.PurchaseAmount.HeaderText = "Purchase Amount";
             this.PurchaseAmount.MinimumWidth = 8;
             this.PurchaseAmount.Name = "PurchaseAmount";
@@ -284,11 +285,12 @@
             this.CreatedOn.MinimumWidth = 8;
             this.CreatedOn.Name = "CreatedOn";
             this.CreatedOn.ReadOnly = true;
+            this.CreatedOn.Visible = false;
             // 
             // Edit
             // 
             this.Edit.DataPropertyName = "Edit";
-            this.Edit.FillWeight = 55F;
+            this.Edit.FillWeight = 60F;
             this.Edit.HeaderText = "Edit";
             this.Edit.MinimumWidth = 8;
             this.Edit.Name = "Edit";
@@ -298,7 +300,7 @@
             // Delete
             // 
             this.Delete.DataPropertyName = "Delete";
-            this.Delete.FillWeight = 55F;
+            this.Delete.FillWeight = 70F;
             this.Delete.HeaderText = "Delete";
             this.Delete.MinimumWidth = 8;
             this.Delete.Name = "Delete";
@@ -336,6 +338,7 @@
             this.BtnPrintSummary.TabIndex = 67;
             this.BtnPrintSummary.Text = "Print";
             this.BtnPrintSummary.UseVisualStyleBackColor = false;
+            this.BtnPrintSummary.Click += new System.EventHandler(this.BtnPrintSummary_Click);
             // 
             // BtnSaveSummary
             // 
@@ -352,6 +355,7 @@
             this.BtnSaveSummary.TabIndex = 66;
             this.BtnSaveSummary.Text = "Save";
             this.BtnSaveSummary.UseVisualStyleBackColor = false;
+            this.BtnSaveSummary.Click += new System.EventHandler(this.BtnSaveSummary_Click);
             // 
             // TxtTotalNetAmount
             // 
@@ -423,10 +427,10 @@
             this.BtnResetLineItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnResetLineItem.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnResetLineItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnResetLineItem.Location = new System.Drawing.Point(1052, 128);
+            this.BtnResetLineItem.Location = new System.Drawing.Point(1187, 128);
             this.BtnResetLineItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnResetLineItem.Name = "BtnResetLineItem";
-            this.BtnResetLineItem.Size = new System.Drawing.Size(148, 57);
+            this.BtnResetLineItem.Size = new System.Drawing.Size(170, 57);
             this.BtnResetLineItem.TabIndex = 65;
             this.BtnResetLineItem.Text = "Reset";
             this.BtnResetLineItem.UseVisualStyleBackColor = false;
@@ -483,10 +487,10 @@
             this.BtnSaveLineItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveLineItem.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveLineItem.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveLineItem.Location = new System.Drawing.Point(841, 128);
+            this.BtnSaveLineItem.Location = new System.Drawing.Point(825, 128);
             this.BtnSaveLineItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnSaveLineItem.Name = "BtnSaveLineItem";
-            this.BtnSaveLineItem.Size = new System.Drawing.Size(189, 57);
+            this.BtnSaveLineItem.Size = new System.Drawing.Size(323, 57);
             this.BtnSaveLineItem.TabIndex = 15;
             this.BtnSaveLineItem.Text = "Add Line Item";
             this.BtnSaveLineItem.UseVisualStyleBackColor = false;
@@ -978,10 +982,12 @@
         private Bunifu.Framework.UI.BunifuCustomLabel LblScaleName;
         private System.Windows.Forms.DateTimePicker DtPickerInvoiceDate;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel18;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtTotalPurchaseAmount;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel17;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn SrNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quanity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn GrossAmount;
@@ -992,7 +998,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtTotalPurchaseAmount;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel17;
     }
 }

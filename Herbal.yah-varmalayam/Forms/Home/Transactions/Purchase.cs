@@ -18,6 +18,7 @@ namespace Herbal.yah_varmalayam.Forms
         decimal existingLineItemPurchaseAmount = 0;
         decimal existingLineItemDiscountAmount = 0;
         decimal existingLineItemTaxAmount = 0;
+        decimal existingLineItemGrossAmount = 0;
         public Purchase(UserViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
@@ -39,6 +40,10 @@ namespace Herbal.yah_varmalayam.Forms
         {
             try
             {
+                existingLineItemPurchaseAmount = 0;
+                existingLineItemDiscountAmount = 0;
+                existingLineItemTaxAmount = 0;
+                existingLineItemGrossAmount = 0;
                 purchaseLineItemId = 0;
                 TxtQuantity.Text = "";
                 LblScaleName.Text = Utility.ScaleNameNotApplicable;
@@ -47,9 +52,10 @@ namespace Herbal.yah_varmalayam.Forms
                 TxtSgstPercentage.Text = "5";
                 TxtDiscount.Text = "0";
                 TxtNetAmount.Text = "";
+                BtnSaveLineItem.Text = Utility.SaveLineItemButton;
                 LoadProductItemsToDropDown(DropDownProductName, "");
                 LoadPaymentTypeToDropDown(DropDownPaymentType, "");
-                GetGridList();
+                _resetLineItemsFromDatabase();
                 //Don't reset other's when line items called. 
                 if (isResetOnlyLineItems == false)
                 {
@@ -73,15 +79,20 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
-        private void GetGridList()
+        private void _resetLineItemsFromDatabase()
         {
             try
             {
                 dataTable.Clear();
                 DataGridPurchaseMaster.Refresh();
                 DataGridPurchaseMaster.AutoGenerateColumns = false;
-                var purchaseList = new PurchaseLineItemViewModel(purchaseId);
-                dataTable = ConvertListToDataTable.ToDataTable(purchaseList.purchaseLineItemViewList);
+                var purchaseList = new PurchaseLineItemViewModel(purchaseId).purchaseLineItemViewList;
+                for(int i = 0; i < purchaseList.Count; i ++)
+                {
+                    //To add the sr.no into the grid list.
+                    purchaseList[i].SrNo = i + 1;
+                }
+                dataTable = ConvertListToDataTable.ToDataTable(purchaseList);
                 bindingSource.DataSource = dataTable;
                 DataGridPurchaseMaster.DataSource = bindingSource;
             }
@@ -143,11 +154,11 @@ namespace Herbal.yah_varmalayam.Forms
             purchaseHeader.ClientInvoiceNumber = TxtClientInvoiceNo.Text.ToString();
             purchaseHeader.PaymentTypeId = paymentTypeId;
             purchaseHeader.PurchaseDate = DtPickerInvoiceDate.Value;
-            purchaseHeader.TotalPurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
-            purchaseHeader.TotalDiscount = StringToDecimal(TxtDiscount.Text);
+            purchaseHeader.TotalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text);
+            purchaseHeader.TotalDiscount = StringToDecimal(TxtTotalDiscount.Text);
             purchaseHeader.TotalGrossAmount = StringToDecimal(TxtTotalGrossAmount.Text);
             purchaseHeader.TotalTaxAmount = StringToDecimal(TxtTotalTax.Text);
-            purchaseHeader.TotalNetAmount = StringToDecimal(TxtNetAmount.Text);
+            purchaseHeader.TotalNetAmount = StringToDecimal(TxtTotalNetAmount.Text);
             purchaseHeader.AmountPaid = StringToDecimal(TxtPaidAmount.Text);
             purchaseHeader.DueAmount = StringToDecimal(TxtDuesAmount.Text);
             herbalContext.SaveChanges();
@@ -225,18 +236,19 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 if(purchaseLineItemId > 0)
                 {
+                    TxtTotalGrossAmount.Text = (StringToDecimal(TxtTotalGrossAmount.Text) - existingLineItemGrossAmount).ToString();
                     TxtTotalPurchaseAmount.Text = (StringToDecimal(TxtTotalPurchaseAmount.Text) - existingLineItemPurchaseAmount).ToString();
                     TxtTotalDiscount.Text = (StringToDecimal(TxtTotalDiscount.Text) - existingLineItemDiscountAmount).ToString();
                     TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) - existingLineItemTaxAmount).ToString();
                 }
-                var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + (_getLineItemGrossAmount());
+                var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + StringToDecimal(TxtPurchaseAmount.Text);
                 var totalDiscountAmount = StringToDecimal(TxtTotalDiscount.Text) + StringToDecimal(TxtDiscount.Text);
                 TxtTotalPurchaseAmount.Text = totalPurchaseAmount.ToString();
                 TxtTotalDiscount.Text = totalDiscountAmount.ToString();
 
                 TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) + _getLineItemTaxAmount()).ToString();
 
-                var totalGrossAmount = totalPurchaseAmount - totalDiscountAmount;
+                var totalGrossAmount = (StringToDecimal(TxtTotalGrossAmount.Text) + _getLineItemGrossAmount()) - totalDiscountAmount;
                 TxtTotalGrossAmount.Text = totalGrossAmount.ToString();
 
                 TxtTotalNetAmount.Text = (StringToDecimal(TxtTotalGrossAmount.Text) + StringToDecimal(TxtTotalTax.Text)).ToString();
@@ -374,6 +386,130 @@ namespace Herbal.yah_varmalayam.Forms
                 // If not int clear textbox text or Undo() last operation
                 TxtClientMobileNumber.Clear();
             }
+        }
+
+        private void DataGridPurchaseMaster_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(DataGridPurchaseMaster.Rows.Count > 0)
+            {
+                int columnIndex = DataGridPurchaseMaster.CurrentCell.ColumnIndex;
+                string text = DataGridPurchaseMaster.Columns[columnIndex].HeaderText;
+                if (text.Equals("Delete"))
+                {
+                    _deleteLineItem();
+                }
+                if (text.Equals("Edit"))
+                {
+                    BtnSaveLineItem.Text = Utility.UpdateLineItemButton;
+                    _editProduct();
+                }
+            }
+        }
+        private void _deleteLineItem()
+        {
+            try
+            {
+                int RowIndex = DataGridPurchaseMaster.CurrentCell.RowIndex;
+                purchaseLineItemId = Convert.ToInt32(DataGridPurchaseMaster.Rows[RowIndex].Cells["Id"].Value);
+                var productName = "Line Item";
+                
+                int result = showMessageBox.ShowMessage(Utility.DeleteTitle, string.Format(Utility.DeleteMessage, productName));
+                if (result == 1)
+                {
+                    var deleteLineItem = herbalContext.PurchaseLineItems.Where(_ => _.Id == purchaseLineItemId).First();
+                    deleteLineItem.IsActive = false;
+
+                    var purchaseHeader = herbalContext.PurchaseHeaders.Where(_ => _.Id == purchaseId).First();
+                    purchaseHeader.TotalPurchaseAmount = purchaseHeader.TotalPurchaseAmount - deleteLineItem.PurchaseAmount;
+                    purchaseHeader.TotalGrossAmount = purchaseHeader.TotalGrossAmount - deleteLineItem.GrossAmount;
+                    purchaseHeader.TotalDiscount = purchaseHeader.TotalDiscount - deleteLineItem.Discount ?? 0;
+                    purchaseHeader.TotalTaxAmount = purchaseHeader.TotalTaxAmount - deleteLineItem.TotalTax;
+                    purchaseHeader.TotalNetAmount = purchaseHeader.TotalNetAmount - deleteLineItem.NetAmount;
+                    purchaseHeader.AmountPaid = purchaseHeader.AmountPaid - deleteLineItem.NetAmount;
+                    purchaseHeader.DueAmount = purchaseHeader.TotalNetAmount - purchaseHeader.AmountPaid;
+                    herbalContext.SaveChanges();
+                    showMessageBox.ShowMessage(string.Format(Utility.DeleteSuccessMessage, productName));
+                    _resetDetailsFromDatabase();
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        private void _editProduct()
+        {
+            try
+            {
+                int RowIndex = DataGridPurchaseMaster.CurrentCell.RowIndex;
+                purchaseLineItemId = Convert.ToInt32(DataGridPurchaseMaster.Rows[RowIndex].Cells["Id"].Value);
+                var lineItemDetail = new PurchaseLineItemViewModel(false, purchaseLineItemId);
+
+                existingLineItemPurchaseAmount = lineItemDetail.PurchaseAmount;
+                existingLineItemDiscountAmount = lineItemDetail.Discount ?? 0;
+                existingLineItemTaxAmount = lineItemDetail.TotalTax ?? 0;
+                existingLineItemGrossAmount = lineItemDetail.GrossAmount;
+
+
+                DropDownProductName.SelectedValue = lineItemDetail.ProductId;
+                TxtQuantity.Text = lineItemDetail.Quantity.ToString();
+                TxtPurchaseAmount.Text = lineItemDetail.PurchaseAmount.ToString();
+                TxtCgstPercentage.Text = lineItemDetail.CGST.ToString();
+                TxtSgstPercentage.Text = lineItemDetail.SGST.ToString();
+                TxtDiscount.Text = lineItemDetail.Discount.ToString();
+                TxtNetAmount.Text = lineItemDetail.NetAmount.ToString();
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        private void _resetDetailsFromDatabase()
+        {
+            _resetHeaderFromDatabase();
+            _resetLineItemsFromDatabase();
+            purchaseLineItemId = 0;
+        }
+        private void _resetHeaderFromDatabase()
+        {
+            try
+            {
+                var purchaseHeaderList = new PurchaseHeaderViewModel(purchaseId);
+                TxtPurchaseCode.Text = purchaseHeaderList.PurchaseCode;
+                TxtClientInvoiceNo.Text = purchaseHeaderList.ClientInvoiceNumber;
+                DtPickerInvoiceDate.Value = purchaseHeaderList.PurchaseDate;
+                TxtClientName.Text = purchaseHeaderList.ClientName;
+                TxtClientMobileNumber.Text = purchaseHeaderList.ClientMobileNumber.ToString();
+                TxtTotalPurchaseAmount.Text = purchaseHeaderList.TotalPurchaseAmount.ToString();
+                TxtTotalDiscount.Text = purchaseHeaderList.TotalDiscount.ToString();
+                TxtTotalGrossAmount.Text = purchaseHeaderList.TotalGrossAmount.ToString();
+                TxtTotalTax.Text = purchaseHeaderList.TotalTaxAmount.ToString();
+                DropDownPaymentType.SelectedValue = purchaseHeaderList.PaymentTypeId ?? 0;
+                TxtPaidAmount.Text = purchaseHeaderList.AmountPaid.ToString();
+                TxtDuesAmount.Text = purchaseHeaderList.DueAmount.ToString();
+                TxtTotalNetAmount.Text = purchaseHeaderList.TotalNetAmount.ToString();
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        private void BtnSaveSummary_Click(object sender, EventArgs e)
+        {
+            showMessageBox.ShowMessage(string.Format((purchaseId > 0 ? Utility.UpdateMessage : Utility.SaveMessage), "Purchase"));
+            _resetAllControls(false);
+        }
+
+        private void BtnPrintSummary_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
