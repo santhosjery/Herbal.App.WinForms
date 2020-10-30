@@ -35,5 +35,7 @@ namespace Herbal.yah_varmalayam.Models
         public virtual DbSet<PurchaseLineItem> PurchaseLineItems { get; set; }
         public virtual DbSet<PaymentType> PaymentTypes { get; set; }
         public virtual DbSet<StockDetail> StockDetails { get; set; }
+        public virtual DbSet<SalesHeader> SalesHeaders { get; set; }
+        public virtual DbSet<SalesLineItem> SalesLineItems { get; set; }
     }
 }

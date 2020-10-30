@@ -33,6 +33,10 @@ namespace Herbal.yah_varmalayam.Models
             this.StockDetails1 = new HashSet<StockDetail>();
             this.PurchaseLineItems = new HashSet<PurchaseLineItem>();
             this.PurchaseLineItems1 = new HashSet<PurchaseLineItem>();
+            this.SalesHeaders = new HashSet<SalesHeader>();
+            this.SalesHeaders1 = new HashSet<SalesHeader>();
+            this.SalesLineItems = new HashSet<SalesLineItem>();
+            this.SalesLineItems1 = new HashSet<SalesLineItem>();
         }
     
         public int Id { get; set; }
@@ -78,5 +82,13 @@ namespace Herbal.yah_varmalayam.Models
         public virtual ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseLineItem> PurchaseLineItems1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesHeader> SalesHeaders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesHeader> SalesHeaders1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesLineItem> SalesLineItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesLineItem> SalesLineItems1 { get; set; }
     }
 }

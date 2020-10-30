@@ -12,17 +12,27 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentType
+    public partial class SalesHeader
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PaymentType()
+        public SalesHeader()
         {
-            this.PurchaseHeaders = new HashSet<PurchaseHeader>();
-            this.SalesHeaders = new HashSet<SalesHeader>();
+            this.SalesLineItems = new HashSet<SalesLineItem>();
         }
     
         public int Id { get; set; }
-        public string PaymentTypeName { get; set; }
+        public string SalesCode { get; set; }
+        public string CustomerName { get; set; }
+        public Nullable<long> CustomerMobileNumber { get; set; }
+        public Nullable<int> PaymentTypeId { get; set; }
+        public System.DateTime SalesDate { get; set; }
+        public decimal TotalSalesAmount { get; set; }
+        public decimal TotalDiscount { get; set; }
+        public decimal TotalGrossAmount { get; set; }
+        public Nullable<decimal> TotalTaxAmount { get; set; }
+        public decimal TotalNetAmount { get; set; }
+        public decimal AmountPaid { get; set; }
+        public decimal DueAmount { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
@@ -31,9 +41,8 @@ namespace Herbal.yah_varmalayam.Models
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
+        public virtual PaymentType PaymentType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseHeader> PurchaseHeaders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesHeader> SalesHeaders { get; set; }
+        public virtual ICollection<SalesLineItem> SalesLineItems { get; set; }
     }
 }

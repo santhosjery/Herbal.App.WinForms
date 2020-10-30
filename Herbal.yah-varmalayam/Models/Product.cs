@@ -19,6 +19,7 @@ namespace Herbal.yah_varmalayam.Models
         {
             this.StockDetails = new HashSet<StockDetail>();
             this.PurchaseLineItems = new HashSet<PurchaseLineItem>();
+            this.SalesLineItems = new HashSet<SalesLineItem>();
         }
     
         public int Id { get; set; }
@@ -40,5 +41,7 @@ namespace Herbal.yah_varmalayam.Models
         public virtual ICollection<StockDetail> StockDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesLineItem> SalesLineItems { get; set; }
     }
 }

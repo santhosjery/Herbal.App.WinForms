@@ -12,17 +12,22 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentType
+    public partial class SalesLineItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PaymentType()
-        {
-            this.PurchaseHeaders = new HashSet<PurchaseHeader>();
-            this.SalesHeaders = new HashSet<SalesHeader>();
-        }
-    
         public int Id { get; set; }
-        public string PaymentTypeName { get; set; }
+        public string SalesLineItemCode { get; set; }
+        public int SalesId { get; set; }
+        public int ProductId { get; set; }
+        public decimal ConfigSellingPrice { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal SalesAmount { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public decimal GrossAmount { get; set; }
+        public Nullable<decimal> CGST { get; set; }
+        public Nullable<decimal> SGST { get; set; }
+        public Nullable<decimal> IGST { get; set; }
+        public Nullable<decimal> TotalTax { get; set; }
+        public decimal NetAmount { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
@@ -31,9 +36,7 @@ namespace Herbal.yah_varmalayam.Models
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseHeader> PurchaseHeaders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesHeader> SalesHeaders { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual SalesHeader SalesHeader { get; set; }
     }
 }

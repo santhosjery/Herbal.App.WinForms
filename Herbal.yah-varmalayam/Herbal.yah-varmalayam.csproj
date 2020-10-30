@@ -181,6 +181,12 @@
     <Compile Include="Models\PurchaseLineItem.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SalesHeader.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SalesLineItem.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Scale.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
@@ -201,6 +207,8 @@
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\PurchaseHeaderViewModel.cs" />
     <Compile Include="ViewModels\PurchaseLineItemViewModel.cs" />
+    <Compile Include="ViewModels\SalesHeaderViewModel.cs" />
+    <Compile Include="ViewModels\SalesLineItemViewModel.cs" />
     <Compile Include="ViewModels\StockViewModel.cs" />
     <Compile Include="ViewModels\ScaleViewModel.cs" />
     <Compile Include="ViewModels\TaxViewModel.cs" />
@@ -285,6 +293,8 @@
     <Content Include="DB\Sprint-1\01_Tables\07_PurchaseLineItem.sql" />
     <Content Include="DB\Sprint-1\01_Tables\08_PaymentType.sql" />
     <Content Include="DB\Sprint-1\01_Tables\09_StockDetail.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\10_SalesHeader.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\11_SalesLineItem.sql" />
     <Content Include="DB\Sprint-1\02_Alter Scripts\01_AlterScripts.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />
