@@ -464,6 +464,15 @@ namespace Herbal.yah_varmalayam.Forms
                     purchaseHeader.TotalNetAmount = purchaseHeader.TotalNetAmount - deleteLineItem.NetAmount;
                     purchaseHeader.AmountPaid = purchaseHeader.AmountPaid - deleteLineItem.NetAmount;
                     purchaseHeader.DueAmount = purchaseHeader.TotalNetAmount - purchaseHeader.AmountPaid;
+
+                    var stockDetail = herbalContext.StockDetails.Where(_ => _.ProductId == deleteLineItem.ProductId && _.IsActive == true).FirstOrDefault();
+                    if (stockDetail != null)
+                    {
+                        stockDetail.TotalPurchaseQuantity = (stockDetail.TotalPurchaseQuantity - deleteLineItem.Quantity);
+                        stockDetail.TotalSalesQuantity = stockDetail.TotalSalesQuantity;
+                        stockDetail.AvilableQuantity = (stockDetail.TotalPurchaseQuantity - stockDetail.TotalSalesQuantity);
+                    }
+
                     herbalContext.SaveChanges();
                     showMessageBox.ShowMessage(string.Format(Utility.DeleteSuccessMessage, productName));
                     _resetDetailsFromDatabase();

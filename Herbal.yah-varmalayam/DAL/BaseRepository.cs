@@ -41,5 +41,15 @@ namespace Herbal.yah_varmalayam
             }
             return CodeGenerator.NextID();
         }
+
+        public static string GetNextSalesCode()
+        {
+            var lstProductCode = herbalContext.SalesHeaders.OrderByDescending(_ => _.Id).FirstOrDefault();
+            if (lstProductCode != null)
+            {
+                return CodeGenerator.NextID(lstProductCode.SalesCode);
+            }
+            return CodeGenerator.NextID();
+        }
     }
 }
