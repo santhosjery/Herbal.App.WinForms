@@ -34,3 +34,6 @@ GO
 Insert into PaymentType([PaymentTypeName],[IsActive],[CreatedOn],[CreatedBy])
 	Values ('GPay',1,Getdate(),1)
 GO
+Insert into PaymentType([PaymentTypeName],[IsActive],[CreatedOn],[CreatedBy])
+	Values ('Other',1,Getdate(),1)
+GO

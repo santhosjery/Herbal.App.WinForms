@@ -19,6 +19,14 @@ namespace Herbal.yah_varmalayam.Forms
         public DataTable dataTable = new DataTable();
         public BindingSource bindingSource = new BindingSource();
         public StockViewModel stockViewModel =  new StockViewModel();
+
+        public enum PayMentTypes
+        {
+            Cash = 1,
+            Card = 2,
+            GPay = 3,
+            Other = 4
+        }
         public FormBase()
         {
             
@@ -121,6 +129,7 @@ namespace Herbal.yah_varmalayam.Forms
                     combobox.DisplayMember = "Value";
                     combobox.ValueMember = "Key";
                 }
+                combobox.SelectedValue = (int)PayMentTypes.Cash;
             }
             catch (Exception ex)
             {
