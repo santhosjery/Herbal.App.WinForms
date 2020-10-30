@@ -27,6 +27,7 @@ namespace Herbal.yah_varmalayam.Forms
         {
             this.userViewModel = userViewModel;
             InitializeComponent();
+            dataGridViewStyle(DataGridSalesMaster);
         }
 
         private void Sales_Load(object sender, EventArgs e)
