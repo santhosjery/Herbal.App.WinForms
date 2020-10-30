@@ -18,6 +18,7 @@ namespace Herbal.yah_varmalayam.Forms
         public UserViewModel userViewModel = new UserViewModel();
         public DataTable dataTable = new DataTable();
         public BindingSource bindingSource = new BindingSource();
+        public StockViewModel stockViewModel =  new StockViewModel();
         public FormBase()
         {
             

@@ -19,6 +19,8 @@ namespace Herbal.yah_varmalayam.Forms
         decimal existingLineItemDiscountAmount = 0;
         decimal existingLineItemTaxAmount = 0;
         decimal existingLineItemGrossAmount = 0;
+        decimal existingLineItemQuantity = 0;
+        int existingLineItemProductId = 0;
         public Purchase(UserViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
@@ -44,6 +46,8 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemDiscountAmount = 0;
                 existingLineItemTaxAmount = 0;
                 existingLineItemGrossAmount = 0;
+                existingLineItemQuantity = 0;
+                existingLineItemProductId = 0;
                 purchaseLineItemId = 0;
                 TxtQuantity.Text = "";
                 LblScaleName.Text = Utility.ScaleNameNotApplicable;
@@ -115,7 +119,40 @@ namespace Herbal.yah_varmalayam.Forms
                 _calculateValuesToHeader();
                 _calculateValuesToLineItem();
                 _updatePurchaseHeader();
+                _updatePurchaseLineItem();
+                _updateStockDetail();
                 _resetAllControls(true);
+            }
+            catch(Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+        private void _updateStockDetail()
+        {
+            try
+            {
+                stockViewModel.CreatedBy = userViewModel.UserId;
+                stockViewModel.ModifiedBy = userViewModel.UserId;
+                if (existingLineItemProductId > 0 && (existingLineItemProductId != (int)DropDownProductName.SelectedValue))
+                {
+                    var stockDetail = new StockViewModel(existingLineItemProductId);
+                    if (stockDetail != null)
+                    {
+                        stockViewModel.TotalPurchaseQuantity = (stockDetail.TotalPurchaseQuantity - existingLineItemQuantity);
+                        stockViewModel.TotalSalesQuantity = stockDetail.TotalSalesQuantity;
+                        stockViewModel.AvilableQuantity = (stockViewModel.TotalPurchaseQuantity - stockViewModel.TotalSalesQuantity);
+                        stockViewModel.ProductId = existingLineItemProductId;
+                        stockViewModel.UpdateStockDetail(stockViewModel);
+                        existingLineItemQuantity = 0;
+                    }
+                }
+                var stockDetailUpdate = new StockViewModel((int)DropDownProductName.SelectedValue);
+                stockViewModel.TotalPurchaseQuantity = stockDetailUpdate.TotalPurchaseQuantity + (StringToDecimal(TxtQuantity.Text) - existingLineItemQuantity);
+                stockViewModel.TotalSalesQuantity = stockDetailUpdate.TotalSalesQuantity;
+                stockViewModel.AvilableQuantity = (stockViewModel.TotalPurchaseQuantity - stockViewModel.TotalSalesQuantity);
+                stockViewModel.ProductId = (int)DropDownProductName.SelectedValue;
+                stockViewModel.UpdateStockDetail(stockViewModel);
             }
             catch(Exception ex)
             {
@@ -163,7 +200,7 @@ namespace Herbal.yah_varmalayam.Forms
             purchaseHeader.DueAmount = StringToDecimal(TxtDuesAmount.Text);
             herbalContext.SaveChanges();
             purchaseId = purchaseHeader.Id;
-            _updatePurchaseLineItem();
+            
         }
         private void _updatePurchaseLineItem()
         {
@@ -454,7 +491,8 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemDiscountAmount = lineItemDetail.Discount ?? 0;
                 existingLineItemTaxAmount = lineItemDetail.TotalTax ?? 0;
                 existingLineItemGrossAmount = lineItemDetail.GrossAmount;
-
+                existingLineItemQuantity = lineItemDetail.Quantity;
+                existingLineItemProductId = lineItemDetail.ProductId;
 
                 DropDownProductName.SelectedValue = lineItemDetail.ProductId;
                 TxtQuantity.Text = lineItemDetail.Quantity.ToString();
@@ -503,7 +541,10 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void BtnSaveSummary_Click(object sender, EventArgs e)
         {
+            _updatePurchaseHeader();
             showMessageBox.ShowMessage(string.Format((purchaseId > 0 ? Utility.UpdateMessage : Utility.SaveMessage), "Purchase"));
+            purchaseId = 0;
+            purchaseLineItemId = 0;
             _resetAllControls(false);
         }
 
