@@ -565,6 +565,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getPurchaseReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PurchaseCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="PurchaseId" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="HerbalModelStoreContainer">
           <EntitySet Name="AccessRole" EntityType="Self.AccessRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
@@ -828,6 +835,13 @@
             <End Role="SalesHeader" EntitySet="SalesHeaders" />
             <End Role="SalesLineItem" EntitySet="SalesLineItems" />
           </AssociationSet>
+          <FunctionImport Name="getPurchaseReport" ReturnType="Collection(HerbalModel.getPurchaseReport_Result)">
+            <Parameter Name="PurchaseCode" Mode="In" Type="String" />
+            <Parameter Name="PurchaseId" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="AccessRole">
           <Key>
@@ -1447,6 +1461,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="getPurchaseReport_Result">
+          <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+          <Property Type="String" Name="PurchaseCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="150" />
+          <Property Type="Int64" Name="ClientMobileNumber" Nullable="true" />
+          <Property Type="Int32" Name="PaymentTypeId" Nullable="true" />
+          <Property Type="String" Name="PaymentTypeName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Discount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="GrossAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="IGST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalTax" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1677,6 +1709,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getPurchaseReport" FunctionName="HerbalModel.Store.getPurchaseReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HerbalModel.getPurchaseReport_Result">
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="PurchaseCode" ColumnName="PurchaseCode" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientMobileNumber" ColumnName="ClientMobileNumber" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

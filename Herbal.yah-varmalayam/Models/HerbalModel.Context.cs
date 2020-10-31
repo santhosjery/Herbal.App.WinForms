@@ -12,6 +12,8 @@ namespace Herbal.yah_varmalayam.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class HerbalEntities : DbContext
     {
@@ -37,5 +39,30 @@ namespace Herbal.yah_varmalayam.Models
         public virtual DbSet<StockDetail> StockDetails { get; set; }
         public virtual DbSet<SalesHeader> SalesHeaders { get; set; }
         public virtual DbSet<SalesLineItem> SalesLineItems { get; set; }
+    
+        public virtual ObjectResult<getPurchaseReport_Result> getPurchaseReport(string purchaseCode, Nullable<int> purchaseId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> productId)
+        {
+            var purchaseCodeParameter = purchaseCode != null ?
+                new ObjectParameter("PurchaseCode", purchaseCode) :
+                new ObjectParameter("PurchaseCode", typeof(string));
+    
+            var purchaseIdParameter = purchaseId.HasValue ?
+                new ObjectParameter("PurchaseId", purchaseId) :
+                new ObjectParameter("PurchaseId", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPurchaseReport_Result>("getPurchaseReport", purchaseCodeParameter, purchaseIdParameter, startDateParameter, endDateParameter, productIdParameter);
+        }
     }
 }

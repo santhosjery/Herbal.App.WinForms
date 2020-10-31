@@ -102,22 +102,27 @@
     <Compile Include="Forms\Home\Master\Taxes.Designer.cs">
       <DependentUpon>Taxes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Home\Reports\PurchaseReport.cs">
+    <Compile Include="Forms\Home\Reports\Purchase\PurchaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\Purchase\PurchaseReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Home\Reports\PurchaseReport.Designer.cs">
+    <Compile Include="Forms\Home\Reports\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Home\Reports\SalesReport.cs">
+    <Compile Include="Forms\Home\Reports\Sales\SalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Home\Reports\SalesReport.Designer.cs">
+    <Compile Include="Forms\Home\Reports\Sales\SalesReport.Designer.cs">
       <DependentUpon>SalesReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Home\Reports\StockReport.cs">
+    <Compile Include="Forms\Home\Reports\Stock\StockReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Home\Reports\StockReport.Designer.cs">
+    <Compile Include="Forms\Home\Reports\Stock\StockReport.Designer.cs">
       <DependentUpon>StockReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Home\Transactions\Purchase.cs">
@@ -152,6 +157,9 @@
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyDetail.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getPurchaseReport_Result.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HerbalModel.Context.cs">
@@ -231,13 +239,13 @@
     <EmbeddedResource Include="Forms\Home\Master\Taxes.resx">
       <DependentUpon>Taxes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Home\Reports\PurchaseReport.resx">
+    <EmbeddedResource Include="Forms\Home\Reports\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Home\Reports\SalesReport.resx">
+    <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.resx">
       <DependentUpon>SalesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Home\Reports\StockReport.resx">
+    <EmbeddedResource Include="Forms\Home\Reports\Stock\StockReport.resx">
       <DependentUpon>StockReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home\Transactions\Purchase.resx">
@@ -266,6 +274,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HerbalModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Forms\Home\Reports\Purchase\PurchaseDataSet.xsc">
+      <DependentUpon>PurchaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\Home\Reports\Purchase\PurchaseDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\Home\Reports\Purchase\PurchaseDataSet.xss">
+      <DependentUpon>PurchaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Models\HerbalModel.edmx.diagram">
       <DependentUpon>HerbalModel.edmx</DependentUpon>
     </None>
