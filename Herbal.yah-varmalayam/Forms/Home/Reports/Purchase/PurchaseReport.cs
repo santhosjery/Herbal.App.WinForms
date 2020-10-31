@@ -29,6 +29,7 @@ namespace Herbal.yah_varmalayam.Forms
             LblHeaderText.ForeColor = Color.FromName(Utility.LblFontColor);
             _resetAllControls();
             this.reportViewer1.RefreshReport();
+            this.reportViewer1.ZoomMode = ZoomMode.PageWidth;
         }
 
         private void _resetAllControls()
