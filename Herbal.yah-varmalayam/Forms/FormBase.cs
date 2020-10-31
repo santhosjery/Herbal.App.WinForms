@@ -50,7 +50,15 @@ namespace Herbal.yah_varmalayam.Forms
                 this.ClientSize.Height / 2 - panel.Size.Height / 2);
             panel.Anchor = AnchorStyles.None;
         }
-            
+        public void panelPositionForReport(Panel panel)
+        {
+            //Panel to center position
+            panel.Location = new Point(
+                this.ClientSize.Width / 2 - panel.Size.Width / 2,
+                this.ClientSize.Height - panel.Size.Height);
+            panel.Anchor = AnchorStyles.None;
+        }
+
         internal void LoadScaleItemsToDropDown(ComboBox combobox, string searchText)
         {
             //Call this method to append the Scale list
