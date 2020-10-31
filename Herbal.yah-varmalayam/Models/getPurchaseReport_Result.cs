@@ -17,6 +17,10 @@ namespace Herbal.yah_varmalayam.Models
         public string PurchaseCode { get; set; }
         public string ClientName { get; set; }
         public Nullable<long> ClientMobileNumber { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int ScaleId { get; set; }
+        public string ScaleName { get; set; }
         public Nullable<int> PaymentTypeId { get; set; }
         public string PaymentTypeName { get; set; }
         public System.DateTime PurchaseDate { get; set; }
