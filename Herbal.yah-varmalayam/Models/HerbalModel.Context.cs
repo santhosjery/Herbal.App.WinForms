@@ -89,5 +89,22 @@ namespace Herbal.yah_varmalayam.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSalesReport_Result>("getSalesReport", salesCodeParameter, salesIdParameter, startDateParameter, endDateParameter, productIdParameter);
         }
+    
+        public virtual ObjectResult<getStockReport_Result> getStockReport(Nullable<int> productId, string sortBy, string sortByDirection)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("SortBy", sortBy) :
+                new ObjectParameter("SortBy", typeof(string));
+    
+            var sortByDirectionParameter = sortByDirection != null ?
+                new ObjectParameter("SortByDirection", sortByDirection) :
+                new ObjectParameter("SortByDirection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStockReport_Result>("getStockReport", productIdParameter, sortByParameter, sortByDirectionParameter);
+        }
     }
 }

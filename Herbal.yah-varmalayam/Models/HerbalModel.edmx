@@ -579,6 +579,11 @@
           <Parameter Name="EndDate" Type="datetime" Mode="In" />
           <Parameter Name="ProductId" Type="int" Mode="In" />
         </Function>
+        <Function Name="getStockReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+          <Parameter Name="SortBy" Type="varchar" Mode="In" />
+          <Parameter Name="SortByDirection" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="HerbalModelStoreContainer">
           <EntitySet Name="AccessRole" EntityType="Self.AccessRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
@@ -855,6 +860,11 @@
             <Parameter Name="StartDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
             <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getStockReport" ReturnType="Collection(HerbalModel.getStockReport_Result)">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="SortBy" Mode="In" Type="String" />
+            <Parameter Name="SortByDirection" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="AccessRole">
@@ -1519,6 +1529,18 @@
           <Property Type="Decimal" Name="TotalTax" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
+        <ComplexType Name="getStockReport_Result">
+          <Property Type="Int32" Name="StockId" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="TotalPurchaseQuantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalSalesQuantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AvilableQuantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalPurchaseAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalSalesAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalAvilableSalesAmount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1798,6 +1820,22 @@
                 <ScalarProperty Name="IGST" ColumnName="IGST" />
                 <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
                 <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getStockReport" FunctionName="HerbalModel.Store.getStockReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HerbalModel.getStockReport_Result">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="TotalPurchaseQuantity" ColumnName="TotalPurchaseQuantity" />
+                <ScalarProperty Name="TotalSalesQuantity" ColumnName="TotalSalesQuantity" />
+                <ScalarProperty Name="AvilableQuantity" ColumnName="AvilableQuantity" />
+                <ScalarProperty Name="TotalPurchaseAmount" ColumnName="TotalPurchaseAmount" />
+                <ScalarProperty Name="TotalSalesAmount" ColumnName="TotalSalesAmount" />
+                <ScalarProperty Name="TotalAvilableSalesAmount" ColumnName="TotalAvilableSalesAmount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

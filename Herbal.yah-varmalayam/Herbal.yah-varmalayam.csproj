@@ -153,6 +153,14 @@
     <Compile Include="Forms\Home\Reports\Sales\SalesReport.Designer.cs">
       <DependentUpon>SalesReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Home\Reports\Stock\StockDataSet.cs">
+      <DependentUpon>StockDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\Stock\StockDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home\Reports\Stock\StockReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +205,9 @@
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getSalesReport_Result.cs">
+      <DependentUpon>HerbalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getStockReport_Result.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HerbalModel.Context.cs">
@@ -285,6 +296,7 @@
     <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.resx">
       <DependentUpon>SalesReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\Stock\StockReport.rdlc" />
     <EmbeddedResource Include="Forms\Home\Reports\Stock\StockReport.resx">
       <DependentUpon>StockReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +348,17 @@
     <None Include="Forms\Home\Reports\Sales\SalesDataSet.xss">
       <DependentUpon>SalesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Forms\Home\Reports\Stock\StockDataSet.xsc">
+      <DependentUpon>StockDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Forms\Home\Reports\Stock\StockDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Forms\Home\Reports\Stock\StockDataSet.xss">
+      <DependentUpon>StockDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Models\HerbalModel.edmx.diagram">
       <DependentUpon>HerbalModel.edmx</DependentUpon>
     </None>
@@ -371,6 +394,7 @@
       <Generator>MSDataSetGenerator</Generator>
     </Content>
     <Content Include="DB\Sprint-1\03_SPs\02_getSalesReport.sql" />
+    <Content Include="DB\Sprint-1\03_SPs\03_getStockReport.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />
     <Content Include="Images\164577 .png1.png" />

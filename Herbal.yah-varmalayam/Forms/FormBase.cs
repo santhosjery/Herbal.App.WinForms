@@ -145,6 +145,50 @@ namespace Herbal.yah_varmalayam.Forms
             }
         }
 
+        internal void LoadSortByListToDropDown(ComboBox combobox, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                Dictionary<string, string> listItemDictionary = new Dictionary<string, string>();
+                combobox.Refresh();
+                listItemDictionary.Clear();
+                listItemDictionary.Add("ProductName", "Product Name");
+                listItemDictionary.Add("TotalPurchaseQuantity", "Total Purchase Quantity");
+                listItemDictionary.Add("TotalSalesQuantity", "Total Sales Quantity");
+                listItemDictionary.Add("AvilableQuantity", "Avilable Quantity");
+                listItemDictionary.Add("TotalPurchaseAmount", "Total Purchase Amount");
+                listItemDictionary.Add("TotalSalesAmount", "Total Sales Amount");
+                combobox.DataSource = new BindingSource(listItemDictionary, null);
+                combobox.DisplayMember = "Value";
+                combobox.ValueMember = "Key";
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        internal void LoadSortByOrderListToDropDown(ComboBox combobox, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                Dictionary<string, string> listItemDictionary = new Dictionary<string, string>();
+                combobox.Refresh();
+                listItemDictionary.Clear();
+                listItemDictionary.Add("asc", "Ascending ");
+                listItemDictionary.Add("desc", "Descending ");
+                combobox.DataSource = new BindingSource(listItemDictionary, null);
+                combobox.DisplayMember = "Value";
+                combobox.ValueMember = "Key";
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
         internal decimal StringToDecimal(string text)
         {
             if(string.IsNullOrEmpty(text))
