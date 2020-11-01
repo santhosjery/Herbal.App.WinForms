@@ -64,5 +64,30 @@ namespace Herbal.yah_varmalayam.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPurchaseReport_Result>("getPurchaseReport", purchaseCodeParameter, purchaseIdParameter, startDateParameter, endDateParameter, productIdParameter);
         }
+    
+        public virtual ObjectResult<getSalesReport_Result> getSalesReport(string salesCode, Nullable<int> salesId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> productId)
+        {
+            var salesCodeParameter = salesCode != null ?
+                new ObjectParameter("SalesCode", salesCode) :
+                new ObjectParameter("SalesCode", typeof(string));
+    
+            var salesIdParameter = salesId.HasValue ?
+                new ObjectParameter("SalesId", salesId) :
+                new ObjectParameter("SalesId", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSalesReport_Result>("getSalesReport", salesCodeParameter, salesIdParameter, startDateParameter, endDateParameter, productIdParameter);
+        }
     }
 }

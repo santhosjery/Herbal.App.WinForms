@@ -6,13 +6,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
 -- Author:		Santhosh N
--- Create date: 31/10/2020
--- Description:	To bringing the values for purchase report
+-- Create date: 01/11/2020
+-- Description:	To bringing the values for sales report
 -- =============================================
---EXEC getPurchaseReport
-CREATE PROCEDURE [getPurchaseReport]
-	@PurchaseCode nvarchar(50) = null,
-	@PurchaseId int = null,
+--EXEC getSalesReport
+CREATE PROCEDURE [getSalesReport]
+	@SalesCode nvarchar(50) = null,
+	@SalesId int = null,
 	@StartDate datetime = null,
 	@EndDate datetime = null,
 	@ProductId int =null
@@ -22,30 +22,30 @@ BEGIN
 
 	If(isnull(@StartDate, '') = '')
 	Begin
-		Select @StartDate = min(ph.PurchaseDate) from PurchaseHeader as ph
+		Select @StartDate = min(ph.SalesDate) from SalesHeader as ph
 	End
 
 	If(isnull(@EndDate, '') = '')
 	Begin
-		Select @EndDate = max(ph.PurchaseDate) from PurchaseHeader as ph
+		Select @EndDate = max(ph.SalesDate) from SalesHeader as ph
 	End
 
-	Set @PurchaseCode = IIF(Isnull(@PurchaseCode,'') = '','',@PurchaseCode);
+	Set @SalesCode = IIF(Isnull(@SalesCode,'') = '','',@SalesCode);
 
-	Declare @tempPurchaseList Table(
-		[PurchaseId] int NOT NULL,
-		[PurchaseCode] [nvarchar](50) NOT NULL,
-		[ClientName] [nvarchar](150) NULL,
-		[ClientMobileNumber] [bigint] NULL,
+	Declare @tempSalesList Table(
+		[SalesId] int NOT NULL,
+		[SalesCode] [nvarchar](50) NOT NULL,
+		[CustomerName] [nvarchar](150) NULL,
+		[CustomerMobileNumber] [bigint] NULL,
 		[ProductId] [int] NOT NULL,
 		[ProductName] [nvarchar](150) NULL,
 		[ScaleId] [int] NOT NULL,
 		[ScaleName] [nvarchar](50) NULL,
 		[PaymentTypeId] [int] NULL,
 		[PaymentTypeName] [nvarchar](50) NULL,
-		[PurchaseDate] [datetime] NOT NULL,
+		[SalesDate] [datetime] NOT NULL,
 		[Quantity] [decimal](18, 2) NOT NULL,
-		[PurchaseAmount] [decimal](18, 2) NOT NULL,
+		[SalesAmount] [decimal](18, 2) NOT NULL,
 		[Discount] [decimal](18, 2) NULL,
 		[GrossAmount] [decimal](18, 2) NOT NULL,
 		[CGST] [decimal](18, 2) NULL,
@@ -55,21 +55,21 @@ BEGIN
 		[NetAmount] [decimal](18, 2) NOT NULL
 	);
 
-	Insert into @tempPurchaseList
+	Insert into @tempSalesList
 	Select 
 		ph.Id,
-		ph.PurchaseCode,
-		ph.ClientName,
-		ph.ClientMobileNumber,
+		ph.SalesCode,
+		ph.CustomerName,
+		ph.CustomerMobileNumber,
 		pr.Id,
 		pr.ProductName,
 		scl.Id,
 		scl.ScaleName,
 		ph.PaymentTypeId,
 		pt.PaymentTypeName,
-		ph.PurchaseDate,
+		ph.SalesDate,
 		pli.Quantity,
-		pli.PurchaseAmount,
+		pli.SalesAmount,
 		pli.Discount,
 		pli.GrossAmount,
 		pli.CGST,
@@ -77,18 +77,18 @@ BEGIN
 		pli.IGST,
 		pli.TotalTax,
 		pli.NetAmount
-	  from PurchaseHeader as ph
-	Join PurchaseLineItem as pli on ph.Id = pli.PurchaseId
+	  from SalesHeader as ph
+	Join SalesLineItem as pli on ph.Id = pli.SalesId
 	Join Product as pr on pr.Id = pli.ProductId
 	Join Scale as scl on scl.Id = pr.ScaleId
 	Left Join PaymentType as pt on pt.Id = ph.PaymentTypeId
-	Where (ph.PurchaseDate >= @StartDate and ph.PurchaseDate <= @EndDate)
-		  and (@PurchaseCode = '' or ph.PurchaseCode = @PurchaseCode)
-		  and (@PurchaseId is null or ph.Id = @PurchaseId)
+	Where (ph.SalesDate >= @StartDate and ph.SalesDate <= @EndDate)
+		  and (@SalesCode = '' or ph.SalesCode = @SalesCode)
+		  and (@SalesId is null or ph.Id = @SalesId)
 		  and (@ProductId is null or pli.ProductId = @ProductId)
 	Order By ph.Id Desc
 
-	Select * from @tempPurchaseList;
+	Select * from @tempSalesList;
 
 END
 GO

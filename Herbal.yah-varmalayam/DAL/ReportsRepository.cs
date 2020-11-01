@@ -19,5 +19,14 @@ namespace Herbal.yah_varmalayam
         {
             return herbalContext.getPurchaseReport(purchaseCode, purchaseId, startDate, endDate, productId).ToList();
         }
+
+        public static IEnumerable<getSalesReport_Result> getSalesReportResult(
+            string salesCode, Nullable<int> salesId,
+            Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate,
+            Nullable<int> productId
+            )
+        {
+            return herbalContext.getSalesReport(salesCode, salesId, startDate, endDate, productId).ToList();
+        }
     }
 }
