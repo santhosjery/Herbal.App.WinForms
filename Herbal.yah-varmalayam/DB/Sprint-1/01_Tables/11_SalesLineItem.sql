@@ -1,5 +1,4 @@
 ﻿
-
 /****** Object:  Table [dbo].[SalesLineItem]    Script Date: 10/30/2020 14:27:25 ******/
 SET ANSI_NULLS ON
 GO
@@ -8,11 +7,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[SalesLineItem](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[SaleseLineItemCode] [nvarchar](50) NULL,
+	[SalesLineItemCode] [nvarchar](50) NULL,
 	[SalesId] [int] NOT NULL,
 	[ProductId] [int] NOT NULL,
 	[Quantity] [decimal](18, 2) NOT NULL,
 	[SalesAmount] [decimal](18, 2) NOT NULL,
+	[ConfigSellingPrice] [decimal](18, 2) NOT NULL,
 	[Discount] [decimal](18, 2) NULL,
 	[GrossAmount] [decimal](18, 2) NOT NULL,
 	[CGST] [decimal](18, 2) NULL,
