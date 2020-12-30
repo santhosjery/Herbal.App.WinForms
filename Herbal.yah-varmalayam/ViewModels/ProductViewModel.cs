@@ -21,12 +21,12 @@ namespace Herbal.yah_varmalayam
         {
 
         }
-        public ProductViewModel(string searchText)
+        public ProductViewModel(string searchText, bool showAll)
         {
             var productList = herbalContext.Products.Where(_ => (searchText == "")
                             || (searchText.ToLower().Contains(_.ProductCode.ToLower()) 
                                     || searchText.ToLower().Contains(_.ProductName.ToLower())))
-                            .ToList().OrderByDescending(_ => _.Id).Take(100).ToList();
+                            .ToList().OrderByDescending(_ => _.Id).Take(showAll ? 20000 : 100).ToList();
             foreach (var product in productList)
             {
                 productViewList.Add(new ProductViewModel(product.Id));

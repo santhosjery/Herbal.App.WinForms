@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core.EntityClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ namespace Herbal.yah_varmalayam
 {
     public static class Utility
     {
+        private const string _exportFileLocation = @"C:\Data\";
         private const string _connectionString = "data source=SANTHON-LR0D1A0;initial catalog=Herbal;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;";
         public const string Prodcut = "Prodcut";
         public const string ExitTitle = "Exit";
@@ -26,6 +29,8 @@ namespace Herbal.yah_varmalayam
         public const string NotFoundMessage = "{0} not found.";
         public const string ScaleNameConcat = "({0})";
         public const string ScaleNameNotApplicable = "N/A";
+        public const string ExportSuccessMessage = "{0} has been exported successfully, Please check at {1}";
+        public const string ExportToolTip = "Click here to Export All Data.";
         ///
         ///Button Names
         ///
@@ -84,6 +89,26 @@ namespace Herbal.yah_varmalayam
             entityBuilder.ProviderConnectionString = _connectionString + ";MultipleActiveResultSets=True;App=EntityFramework;";
             entityBuilder.Metadata = @"res://*/Models.HerbalModel.csdl|res://*/Models.HerbalModel.ssdl|res://*/Models.HerbalModel.msl";
             return entityBuilder.ToString();
+        }
+
+        public static void ExportDataToCsV(DataTable dataTable, ref string fileName)
+        {
+            var lines = new List<string>();
+
+            string[] columnNames = dataTable.Columns
+                .Cast<DataColumn>()
+                .Select(column => column.ColumnName)
+                .ToArray();
+
+            var header = string.Join(",", columnNames.Select(name => $"\"{name}\""));
+            lines.Add(header);
+
+            var valueLines = dataTable.AsEnumerable()
+                .Select(row => string.Join(",", row.ItemArray.Select(val => $"\"{val}\"")));
+
+            lines.AddRange(valueLines);
+            fileName = string.Concat(_exportFileLocation, fileName, DateTime.Now.ToString("MM-dd-yyyyy hh:mm:ss").Replace(':', '-').Replace(" ", ""), ".csv");
+            File.WriteAllLines(fileName, lines);
         }
     }
 }

@@ -96,7 +96,7 @@ namespace Herbal.yah_varmalayam.Forms
                 Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
                 combobox.Refresh();
                 listItemDictionary.Clear();
-                var list = new ProductViewModel(searchText).productViewList;
+                var list = new ProductViewModel(searchText, false).productViewList;
                 var dt = ConvertListToDataTable.ToDataTable(list);
                 if (dt.Rows.Count > 0)
                 {

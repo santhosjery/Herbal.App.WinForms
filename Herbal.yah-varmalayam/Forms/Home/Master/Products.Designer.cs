@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtSearchItem = new Bunifu.Framework.UI.BunifuTextbox();
             this.BtnSaveProduct = new System.Windows.Forms.Button();
@@ -39,6 +39,7 @@
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtProductName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.PanelProductMaster = new System.Windows.Forms.Panel();
+            this.IconDownloadAll = new System.Windows.Forms.PictureBox();
             this.TxtPackQuantity = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.TxtGST = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -61,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelProductMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconDownloadAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridProductMaster)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +88,7 @@
             this.TxtSearchItem.Location = new System.Drawing.Point(49, 118);
             this.TxtSearchItem.Margin = new System.Windows.Forms.Padding(6);
             this.TxtSearchItem.Name = "TxtSearchItem";
-            this.TxtSearchItem.Size = new System.Drawing.Size(414, 45);
+            this.TxtSearchItem.Size = new System.Drawing.Size(366, 45);
             this.TxtSearchItem.TabIndex = 7;
             this.TxtSearchItem.text = "";
             this.TxtSearchItem.OnTextChange += new System.EventHandler(this.TxtSearchItem_OnTextChange);
@@ -175,6 +177,7 @@
             this.PanelProductMaster.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PanelProductMaster.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PanelProductMaster.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelProductMaster.Controls.Add(this.IconDownloadAll);
             this.PanelProductMaster.Controls.Add(this.TxtPackQuantity);
             this.PanelProductMaster.Controls.Add(this.TxtGST);
             this.PanelProductMaster.Controls.Add(this.bunifuCustomLabel6);
@@ -196,6 +199,19 @@
             this.PanelProductMaster.Name = "PanelProductMaster";
             this.PanelProductMaster.Size = new System.Drawing.Size(1511, 789);
             this.PanelProductMaster.TabIndex = 38;
+            // 
+            // IconDownloadAll
+            // 
+            this.IconDownloadAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IconDownloadAll.Image = global::Herbal.yah_varmalayam.Properties.Resources.Submit_Progress_48px;
+            this.IconDownloadAll.Location = new System.Drawing.Point(425, 123);
+            this.IconDownloadAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.IconDownloadAll.Name = "IconDownloadAll";
+            this.IconDownloadAll.Size = new System.Drawing.Size(45, 34);
+            this.IconDownloadAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.IconDownloadAll.TabIndex = 79;
+            this.IconDownloadAll.TabStop = false;
+            this.IconDownloadAll.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // TxtPackQuantity
             // 
@@ -281,14 +297,14 @@
             this.DataGridProductMaster.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DataGridProductMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridProductMaster.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Georgia", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridProductMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Georgia", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridProductMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridProductMaster.ColumnHeadersHeight = 40;
             this.DataGridProductMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridProductMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -435,6 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.PanelProductMaster.ResumeLayout(false);
             this.PanelProductMaster.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IconDownloadAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridProductMaster)).EndInit();
             this.ResumeLayout(false);
 
@@ -470,5 +487,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.PictureBox IconDownloadAll;
     }
 }
