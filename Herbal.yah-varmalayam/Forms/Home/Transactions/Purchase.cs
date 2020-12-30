@@ -50,11 +50,8 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemProductId = 0;
                 purchaseLineItemId = 0;
                 TxtQuantity.Text = "";
-                LblScaleName.Text = Utility.ScaleNameNotApplicable;
                 TxtPurchaseAmount.Text = "";
-                TxtCgstPercentage.Text = "5";
-                TxtSgstPercentage.Text = "5";
-                TxtDiscount.Text = "0";
+                TxtGST.Text = "5";
                 TxtNetAmount.Text = "";
                 BtnSaveLineItem.Text = Utility.SaveLineItemButton;
                 LoadProductItemsToDropDown(DropDownProductName, "");
@@ -222,6 +219,7 @@ namespace Herbal.yah_varmalayam.Forms
             purchaseLineItem.PurchaseId = purchaseId;
             purchaseLineItem.ProductId = (int)DropDownProductName.SelectedValue;
             purchaseLineItem.Quantity = StringToDecimal(TxtQuantity.Text);
+            purchaseLineItem.GST = _getLineItemTaxAmount();
             purchaseLineItem.PurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
             purchaseLineItem.GrossAmount = _getLineItemGrossAmount();
             purchaseLineItem.NetAmount = StringToDecimal(TxtNetAmount.Text);
@@ -257,7 +255,6 @@ namespace Herbal.yah_varmalayam.Forms
             if(purchaseId == 0)
             {
                 TxtTotalPurchaseAmount.Text = TxtPurchaseAmount.Text;
-                TxtTotalDiscount.Text = TxtDiscount.Text;
                 TxtTotalTax.Text = _getLineItemTaxAmount().ToString();
                 TxtTotalGrossAmount.Text = (_getLineItemGrossAmount()).ToString();
                 TxtTotalNetAmount.Text = (StringToDecimal(TxtTotalGrossAmount.Text) + StringToDecimal(TxtTotalTax.Text)).ToString();
@@ -274,7 +271,7 @@ namespace Herbal.yah_varmalayam.Forms
                     TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) - existingLineItemTaxAmount).ToString();
                 }
                 var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + StringToDecimal(TxtPurchaseAmount.Text);
-                var totalDiscountAmount = StringToDecimal(TxtTotalDiscount.Text) + StringToDecimal(TxtDiscount.Text);
+                var totalDiscountAmount = StringToDecimal(TxtTotalDiscount.Text);
                 TxtTotalPurchaseAmount.Text = totalPurchaseAmount.ToString();
                 TxtTotalDiscount.Text = totalDiscountAmount.ToString();
 
@@ -298,17 +295,13 @@ namespace Herbal.yah_varmalayam.Forms
         }
         private decimal _getLineItemTaxAmount()
         {
-            var cgstTax = StringToDecimal(TxtCgstPercentage.Text);
-            var sgstTax = StringToDecimal(TxtSgstPercentage.Text);
-            var lineItemGrossAmount = _getLineItemGrossAmount();
-            var lineItemDiscount = StringToDecimal(TxtDiscount.Text);
-            var lineItemTaxAmount = ((lineItemGrossAmount - lineItemDiscount) * (cgstTax + sgstTax) / 100);
-            return lineItemTaxAmount;
+            var gstAmount = StringToDecimal(TxtGST.Text) * StringToDecimal(TxtQuantity.Text);
+            return gstAmount;
         }
 
         private decimal _getLineItemGrossAmount()
         {
-            return (StringToDecimal(TxtPurchaseAmount.Text) * StringToDecimal(TxtQuantity.Text)) - StringToDecimal(TxtDiscount.Text);
+            return (StringToDecimal(TxtPurchaseAmount.Text) * StringToDecimal(TxtQuantity.Text));
         }
 
         private void BtnResetLineItem_Click(object sender, EventArgs e)
@@ -318,16 +311,33 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void DropDownProductName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (DropDownProductName.SelectedIndex > 0)
+                {
+                    var _productDetail = new ProductViewModel((int)DropDownProductName.SelectedValue);
+                    TxtQuantity.Text = "1";
+                    TxtGST.Text = _productDetail.GST.ToString();
+                    TxtPurchaseAmount.Text = (_productDetail.SellingPrice - (_productDetail.SellingPrice / 100 * Utility.SellingPricePercentage)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
         }
 
         private void TxtQuantity_TextChanged(object sender, EventArgs e)
         {
-            decimal a;
-            if (!decimal.TryParse(TxtQuantity.Text, out a))
+            int a;
+            if (!int.TryParse(TxtQuantity.Text, out a))
             {
                 // If not int clear textbox text or Undo() last operation
                 TxtQuantity.Clear();
+            }
+            else
+            {
+
             }
         }
 
@@ -345,33 +355,13 @@ namespace Herbal.yah_varmalayam.Forms
             }
         }
 
-        private void TxtDiscount_TextChanged(object sender, EventArgs e)
-        {
-            decimal a;
-            if (!decimal.TryParse(TxtDiscount.Text, out a))
-            {
-                // If not int clear textbox text or Undo() last operation
-                TxtDiscount.Clear();
-            }
-        }
-
         private void TxtCgstPercentage_TextChanged(object sender, EventArgs e)
         {
             decimal a;
-            if (!decimal.TryParse(TxtCgstPercentage.Text, out a))
+            if (!decimal.TryParse(TxtGST.Text, out a))
             {
                 // If not int clear textbox text or Undo() last operation
-                TxtCgstPercentage.Clear();
-            }
-        }
-
-        private void TxtSgstPercentage_TextChanged(object sender, EventArgs e)
-        {
-            decimal a;
-            if (!decimal.TryParse(TxtSgstPercentage.Text, out a))
-            {
-                // If not int clear textbox text or Undo() last operation
-                TxtSgstPercentage.Clear();
+                TxtGST.Clear();
             }
         }
 
@@ -392,6 +382,10 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 // If not int clear textbox text or Undo() last operation
                 TxtTotalDiscount.Clear();
+            }
+            else
+            {
+
             }
         }
 
@@ -481,9 +475,9 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemProductId = lineItemDetail.ProductId;
 
                 DropDownProductName.SelectedValue = lineItemDetail.ProductId;
-                TxtQuantity.Text = lineItemDetail.Quantity.ToString();
+                TxtQuantity.Text = ((int)lineItemDetail.Quantity).ToString();
                 TxtPurchaseAmount.Text = lineItemDetail.PurchaseAmount.ToString();
-                TxtSgstPercentage.Text = lineItemDetail.GST.ToString();
+                TxtGST.Text = lineItemDetail.GST.ToString();
                 TxtNetAmount.Text = lineItemDetail.NetAmount.ToString();
             }
             catch (Exception ex)
@@ -535,6 +529,56 @@ namespace Herbal.yah_varmalayam.Forms
         private void BtnPrintSummary_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtQuantity_TabIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtPurchaseAmount_TabIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtGST_TabIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TxtQuantity_Leave(object sender, EventArgs e)
+        {
+            int a;
+            if (int.TryParse(TxtQuantity.Text, out a))
+            {
+                _calculateValuesToLineItem();
+            }
+        }
+
+        private void TxtPurchaseAmount_Leave(object sender, EventArgs e)
+        {
+            int a;
+            if (int.TryParse(TxtPurchaseAmount.Text, out a))
+            {
+                _calculateValuesToLineItem();
+            }
+        }
+
+        private void TxtGST_Leave(object sender, EventArgs e)
+        {
+            int a;
+            if (int.TryParse(TxtGST.Text, out a))
+            {
+                _calculateValuesToLineItem();
+            }
+        }
+
+        private void DropDownProductName_TextChanged(object sender, EventArgs e)
+        {
+            if (DropDownProductName.SelectedIndex <= 0)
+            {
+                LoadProductItemsToDropDown(DropDownProductName, DropDownProductName.Text.ToString());
+            }
         }
     }
 }

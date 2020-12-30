@@ -96,19 +96,28 @@ namespace Herbal.yah_varmalayam.Forms
                 Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
                 combobox.Refresh();
                 listItemDictionary.Clear();
+                //combobox.DataSource = new BindingSource(listItemDictionary, null);
                 var list = new ProductViewModel(searchText, false).productViewList;
                 var dt = ConvertListToDataTable.ToDataTable(list);
                 if (dt.Rows.Count > 0)
                 {
-                    listItemDictionary.Add(0, Utility.DropDownFirstItem);
+                    if(string.IsNullOrEmpty(searchText))
+                    {
+                        listItemDictionary.Add(0, "");
+                    }
                     foreach (DataRow DtCol in dt.Rows)
                     {
-                        listItemDictionary.Add(Convert.ToInt32(DtCol["Id"]), DtCol["ProductName"].ToString());
+                        listItemDictionary.Add(Convert.ToInt32(DtCol["Id"]), string.Concat(DtCol["ProductName"].ToString(), " - ", DtCol["ProductCode"].ToString()));
                     }
                     combobox.DataSource = new BindingSource(listItemDictionary, null);
                     combobox.DisplayMember = "Value";
                     combobox.ValueMember = "Key";
                 }
+                else
+                {
+                    //listItemDictionary.Add(0, "");
+                }
+                
             }
             catch (Exception ex)
             {

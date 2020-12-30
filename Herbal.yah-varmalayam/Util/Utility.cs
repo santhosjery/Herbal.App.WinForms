@@ -31,6 +31,7 @@ namespace Herbal.yah_varmalayam
         public const string ScaleNameNotApplicable = "N/A";
         public const string ExportSuccessMessage = "{0} has been exported successfully, Please check at {1}";
         public const string ExportToolTip = "Click here to Export All Data.";
+        public const decimal SellingPricePercentage = 5; //Change the Selling price percentage for purchase amount calculation.
         ///
         ///Button Names
         ///

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.PanelPurchase = new System.Windows.Forms.Panel();
             this.DataGridPurchaseMaster = new System.Windows.Forms.DataGridView();
@@ -37,11 +37,8 @@
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrossAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CGSTPercentage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SGSTPercentage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GST = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -52,17 +49,12 @@
             this.TxtTotalNetAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel19 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.Grouppurchase = new System.Windows.Forms.GroupBox();
-            this.LblScaleName = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.BtnResetLineItem = new System.Windows.Forms.Button();
             this.TxtNetAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel4 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.TxtDiscount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.bunifuCustomLabel20 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.BtnSaveLineItem = new System.Windows.Forms.Button();
-            this.TxtCgstPercentage = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.TxtGST = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel13 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.TxtSgstPercentage = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.bunifuCustomLabel12 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtPurchaseAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtQuantity = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
@@ -142,14 +134,14 @@
             this.DataGridPurchaseMaster.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DataGridPurchaseMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridPurchaseMaster.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Georgia", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Georgia", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridPurchaseMaster.ColumnHeadersHeight = 40;
             this.DataGridPurchaseMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridPurchaseMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -158,11 +150,8 @@
             this.ProductName,
             this.Quantity,
             this.PurchaseAmount,
-            this.Discount,
             this.GrossAmount,
-            this.CGSTPercentage,
-            this.SGSTPercentage,
-            this.TotalTax,
+            this.GST,
             this.NetAmount,
             this.CreatedOn,
             this.Edit,
@@ -201,7 +190,7 @@
             // 
             this.ProductName.DataPropertyName = "ProductName";
             this.ProductName.FillWeight = 230F;
-            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.HeaderText = "Medicine Name";
             this.ProductName.MinimumWidth = 8;
             this.ProductName.Name = "ProductName";
             this.ProductName.ReadOnly = true;
@@ -223,14 +212,6 @@
             this.PurchaseAmount.Name = "PurchaseAmount";
             this.PurchaseAmount.ReadOnly = true;
             // 
-            // Discount
-            // 
-            this.Discount.DataPropertyName = "Discount";
-            this.Discount.HeaderText = "Discount";
-            this.Discount.MinimumWidth = 8;
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            // 
             // GrossAmount
             // 
             this.GrossAmount.DataPropertyName = "GrossAmount";
@@ -240,33 +221,14 @@
             this.GrossAmount.Name = "GrossAmount";
             this.GrossAmount.ReadOnly = true;
             // 
-            // CGSTPercentage
+            // GST
             // 
-            this.CGSTPercentage.DataPropertyName = "CGSTPercentage";
-            this.CGSTPercentage.FillWeight = 80F;
-            this.CGSTPercentage.HeaderText = "CGST%";
-            this.CGSTPercentage.MinimumWidth = 8;
-            this.CGSTPercentage.Name = "CGSTPercentage";
-            this.CGSTPercentage.ReadOnly = true;
-            this.CGSTPercentage.Visible = false;
-            // 
-            // SGSTPercentage
-            // 
-            this.SGSTPercentage.DataPropertyName = "SGSTPercentage";
-            this.SGSTPercentage.FillWeight = 80F;
-            this.SGSTPercentage.HeaderText = "SGST%";
-            this.SGSTPercentage.MinimumWidth = 8;
-            this.SGSTPercentage.Name = "SGSTPercentage";
-            this.SGSTPercentage.ReadOnly = true;
-            this.SGSTPercentage.Visible = false;
-            // 
-            // TotalTax
-            // 
-            this.TotalTax.DataPropertyName = "TotalTax";
-            this.TotalTax.HeaderText = "GST Amount";
-            this.TotalTax.MinimumWidth = 8;
-            this.TotalTax.Name = "TotalTax";
-            this.TotalTax.ReadOnly = true;
+            this.GST.DataPropertyName = "GST";
+            this.GST.FillWeight = 80F;
+            this.GST.HeaderText = "GST(Rs.)";
+            this.GST.MinimumWidth = 8;
+            this.GST.Name = "GST";
+            this.GST.ReadOnly = true;
             // 
             // NetAmount
             // 
@@ -381,17 +343,12 @@
             // 
             // Grouppurchase
             // 
-            this.Grouppurchase.Controls.Add(this.LblScaleName);
             this.Grouppurchase.Controls.Add(this.BtnResetLineItem);
             this.Grouppurchase.Controls.Add(this.TxtNetAmount);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel4);
-            this.Grouppurchase.Controls.Add(this.TxtDiscount);
-            this.Grouppurchase.Controls.Add(this.bunifuCustomLabel20);
             this.Grouppurchase.Controls.Add(this.BtnSaveLineItem);
-            this.Grouppurchase.Controls.Add(this.TxtCgstPercentage);
+            this.Grouppurchase.Controls.Add(this.TxtGST);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel13);
-            this.Grouppurchase.Controls.Add(this.TxtSgstPercentage);
-            this.Grouppurchase.Controls.Add(this.bunifuCustomLabel12);
             this.Grouppurchase.Controls.Add(this.TxtPurchaseAmount);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel11);
             this.Grouppurchase.Controls.Add(this.TxtQuantity);
@@ -407,17 +364,6 @@
             this.Grouppurchase.TabIndex = 23;
             this.Grouppurchase.TabStop = false;
             this.Grouppurchase.Text = "Line Item";
-            // 
-            // LblScaleName
-            // 
-            this.LblScaleName.AutoSize = true;
-            this.LblScaleName.Font = new System.Drawing.Font("Georgia", 9F);
-            this.LblScaleName.Location = new System.Drawing.Point(533, 75);
-            this.LblScaleName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblScaleName.Name = "LblScaleName";
-            this.LblScaleName.Size = new System.Drawing.Size(51, 21);
-            this.LblScaleName.TabIndex = 66;
-            this.LblScaleName.Text = "Scale";
             // 
             // BtnResetLineItem
             // 
@@ -458,28 +404,6 @@
             this.bunifuCustomLabel4.TabIndex = 62;
             this.bunifuCustomLabel4.Text = "Net Amount*";
             // 
-            // TxtDiscount
-            // 
-            this.TxtDiscount.BorderColor = System.Drawing.Color.SeaGreen;
-            this.TxtDiscount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtDiscount.Location = new System.Drawing.Point(826, 68);
-            this.TxtDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtDiscount.Name = "TxtDiscount";
-            this.TxtDiscount.Size = new System.Drawing.Size(154, 33);
-            this.TxtDiscount.TabIndex = 12;
-            this.TxtDiscount.TextChanged += new System.EventHandler(this.TxtDiscount_TextChanged);
-            // 
-            // bunifuCustomLabel20
-            // 
-            this.bunifuCustomLabel20.AutoSize = true;
-            this.bunifuCustomLabel20.Font = new System.Drawing.Font("Georgia", 9F);
-            this.bunifuCustomLabel20.Location = new System.Drawing.Point(821, 37);
-            this.bunifuCustomLabel20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.bunifuCustomLabel20.Name = "bunifuCustomLabel20";
-            this.bunifuCustomLabel20.Size = new System.Drawing.Size(82, 21);
-            this.bunifuCustomLabel20.TabIndex = 45;
-            this.bunifuCustomLabel20.Text = "Discount";
-            // 
             // BtnSaveLineItem
             // 
             this.BtnSaveLineItem.BackColor = System.Drawing.Color.SeaGreen;
@@ -496,16 +420,18 @@
             this.BtnSaveLineItem.UseVisualStyleBackColor = false;
             this.BtnSaveLineItem.Click += new System.EventHandler(this.BtnSaveLineItem_Click);
             // 
-            // TxtCgstPercentage
+            // TxtGST
             // 
-            this.TxtCgstPercentage.BorderColor = System.Drawing.Color.SeaGreen;
-            this.TxtCgstPercentage.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtCgstPercentage.Location = new System.Drawing.Point(1007, 68);
-            this.TxtCgstPercentage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtCgstPercentage.Name = "TxtCgstPercentage";
-            this.TxtCgstPercentage.Size = new System.Drawing.Size(64, 33);
-            this.TxtCgstPercentage.TabIndex = 13;
-            this.TxtCgstPercentage.TextChanged += new System.EventHandler(this.TxtCgstPercentage_TextChanged);
+            this.TxtGST.BorderColor = System.Drawing.Color.SeaGreen;
+            this.TxtGST.Font = new System.Drawing.Font("Verdana", 10.5F);
+            this.TxtGST.Location = new System.Drawing.Point(1007, 68);
+            this.TxtGST.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtGST.Name = "TxtGST";
+            this.TxtGST.Size = new System.Drawing.Size(99, 33);
+            this.TxtGST.TabIndex = 13;
+            this.TxtGST.TabIndexChanged += new System.EventHandler(this.TxtGST_TabIndexChanged);
+            this.TxtGST.TextChanged += new System.EventHandler(this.TxtCgstPercentage_TextChanged);
+            this.TxtGST.Leave += new System.EventHandler(this.TxtGST_Leave);
             // 
             // bunifuCustomLabel13
             // 
@@ -514,48 +440,28 @@
             this.bunifuCustomLabel13.Location = new System.Drawing.Point(1002, 37);
             this.bunifuCustomLabel13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel13.Name = "bunifuCustomLabel13";
-            this.bunifuCustomLabel13.Size = new System.Drawing.Size(60, 21);
+            this.bunifuCustomLabel13.Size = new System.Drawing.Size(79, 21);
             this.bunifuCustomLabel13.TabIndex = 38;
-            this.bunifuCustomLabel13.Text = "Cgst%";
-            // 
-            // TxtSgstPercentage
-            // 
-            this.TxtSgstPercentage.BorderColor = System.Drawing.Color.SeaGreen;
-            this.TxtSgstPercentage.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtSgstPercentage.Location = new System.Drawing.Point(1086, 68);
-            this.TxtSgstPercentage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtSgstPercentage.Name = "TxtSgstPercentage";
-            this.TxtSgstPercentage.Size = new System.Drawing.Size(62, 33);
-            this.TxtSgstPercentage.TabIndex = 14;
-            this.TxtSgstPercentage.TextChanged += new System.EventHandler(this.TxtSgstPercentage_TextChanged);
-            // 
-            // bunifuCustomLabel12
-            // 
-            this.bunifuCustomLabel12.AutoSize = true;
-            this.bunifuCustomLabel12.Font = new System.Drawing.Font("Georgia", 9F);
-            this.bunifuCustomLabel12.Location = new System.Drawing.Point(1082, 37);
-            this.bunifuCustomLabel12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.bunifuCustomLabel12.Name = "bunifuCustomLabel12";
-            this.bunifuCustomLabel12.Size = new System.Drawing.Size(58, 21);
-            this.bunifuCustomLabel12.TabIndex = 36;
-            this.bunifuCustomLabel12.Text = "Sgst%";
+            this.bunifuCustomLabel13.Text = "GST(Rs)";
             // 
             // TxtPurchaseAmount
             // 
             this.TxtPurchaseAmount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtPurchaseAmount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtPurchaseAmount.Location = new System.Drawing.Point(628, 70);
+            this.TxtPurchaseAmount.Location = new System.Drawing.Point(787, 69);
             this.TxtPurchaseAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtPurchaseAmount.Name = "TxtPurchaseAmount";
             this.TxtPurchaseAmount.Size = new System.Drawing.Size(170, 33);
             this.TxtPurchaseAmount.TabIndex = 11;
+            this.TxtPurchaseAmount.TabIndexChanged += new System.EventHandler(this.TxtPurchaseAmount_TabIndexChanged);
             this.TxtPurchaseAmount.TextChanged += new System.EventHandler(this.TxtGrossAmount_TextChanged);
+            this.TxtPurchaseAmount.Leave += new System.EventHandler(this.TxtPurchaseAmount_Leave);
             // 
             // bunifuCustomLabel11
             // 
             this.bunifuCustomLabel11.AutoSize = true;
             this.bunifuCustomLabel11.Font = new System.Drawing.Font("Georgia", 9F);
-            this.bunifuCustomLabel11.Location = new System.Drawing.Point(624, 38);
+            this.bunifuCustomLabel11.Location = new System.Drawing.Point(783, 37);
             this.bunifuCustomLabel11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel11.Name = "bunifuCustomLabel11";
             this.bunifuCustomLabel11.Size = new System.Drawing.Size(163, 21);
@@ -566,18 +472,20 @@
             // 
             this.TxtQuantity.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtQuantity.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtQuantity.Location = new System.Drawing.Point(381, 70);
+            this.TxtQuantity.Location = new System.Drawing.Point(578, 69);
             this.TxtQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtQuantity.Name = "TxtQuantity";
             this.TxtQuantity.Size = new System.Drawing.Size(134, 33);
             this.TxtQuantity.TabIndex = 9;
+            this.TxtQuantity.TabIndexChanged += new System.EventHandler(this.TxtQuantity_TabIndexChanged);
             this.TxtQuantity.TextChanged += new System.EventHandler(this.TxtQuantity_TextChanged);
+            this.TxtQuantity.Leave += new System.EventHandler(this.TxtQuantity_Leave);
             // 
             // bunifuCustomLabel9
             // 
             this.bunifuCustomLabel9.AutoSize = true;
             this.bunifuCustomLabel9.Font = new System.Drawing.Font("Georgia", 9F);
-            this.bunifuCustomLabel9.Location = new System.Drawing.Point(376, 38);
+            this.bunifuCustomLabel9.Location = new System.Drawing.Point(573, 37);
             this.bunifuCustomLabel9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel9.Name = "bunifuCustomLabel9";
             this.bunifuCustomLabel9.Size = new System.Drawing.Size(89, 21);
@@ -586,16 +494,16 @@
             // 
             // DropDownProductName
             // 
-            this.DropDownProductName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.DropDownProductName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.DropDownProductName.Font = new System.Drawing.Font("Verdana", 10.5F);
             this.DropDownProductName.FormattingEnabled = true;
             this.DropDownProductName.Location = new System.Drawing.Point(29, 68);
             this.DropDownProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DropDownProductName.Name = "DropDownProductName";
-            this.DropDownProductName.Size = new System.Drawing.Size(312, 33);
+            this.DropDownProductName.Size = new System.Drawing.Size(478, 33);
             this.DropDownProductName.TabIndex = 4;
             this.DropDownProductName.SelectedIndexChanged += new System.EventHandler(this.DropDownProductName_SelectedIndexChanged);
+            this.DropDownProductName.TextChanged += new System.EventHandler(this.DropDownProductName_TextChanged);
             // 
             // bunifuCustomLabel5
             // 
@@ -760,7 +668,6 @@
             this.TxtTotalDiscount.Location = new System.Drawing.Point(289, 170);
             this.TxtTotalDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTotalDiscount.Name = "TxtTotalDiscount";
-            this.TxtTotalDiscount.ReadOnly = true;
             this.TxtTotalDiscount.Size = new System.Drawing.Size(145, 33);
             this.TxtTotalDiscount.TabIndex = 54;
             this.TxtTotalDiscount.TextChanged += new System.EventHandler(this.TxtTotalDiscount_TextChanged);
@@ -932,13 +839,8 @@
         }
 
         #endregion
-
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel20;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtCgstPercentage;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtGST;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel13;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtSgstPercentage;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel12;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtDiscount;
         private System.Windows.Forms.Button BtnSaveLineItem;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtPurchaseAmount;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel11;
@@ -979,7 +881,6 @@
         private System.Windows.Forms.Button BtnPrintSummary;
         private System.Windows.Forms.Button BtnSaveSummary;
         private System.Windows.Forms.DataGridView DataGridPurchaseMaster;
-        private Bunifu.Framework.UI.BunifuCustomLabel LblScaleName;
         private System.Windows.Forms.DateTimePicker DtPickerInvoiceDate;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel18;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtTotalPurchaseAmount;
@@ -989,11 +890,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn GrossAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CGSTPercentage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SGSTPercentage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalTax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GST;
         private System.Windows.Forms.DataGridViewTextBoxColumn NetAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;

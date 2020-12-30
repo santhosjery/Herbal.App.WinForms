@@ -14,6 +14,10 @@ namespace Herbal.yah_varmalayam
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
 
+            if(items.Any() == false)
+            {
+                return dataTable;
+            }
             //Get all the properties
             PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (PropertyInfo prop in Props)
