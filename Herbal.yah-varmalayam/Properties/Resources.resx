@@ -127,8 +127,8 @@
   <data name="Close Window_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Close Window_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Save_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Save_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="online-payment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\online-payment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,14 +139,8 @@
   <data name="icons8-import-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-import-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-Login-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-Login-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Product" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Product.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-export-50(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-export-50(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,32 +148,32 @@
   <data name="About_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\About_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="b7c34a0fad179c020ae3adb7993a8d4e" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\b7c34a0fad179c020ae3adb7993a8d4e.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\MainMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Product" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Product.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Mobiles__1557245354_42.106.84.222" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Mobiles__1557245354_42.106.84.222.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="newlogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\newlogin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Info_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Info_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newlogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\newlogin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="293" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\293.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="uname" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\uname.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Add New_48px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Add New_48px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="293" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\293.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Edit Row_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Edit Row_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,6 +186,9 @@
   </data>
   <data name="Print_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Print_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-export-filled-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-export-filled-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\download1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +208,8 @@
   <data name="Billing_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Billing_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Save_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Add User Male_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Add User Male_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,8 +229,11 @@
   <data name="download" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-export-filled-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-export-filled-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="b7c34a0fad179c020ae3adb7993a8d4e" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\b7c34a0fad179c020ae3adb7993a8d4e.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pass" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\pass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="spin_u_alphabet_letter_black_animation_clipart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\spin_u_alphabet_letter_black_animation_clipart.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,8 +244,8 @@
   <data name="Go Back_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Go Back_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pass" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\pass.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\download1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Submit Progress_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Submit Progress_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,6 +262,12 @@
   <data name="Passenger_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Passenger_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\MainMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Trash_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Trash_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -271,7 +277,7 @@
   <data name="icons8-export-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-export-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Download" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\Download.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

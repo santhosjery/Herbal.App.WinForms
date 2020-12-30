@@ -339,14 +339,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EntityDeploy Include="Models\HerbalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HerbalModel.Designer.cs</LastGenOutput>
@@ -439,7 +433,9 @@
     <Content Include="Images\Close Window_48px.png" />
     <Content Include="Images\Delete.png" />
     <Content Include="Images\Delete1.png" />
+    <None Include="Images\Download.ico" />
     <Content Include="Images\download.png" />
+    <Content Include="Images\Download.svg" />
     <Content Include="Images\download1.png" />
     <Content Include="Images\Edit Property_48px.png" />
     <Content Include="Images\Edit Row_48px.png" />

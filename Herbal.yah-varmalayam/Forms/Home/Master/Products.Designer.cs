@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Products));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtSearchItem = new Bunifu.Framework.UI.BunifuTextbox();
             this.BtnSaveProduct = new System.Windows.Forms.Button();
@@ -203,7 +203,7 @@
             // IconDownloadAll
             // 
             this.IconDownloadAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.IconDownloadAll.Image = global::Herbal.yah_varmalayam.Properties.Resources.Submit_Progress_48px;
+            this.IconDownloadAll.Image = global::Herbal.yah_varmalayam.Properties.Resources.download1;
             this.IconDownloadAll.Location = new System.Drawing.Point(425, 123);
             this.IconDownloadAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.IconDownloadAll.Name = "IconDownloadAll";
@@ -297,14 +297,14 @@
             this.DataGridProductMaster.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DataGridProductMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridProductMaster.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Georgia", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridProductMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Georgia", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridProductMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridProductMaster.ColumnHeadersHeight = 40;
             this.DataGridProductMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridProductMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
