@@ -13,6 +13,7 @@ namespace Herbal.yah_varmalayam
         public string ProductName { get; set; }
         public decimal SellingPrice { get; set; }
         public string PackQuantity { get; set; }
+        public decimal GST { get; set; }
 
         public List<ProductViewModel> productViewList = new List<ProductViewModel>();
 
@@ -25,7 +26,7 @@ namespace Herbal.yah_varmalayam
             var productList = herbalContext.Products.Where(_ => (searchText == "")
                             || (searchText.ToLower().Contains(_.ProductCode.ToLower()) 
                                     || searchText.ToLower().Contains(_.ProductName.ToLower())))
-                            .ToList().OrderByDescending(_ => _.Id).ToList();
+                            .ToList().OrderByDescending(_ => _.Id).Take(100).ToList();
             foreach (var product in productList)
             {
                 productViewList.Add(new ProductViewModel(product.Id));
@@ -41,6 +42,7 @@ namespace Herbal.yah_varmalayam
             IsActive = product.IsActive;
             SellingPrice = product.SellingPrice;
             PackQuantity = product.PackQuantity;
+            GST = product.GST;
             CreatedOn = product.CreatedOn;
             CreatedBy = product.CreatedBy;
             ModifiedOn = product.ModifiedOn;

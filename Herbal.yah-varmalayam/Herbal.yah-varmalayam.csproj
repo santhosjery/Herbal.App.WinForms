@@ -421,6 +421,7 @@
     </Content>
     <Content Include="DB\Sprint-1\03_SPs\02_getSalesReport.sql" />
     <Content Include="DB\Sprint-1\03_SPs\03_getStockReport.sql" />
+    <Content Include="DB\Sprint-1\03_SPs\04_ProductListInsertList.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />
     <Content Include="Images\164577 .png1.png" />
