@@ -73,13 +73,14 @@
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="ProductCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="ScaleId" Type="int" Nullable="false" />
+          <Property Name="PackQuantity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="ModifiedBy" Type="int" />
-          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="PurchaseHeader">
           <Key>
@@ -115,12 +116,8 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PurchaseAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="GrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TotalTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
           <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -160,28 +157,12 @@
           <Property Name="SalesLineItemCode" Type="nvarchar" MaxLength="50" />
           <Property Name="SalesId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="ConfigSellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SalesAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ConfigSellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="GrossAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="CGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="SGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="IGST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TotalTax" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
           <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" Nullable="false" />
-          <Property Name="ModifiedOn" Type="datetime" />
-          <Property Name="ModifiedBy" Type="int" />
-        </EntityType>
-        <EntityType Name="Scale">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ScaleName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
@@ -286,18 +267,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Scale">
-          <End Role="Scale" Type="Self.Scale" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Scale">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ScaleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -469,30 +438,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Scale_AppUser">
-          <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
-          <End Role="Scale" Type="Self.Scale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Scale">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Scale_AppUser1">
-          <End Role="AppUser" Type="Self.AppUser" Multiplicity="0..1" />
-          <End Role="Scale" Type="Self.Scale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Scale">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_StockDetail_AppUser">
           <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
           <End Role="StockDetail" Type="Self.StockDetail" Multiplicity="*" />
@@ -594,7 +539,6 @@
           <EntitySet Name="PurchaseLineItem" EntityType="Self.PurchaseLineItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesHeader" EntityType="Self.SalesHeader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesLineItem" EntityType="Self.SalesLineItem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Scale" EntityType="Self.Scale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StockDetail" EntityType="Self.StockDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tax" EntityType="Self.Tax" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CompanyDetail_AppUser" Association="Self.FK_CompanyDetail_AppUser">
@@ -619,10 +563,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_AppUser1" Association="Self.FK_Product_AppUser1">
             <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Scale" Association="Self.FK_Product_Scale">
-            <End Role="Scale" EntitySet="Scale" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseHeader_AppUser" Association="Self.FK_PurchaseHeader_AppUser">
@@ -681,14 +621,6 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="SalesLineItem" EntitySet="SalesLineItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_Scale_AppUser" Association="Self.FK_Scale_AppUser">
-            <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="Scale" EntitySet="Scale" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Scale_AppUser1" Association="Self.FK_Scale_AppUser1">
-            <End Role="AppUser" EntitySet="AppUser" />
-            <End Role="Scale" EntitySet="Scale" />
-          </AssociationSet>
           <AssociationSet Name="FK_StockDetail_AppUser" Association="Self.FK_StockDetail_AppUser">
             <End Role="AppUser" EntitySet="AppUser" />
             <End Role="StockDetail" EntitySet="StockDetail" />
@@ -719,134 +651,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="HerbalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HerbalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AccessRoles" EntityType="HerbalModel.AccessRole" />
-          <EntitySet Name="AppUsers" EntityType="HerbalModel.AppUser" />
-          <AssociationSet Name="FK_User_AccessRole" Association="HerbalModel.FK_User_AccessRole">
-            <End Role="AccessRole" EntitySet="AccessRoles" />
-            <End Role="AppUser" EntitySet="AppUsers" />
-          </AssociationSet>
-          <EntitySet Name="Products" EntityType="HerbalModel.Product" />
-          <AssociationSet Name="FK_Product_AppUser" Association="HerbalModel.FK_Product_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_AppUser1" Association="HerbalModel.FK_Product_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="CompanyDetails" EntityType="HerbalModel.CompanyDetail" />
-          <EntitySet Name="Taxes" EntityType="HerbalModel.Tax" />
-          <AssociationSet Name="FK_CompanyDetail_AppUser" Association="HerbalModel.FK_CompanyDetail_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompanyDetail_AppUser1" Association="HerbalModel.FK_CompanyDetail_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tax_AppUser" Association="HerbalModel.FK_Tax_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Tax" EntitySet="Taxes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tax_AppUser1" Association="HerbalModel.FK_Tax_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Tax" EntitySet="Taxes" />
-          </AssociationSet>
-          <EntitySet Name="Scales" EntityType="HerbalModel.Scale" />
-          <AssociationSet Name="FK_Scale_AppUser" Association="HerbalModel.FK_Scale_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Scale" EntitySet="Scales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Scale_AppUser1" Association="HerbalModel.FK_Scale_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="Scale" EntitySet="Scales" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Scale" Association="HerbalModel.FK_Product_Scale">
-            <End Role="Scale" EntitySet="Scales" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="PurchaseHeaders" EntityType="HerbalModel.PurchaseHeader" />
-          <EntitySet Name="PurchaseLineItems" EntityType="HerbalModel.PurchaseLineItem" />
-          <AssociationSet Name="FK_PurchaseHeader_AppUser" Association="HerbalModel.FK_PurchaseHeader_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseHeader_AppUser1" Association="HerbalModel.FK_PurchaseHeader_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseLineItem_PurchaseHeader1" Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1">
-            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
-            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
-          </AssociationSet>
-          <EntitySet Name="PaymentTypes" EntityType="HerbalModel.PaymentType" />
-          <AssociationSet Name="FK_PaymentType_AppUser" Association="HerbalModel.FK_PaymentType_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaymentType_AppUser1" Association="HerbalModel.FK_PaymentType_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseHeader_PaymentType" Association="HerbalModel.FK_PurchaseHeader_PaymentType">
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
-          </AssociationSet>
-          <EntitySet Name="StockDetails" EntityType="HerbalModel.StockDetail" />
-          <AssociationSet Name="FK_StockDetail_AppUser" Association="HerbalModel.FK_StockDetail_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="StockDetail" EntitySet="StockDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockDetail_AppUser1" Association="HerbalModel.FK_StockDetail_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="StockDetail" EntitySet="StockDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockDetail_Product" Association="HerbalModel.FK_StockDetail_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="StockDetail" EntitySet="StockDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseLineItems_Product" Association="HerbalModel.FK_PurchaseLineItems_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseLineItem_AppUser" Association="HerbalModel.FK_PurchaseLineItem_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseLineItem_AppUser1" Association="HerbalModel.FK_PurchaseLineItem_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
-          </AssociationSet>
-          <EntitySet Name="SalesHeaders" EntityType="HerbalModel.SalesHeader" />
-          <EntitySet Name="SalesLineItems" EntityType="HerbalModel.SalesLineItem" />
-          <AssociationSet Name="FK_SalesHeader_AppUser" Association="HerbalModel.FK_SalesHeader_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="SalesHeader" EntitySet="SalesHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesHeader_AppUser1" Association="HerbalModel.FK_SalesHeader_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="SalesHeader" EntitySet="SalesHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesLineItem_AppUser" Association="HerbalModel.FK_SalesLineItem_AppUser">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesLineItem_AppUser1" Association="HerbalModel.FK_SalesLineItem_AppUser1">
-            <End Role="AppUser" EntitySet="AppUsers" />
-            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesHeader_PaymentType" Association="HerbalModel.FK_SalesHeader_PaymentType">
-            <End Role="PaymentType" EntitySet="PaymentTypes" />
-            <End Role="SalesHeader" EntitySet="SalesHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesLineItems_Product" Association="HerbalModel.FK_SalesLineItems_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesLineItem_SalesHeader" Association="HerbalModel.FK_SalesLineItem_SalesHeader">
-            <End Role="SalesHeader" EntitySet="SalesHeaders" />
-            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
-          </AssociationSet>
           <FunctionImport Name="getPurchaseReport" ReturnType="Collection(HerbalModel.getPurchaseReport_Result)">
             <Parameter Name="PurchaseCode" Mode="In" Type="String" />
             <Parameter Name="PurchaseId" Mode="In" Type="Int32" />
@@ -866,625 +670,122 @@
             <Parameter Name="SortBy" Mode="In" Type="String" />
             <Parameter Name="SortByDirection" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="AccessRoles" EntityType="HerbalModel.AccessRole" />
+          <EntitySet Name="AppUsers" EntityType="HerbalModel.AppUser" />
+          <EntitySet Name="PaymentTypes" EntityType="HerbalModel.PaymentType" />
+          <EntitySet Name="Products" EntityType="HerbalModel.Product" />
+          <EntitySet Name="PurchaseHeaders" EntityType="HerbalModel.PurchaseHeader" />
+          <EntitySet Name="PurchaseLineItems" EntityType="HerbalModel.PurchaseLineItem" />
+          <EntitySet Name="SalesHeaders" EntityType="HerbalModel.SalesHeader" />
+          <EntitySet Name="StockDetails" EntityType="HerbalModel.StockDetail" />
+          <AssociationSet Name="FK_User_AccessRole" Association="HerbalModel.FK_User_AccessRole">
+            <End Role="AccessRole" EntitySet="AccessRoles" />
+            <End Role="AppUser" EntitySet="AppUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentType_AppUser" Association="HerbalModel.FK_PaymentType_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentType_AppUser1" Association="HerbalModel.FK_PaymentType_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_AppUser" Association="HerbalModel.FK_Product_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_AppUser1" Association="HerbalModel.FK_Product_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseHeader_AppUser" Association="HerbalModel.FK_PurchaseHeader_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseHeader_AppUser1" Association="HerbalModel.FK_PurchaseHeader_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLineItem_AppUser" Association="HerbalModel.FK_PurchaseLineItem_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLineItem_AppUser1" Association="HerbalModel.FK_PurchaseLineItem_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesHeader_AppUser" Association="HerbalModel.FK_SalesHeader_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="SalesHeader" EntitySet="SalesHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesHeader_AppUser1" Association="HerbalModel.FK_SalesHeader_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="SalesHeader" EntitySet="SalesHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetail_AppUser" Association="HerbalModel.FK_StockDetail_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="StockDetail" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetail_AppUser1" Association="HerbalModel.FK_StockDetail_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="StockDetail" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseHeader_PaymentType" Association="HerbalModel.FK_PurchaseHeader_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesHeader_PaymentType" Association="HerbalModel.FK_SalesHeader_PaymentType">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="SalesHeader" EntitySet="SalesHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLineItems_Product" Association="HerbalModel.FK_PurchaseLineItems_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetail_Product" Association="HerbalModel.FK_StockDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="StockDetail" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLineItem_PurchaseHeader1" Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1">
+            <End Role="PurchaseHeader" EntitySet="PurchaseHeaders" />
+            <End Role="PurchaseLineItem" EntitySet="PurchaseLineItems" />
+          </AssociationSet>
+          <EntitySet Name="CompanyDetails" EntityType="HerbalModel.CompanyDetail" />
+          <AssociationSet Name="FK_CompanyDetail_AppUser" Association="HerbalModel.FK_CompanyDetail_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyDetail_AppUser1" Association="HerbalModel.FK_CompanyDetail_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="CompanyDetail" EntitySet="CompanyDetails" />
+          </AssociationSet>
+          <EntitySet Name="Taxes" EntityType="HerbalModel.Tax" />
+          <AssociationSet Name="FK_Tax_AppUser" Association="HerbalModel.FK_Tax_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Tax" EntitySet="Taxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tax_AppUser1" Association="HerbalModel.FK_Tax_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="Tax" EntitySet="Taxes" />
+          </AssociationSet>
+          <EntitySet Name="SalesLineItems" EntityType="HerbalModel.SalesLineItem" />
+          <AssociationSet Name="FK_SalesLineItem_AppUser" Association="HerbalModel.FK_SalesLineItem_AppUser">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesLineItem_AppUser1" Association="HerbalModel.FK_SalesLineItem_AppUser1">
+            <End Role="AppUser" EntitySet="AppUsers" />
+            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesLineItems_Product" Association="HerbalModel.FK_SalesLineItems_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesLineItem_SalesHeader" Association="HerbalModel.FK_SalesLineItem_SalesHeader">
+            <End Role="SalesHeader" EntitySet="SalesHeaders" />
+            <End Role="SalesLineItem" EntitySet="SalesLineItems" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AccessRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUsers" Relationship="HerbalModel.FK_User_AccessRole" FromRole="AccessRole" ToRole="AppUser" />
-        </EntityType>
-        <EntityType Name="AppUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccessRoleId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="Int64" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AccessRole" Relationship="HerbalModel.FK_User_AccessRole" FromRole="AppUser" ToRole="AccessRole" />
-          <NavigationProperty Name="Products" Relationship="HerbalModel.FK_Product_AppUser" FromRole="AppUser" ToRole="Product" />
-          <NavigationProperty Name="Products1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="AppUser" ToRole="Product" />
-          <NavigationProperty Name="CompanyDetails" Relationship="HerbalModel.FK_CompanyDetail_AppUser" FromRole="AppUser" ToRole="CompanyDetail" />
-          <NavigationProperty Name="CompanyDetails1" Relationship="HerbalModel.FK_CompanyDetail_AppUser1" FromRole="AppUser" ToRole="CompanyDetail" />
-          <NavigationProperty Name="Taxes" Relationship="HerbalModel.FK_Tax_AppUser" FromRole="AppUser" ToRole="Tax" />
-          <NavigationProperty Name="Taxes1" Relationship="HerbalModel.FK_Tax_AppUser1" FromRole="AppUser" ToRole="Tax" />
-          <NavigationProperty Name="Scales" Relationship="HerbalModel.FK_Scale_AppUser" FromRole="AppUser" ToRole="Scale" />
-          <NavigationProperty Name="Scales1" Relationship="HerbalModel.FK_Scale_AppUser1" FromRole="AppUser" ToRole="Scale" />
-          <NavigationProperty Name="PurchaseHeaders" Relationship="HerbalModel.FK_PurchaseHeader_AppUser" FromRole="AppUser" ToRole="PurchaseHeader" />
-          <NavigationProperty Name="PurchaseHeaders1" Relationship="HerbalModel.FK_PurchaseHeader_AppUser1" FromRole="AppUser" ToRole="PurchaseHeader" />
-          <NavigationProperty Name="PaymentTypes" Relationship="HerbalModel.FK_PaymentType_AppUser" FromRole="AppUser" ToRole="PaymentType" />
-          <NavigationProperty Name="PaymentTypes1" Relationship="HerbalModel.FK_PaymentType_AppUser1" FromRole="AppUser" ToRole="PaymentType" />
-          <NavigationProperty Name="StockDetails" Relationship="HerbalModel.FK_StockDetail_AppUser" FromRole="AppUser" ToRole="StockDetail" />
-          <NavigationProperty Name="StockDetails1" Relationship="HerbalModel.FK_StockDetail_AppUser1" FromRole="AppUser" ToRole="StockDetail" />
-          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser" FromRole="AppUser" ToRole="PurchaseLineItem" />
-          <NavigationProperty Name="PurchaseLineItems1" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser1" FromRole="AppUser" ToRole="PurchaseLineItem" />
-          <NavigationProperty Name="SalesHeaders" Relationship="HerbalModel.FK_SalesHeader_AppUser" FromRole="AppUser" ToRole="SalesHeader" />
-          <NavigationProperty Name="SalesHeaders1" Relationship="HerbalModel.FK_SalesHeader_AppUser1" FromRole="AppUser" ToRole="SalesHeader" />
-          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItem_AppUser" FromRole="AppUser" ToRole="SalesLineItem" />
-          <NavigationProperty Name="SalesLineItems1" Relationship="HerbalModel.FK_SalesLineItem_AppUser1" FromRole="AppUser" ToRole="SalesLineItem" />
-        </EntityType>
-        <Association Name="FK_User_AccessRole">
-          <End Type="HerbalModel.AccessRole" Role="AccessRole" Multiplicity="1" />
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AccessRole">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AppUser">
-              <PropertyRef Name="AccessRoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Product_AppUser" FromRole="Product" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="Product" ToRole="AppUser" />
-          <Property Name="ScaleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Scale" Relationship="HerbalModel.FK_Product_Scale" FromRole="Product" ToRole="Scale" />
-          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="StockDetails" Relationship="HerbalModel.FK_StockDetail_Product" FromRole="Product" ToRole="StockDetail" />
-          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItems_Product" FromRole="Product" ToRole="PurchaseLineItem" />
-          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItems_Product" FromRole="Product" ToRole="SalesLineItem" />
-        </EntityType>
-        <Association Name="FK_Product_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CompanyDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="AuthorisedDealer" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PrimaryContactNumber" Type="Int64" Nullable="false" />
-          <Property Name="SecondaryContactNumber" Type="Int64" />
-          <Property Name="PrimaryEmailAddress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GSTINNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RevisedNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_CompanyDetail_AppUser" FromRole="CompanyDetail" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_CompanyDetail_AppUser1" FromRole="CompanyDetail" ToRole="AppUser" />
-          <Property Name="GSTINCertifiedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="WebSite" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Tax">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="IGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Tax_AppUser" FromRole="Tax" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Tax_AppUser1" FromRole="Tax" ToRole="AppUser" />
-        </EntityType>
-        <Association Name="FK_CompanyDetail_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CompanyDetail">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompanyDetail_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CompanyDetail">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tax_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.Tax" Role="Tax" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tax">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tax_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.Tax" Role="Tax" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Tax">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Scale">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ScaleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Scale_AppUser" FromRole="Scale" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Scale_AppUser1" FromRole="Scale" ToRole="AppUser" />
-          <NavigationProperty Name="Products" Relationship="HerbalModel.FK_Product_Scale" FromRole="Scale" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_Scale_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.Scale" Role="Scale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Scale">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Scale_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.Scale" Role="Scale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Scale">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Scale">
-          <End Type="HerbalModel.Scale" Role="Scale" Multiplicity="1" />
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Scale">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ScaleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PurchaseHeader">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PurchaseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ClientName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ClientMobileNumber" Type="Int64" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalGrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalDiscount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalTaxAmount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalNetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PurchaseHeader_AppUser" FromRole="PurchaseHeader" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PurchaseHeader_AppUser1" FromRole="PurchaseHeader" ToRole="AppUser" />
-          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" FromRole="PurchaseHeader" ToRole="PurchaseLineItem" />
-          <Property Name="ClientInvoiceNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PaymentTypeId" Type="Int32" />
-          <NavigationProperty Name="PaymentType" Relationship="HerbalModel.FK_PurchaseHeader_PaymentType" FromRole="PurchaseHeader" ToRole="PaymentType" />
-          <Property Name="TotalPurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="PurchaseLineItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PurchaseLineItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PurchaseId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="GrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalTax" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="PurchaseHeader" Relationship="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" FromRole="PurchaseLineItem" ToRole="PurchaseHeader" />
-          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_PurchaseLineItems_Product" FromRole="PurchaseLineItem" ToRole="Product" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser" FromRole="PurchaseLineItem" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser1" FromRole="PurchaseLineItem" ToRole="AppUser" />
-          <Property Name="PurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-        </EntityType>
-        <Association Name="FK_PurchaseHeader_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseHeader">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseHeader_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseHeader">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseLineItem_PurchaseHeader1">
-          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="1" />
-          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PurchaseHeader">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseLineItem">
-              <PropertyRef Name="PurchaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PaymentType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PaymentType_AppUser" FromRole="PaymentType" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PaymentType_AppUser1" FromRole="PaymentType" ToRole="AppUser" />
-          <NavigationProperty Name="PurchaseHeaders" Relationship="HerbalModel.FK_PurchaseHeader_PaymentType" FromRole="PaymentType" ToRole="PurchaseHeader" />
-          <NavigationProperty Name="SalesHeaders" Relationship="HerbalModel.FK_SalesHeader_PaymentType" FromRole="PaymentType" ToRole="SalesHeader" />
-        </EntityType>
-        <Association Name="FK_PaymentType_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PaymentType">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaymentType_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PaymentType">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseHeader_PaymentType">
-          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
-          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseHeader">
-              <PropertyRef Name="PaymentTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="StockDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="TotalPurchaseQuantity" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalSalesQuantity" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="AvilableQuantity" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_StockDetail_AppUser" FromRole="StockDetail" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_StockDetail_AppUser1" FromRole="StockDetail" ToRole="AppUser" />
-          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_StockDetail_Product" FromRole="StockDetail" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_StockDetail_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StockDetail">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StockDetail_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StockDetail">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StockDetail_Product">
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StockDetail">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseLineItems_Product">
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseLineItem">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseLineItem_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseLineItem">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseLineItem_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PurchaseLineItem">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SalesHeader">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerMobileNumber" Type="Int64" />
-          <Property Name="PaymentTypeId" Type="Int32" />
-          <Property Name="SalesDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalSalesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalDiscount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalGrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalTaxAmount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalNetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_SalesHeader_AppUser" FromRole="SalesHeader" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_SalesHeader_AppUser1" FromRole="SalesHeader" ToRole="AppUser" />
-          <NavigationProperty Name="PaymentType" Relationship="HerbalModel.FK_SalesHeader_PaymentType" FromRole="SalesHeader" ToRole="PaymentType" />
-          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItem_SalesHeader" FromRole="SalesHeader" ToRole="SalesLineItem" />
-        </EntityType>
-        <EntityType Name="SalesLineItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesLineItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalesId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="ConfigSellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="SalesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalTax" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_SalesLineItem_AppUser" FromRole="SalesLineItem" ToRole="AppUser" />
-          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_SalesLineItem_AppUser1" FromRole="SalesLineItem" ToRole="AppUser" />
-          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_SalesLineItems_Product" FromRole="SalesLineItem" ToRole="Product" />
-          <NavigationProperty Name="SalesHeader" Relationship="HerbalModel.FK_SalesLineItem_SalesHeader" FromRole="SalesLineItem" ToRole="SalesHeader" />
-        </EntityType>
-        <Association Name="FK_SalesHeader_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesHeader">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesHeader_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesHeader">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesLineItem_AppUser">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
-          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesLineItem">
-              <PropertyRef Name="CreatedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesLineItem_AppUser1">
-          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
-          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesLineItem">
-              <PropertyRef Name="ModifiedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesHeader_PaymentType">
-          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
-          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesHeader">
-              <PropertyRef Name="PaymentTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesLineItems_Product">
-          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesLineItem">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesLineItem_SalesHeader">
-          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="1" />
-          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SalesHeader">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalesLineItem">
-              <PropertyRef Name="SalesId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="getPurchaseReport_Result">
           <Property Type="Int32" Name="PurchaseId" Nullable="false" />
           <Property Type="String" Name="PurchaseCode" Nullable="false" MaxLength="50" />
@@ -1541,236 +842,569 @@
           <Property Type="Decimal" Name="TotalSalesAmount" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalAvilableSalesAmount" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
+        <EntityType Name="AccessRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUsers" Relationship="HerbalModel.FK_User_AccessRole" FromRole="AccessRole" ToRole="AppUser" />
+        </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessRoleId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AccessRole" Relationship="HerbalModel.FK_User_AccessRole" FromRole="AppUser" ToRole="AccessRole" />
+          <NavigationProperty Name="PaymentTypes" Relationship="HerbalModel.FK_PaymentType_AppUser" FromRole="AppUser" ToRole="PaymentType" />
+          <NavigationProperty Name="PaymentTypes1" Relationship="HerbalModel.FK_PaymentType_AppUser1" FromRole="AppUser" ToRole="PaymentType" />
+          <NavigationProperty Name="Products" Relationship="HerbalModel.FK_Product_AppUser" FromRole="AppUser" ToRole="Product" />
+          <NavigationProperty Name="Products1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="AppUser" ToRole="Product" />
+          <NavigationProperty Name="PurchaseHeaders" Relationship="HerbalModel.FK_PurchaseHeader_AppUser" FromRole="AppUser" ToRole="PurchaseHeader" />
+          <NavigationProperty Name="PurchaseHeaders1" Relationship="HerbalModel.FK_PurchaseHeader_AppUser1" FromRole="AppUser" ToRole="PurchaseHeader" />
+          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser" FromRole="AppUser" ToRole="PurchaseLineItem" />
+          <NavigationProperty Name="PurchaseLineItems1" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser1" FromRole="AppUser" ToRole="PurchaseLineItem" />
+          <NavigationProperty Name="SalesHeaders" Relationship="HerbalModel.FK_SalesHeader_AppUser" FromRole="AppUser" ToRole="SalesHeader" />
+          <NavigationProperty Name="SalesHeaders1" Relationship="HerbalModel.FK_SalesHeader_AppUser1" FromRole="AppUser" ToRole="SalesHeader" />
+          <NavigationProperty Name="StockDetails" Relationship="HerbalModel.FK_StockDetail_AppUser" FromRole="AppUser" ToRole="StockDetail" />
+          <NavigationProperty Name="StockDetails1" Relationship="HerbalModel.FK_StockDetail_AppUser1" FromRole="AppUser" ToRole="StockDetail" />
+          <NavigationProperty Name="CompanyDetails" Relationship="HerbalModel.FK_CompanyDetail_AppUser" FromRole="AppUser" ToRole="CompanyDetail" />
+          <NavigationProperty Name="CompanyDetails1" Relationship="HerbalModel.FK_CompanyDetail_AppUser1" FromRole="AppUser" ToRole="CompanyDetail" />
+          <NavigationProperty Name="Taxes" Relationship="HerbalModel.FK_Tax_AppUser" FromRole="AppUser" ToRole="Tax" />
+          <NavigationProperty Name="Taxes1" Relationship="HerbalModel.FK_Tax_AppUser1" FromRole="AppUser" ToRole="Tax" />
+          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItem_AppUser" FromRole="AppUser" ToRole="SalesLineItem" />
+          <NavigationProperty Name="SalesLineItems1" Relationship="HerbalModel.FK_SalesLineItem_AppUser1" FromRole="AppUser" ToRole="SalesLineItem" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PaymentType_AppUser" FromRole="PaymentType" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PaymentType_AppUser1" FromRole="PaymentType" ToRole="AppUser" />
+          <NavigationProperty Name="PurchaseHeaders" Relationship="HerbalModel.FK_PurchaseHeader_PaymentType" FromRole="PaymentType" ToRole="PurchaseHeader" />
+          <NavigationProperty Name="SalesHeaders" Relationship="HerbalModel.FK_SalesHeader_PaymentType" FromRole="PaymentType" ToRole="SalesHeader" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PackQuantity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Product_AppUser" FromRole="Product" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Product_AppUser1" FromRole="Product" ToRole="AppUser" />
+          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItems_Product" FromRole="Product" ToRole="PurchaseLineItem" />
+          <NavigationProperty Name="StockDetails" Relationship="HerbalModel.FK_StockDetail_Product" FromRole="Product" ToRole="StockDetail" />
+          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItems_Product" FromRole="Product" ToRole="SalesLineItem" />
+        </EntityType>
+        <EntityType Name="PurchaseHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ClientMobileNumber" Type="Int64" />
+          <Property Name="ClientInvoiceNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentTypeId" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalPurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalDiscount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalGrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalTaxAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalNetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PurchaseHeader_AppUser" FromRole="PurchaseHeader" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PurchaseHeader_AppUser1" FromRole="PurchaseHeader" ToRole="AppUser" />
+          <NavigationProperty Name="PaymentType" Relationship="HerbalModel.FK_PurchaseHeader_PaymentType" FromRole="PurchaseHeader" ToRole="PaymentType" />
+          <NavigationProperty Name="PurchaseLineItems" Relationship="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" FromRole="PurchaseHeader" ToRole="PurchaseLineItem" />
+        </EntityType>
+        <EntityType Name="PurchaseLineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseLineItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PurchaseAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser" FromRole="PurchaseLineItem" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_PurchaseLineItem_AppUser1" FromRole="PurchaseLineItem" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_PurchaseLineItems_Product" FromRole="PurchaseLineItem" ToRole="Product" />
+          <NavigationProperty Name="PurchaseHeader" Relationship="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" FromRole="PurchaseLineItem" ToRole="PurchaseHeader" />
+        </EntityType>
+        <EntityType Name="SalesHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalesCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerMobileNumber" Type="Int64" />
+          <Property Name="PaymentTypeId" Type="Int32" />
+          <Property Name="SalesDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalSalesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalDiscount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalGrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalTaxAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalNetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="AmountPaid" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DueAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_SalesHeader_AppUser" FromRole="SalesHeader" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_SalesHeader_AppUser1" FromRole="SalesHeader" ToRole="AppUser" />
+          <NavigationProperty Name="PaymentType" Relationship="HerbalModel.FK_SalesHeader_PaymentType" FromRole="SalesHeader" ToRole="PaymentType" />
+          <NavigationProperty Name="SalesLineItems" Relationship="HerbalModel.FK_SalesLineItem_SalesHeader" FromRole="SalesHeader" ToRole="SalesLineItem" />
+        </EntityType>
+        <EntityType Name="StockDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="TotalPurchaseQuantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalSalesQuantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AvilableQuantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_StockDetail_AppUser" FromRole="StockDetail" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_StockDetail_AppUser1" FromRole="StockDetail" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_StockDetail_Product" FromRole="StockDetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_User_AccessRole">
+          <End Type="HerbalModel.AccessRole" Role="AccessRole" Multiplicity="1" />
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AppUser">
+              <PropertyRef Name="AccessRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentType_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentType">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentType_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentType">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseHeader_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseHeader">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseHeader_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseHeader">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLineItem_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseLineItem">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLineItem_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseLineItem">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesHeader_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHeader">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesHeader_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHeader">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetail_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockDetail">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetail_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockDetail">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseHeader_PaymentType">
+          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseHeader">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesHeader_PaymentType">
+          <End Type="HerbalModel.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesHeader">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLineItems_Product">
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseLineItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetail_Product">
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="HerbalModel.StockDetail" Role="StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLineItem_PurchaseHeader1">
+          <End Type="HerbalModel.PurchaseHeader" Role="PurchaseHeader" Multiplicity="1" />
+          <End Type="HerbalModel.PurchaseLineItem" Role="PurchaseLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseLineItem">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompanyDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorisedDealer" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryContactNumber" Type="Int64" Nullable="false" />
+          <Property Name="SecondaryContactNumber" Type="Int64" />
+          <Property Name="PrimaryEmailAddress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GSTINNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="GSTINCertifiedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RevisedNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_CompanyDetail_AppUser" FromRole="CompanyDetail" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_CompanyDetail_AppUser1" FromRole="CompanyDetail" ToRole="AppUser" />
+        </EntityType>
+        <Association Name="FK_CompanyDetail_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyDetail_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.CompanyDetail" Role="CompanyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyDetail">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tax">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IGSTPercentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_Tax_AppUser" FromRole="Tax" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_Tax_AppUser1" FromRole="Tax" ToRole="AppUser" />
+        </EntityType>
+        <Association Name="FK_Tax_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.Tax" Role="Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tax">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tax_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.Tax" Role="Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tax">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SalesLineItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalesLineItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SalesAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ConfigSellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GrossAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <NavigationProperty Name="AppUser" Relationship="HerbalModel.FK_SalesLineItem_AppUser" FromRole="SalesLineItem" ToRole="AppUser" />
+          <NavigationProperty Name="AppUser1" Relationship="HerbalModel.FK_SalesLineItem_AppUser1" FromRole="SalesLineItem" ToRole="AppUser" />
+          <NavigationProperty Name="Product" Relationship="HerbalModel.FK_SalesLineItems_Product" FromRole="SalesLineItem" ToRole="Product" />
+          <NavigationProperty Name="SalesHeader" Relationship="HerbalModel.FK_SalesLineItem_SalesHeader" FromRole="SalesLineItem" ToRole="SalesHeader" />
+        </EntityType>
+        <Association Name="FK_SalesLineItem_AppUser">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="1" />
+          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesLineItem">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesLineItem_AppUser1">
+          <End Type="HerbalModel.AppUser" Role="AppUser" Multiplicity="0..1" />
+          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesLineItem">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesLineItems_Product">
+          <End Type="HerbalModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesLineItem">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesLineItem_SalesHeader">
+          <End Type="HerbalModel.SalesHeader" Role="SalesHeader" Multiplicity="1" />
+          <End Type="HerbalModel.SalesLineItem" Role="SalesLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SalesLineItem">
+              <PropertyRef Name="SalesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HerbalModelStoreContainer" CdmEntityContainer="HerbalEntities">
-          <EntitySetMapping Name="AccessRoles">
-            <EntityTypeMapping TypeName="HerbalModel.AccessRole">
-              <MappingFragment StoreEntitySet="AccessRole">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AppUsers">
-            <EntityTypeMapping TypeName="HerbalModel.AppUser">
-              <MappingFragment StoreEntitySet="AppUser">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessRoleId" ColumnName="AccessRoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="HerbalModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="ScaleId" ColumnName="ScaleId" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyDetails">
-            <EntityTypeMapping TypeName="HerbalModel.CompanyDetail">
-              <MappingFragment StoreEntitySet="CompanyDetail">
-                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
-                <ScalarProperty Name="GSTINCertifiedBy" ColumnName="GSTINCertifiedBy" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RevisedNote" ColumnName="RevisedNote" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="GSTINNumber" ColumnName="GSTINNumber" />
-                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
-                <ScalarProperty Name="PrimaryEmailAddress" ColumnName="PrimaryEmailAddress" />
-                <ScalarProperty Name="SecondaryContactNumber" ColumnName="SecondaryContactNumber" />
-                <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
-                <ScalarProperty Name="AuthorisedDealer" ColumnName="AuthorisedDealer" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Taxes">
-            <EntityTypeMapping TypeName="HerbalModel.Tax">
-              <MappingFragment StoreEntitySet="Tax">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IGSTPercentage" ColumnName="IGSTPercentage" />
-                <ScalarProperty Name="SGSTPercentage" ColumnName="SGSTPercentage" />
-                <ScalarProperty Name="CGSTPercentage" ColumnName="CGSTPercentage" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Scales">
-            <EntityTypeMapping TypeName="HerbalModel.Scale">
-              <MappingFragment StoreEntitySet="Scale">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ScaleName" ColumnName="ScaleName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseHeaders">
-            <EntityTypeMapping TypeName="HerbalModel.PurchaseHeader">
-              <MappingFragment StoreEntitySet="PurchaseHeader">
-                <ScalarProperty Name="TotalPurchaseAmount" ColumnName="TotalPurchaseAmount" />
-                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
-                <ScalarProperty Name="ClientInvoiceNumber" ColumnName="ClientInvoiceNumber" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="TotalNetAmount" ColumnName="TotalNetAmount" />
-                <ScalarProperty Name="TotalTaxAmount" ColumnName="TotalTaxAmount" />
-                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
-                <ScalarProperty Name="TotalGrossAmount" ColumnName="TotalGrossAmount" />
-                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ClientMobileNumber" ColumnName="ClientMobileNumber" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="PurchaseCode" ColumnName="PurchaseCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PurchaseLineItems">
-            <EntityTypeMapping TypeName="HerbalModel.PurchaseLineItem">
-              <MappingFragment StoreEntitySet="PurchaseLineItem">
-                <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
-                <ScalarProperty Name="IGST" ColumnName="IGST" />
-                <ScalarProperty Name="SGST" ColumnName="SGST" />
-                <ScalarProperty Name="CGST" ColumnName="CGST" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
-                <ScalarProperty Name="PurchaseLineItemCode" ColumnName="PurchaseLineItemCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentTypes">
-            <EntityTypeMapping TypeName="HerbalModel.PaymentType">
-              <MappingFragment StoreEntitySet="PaymentType">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockDetails">
-            <EntityTypeMapping TypeName="HerbalModel.StockDetail">
-              <MappingFragment StoreEntitySet="StockDetail">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AvilableQuantity" ColumnName="AvilableQuantity" />
-                <ScalarProperty Name="TotalSalesQuantity" ColumnName="TotalSalesQuantity" />
-                <ScalarProperty Name="TotalPurchaseQuantity" ColumnName="TotalPurchaseQuantity" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesHeaders">
-            <EntityTypeMapping TypeName="HerbalModel.SalesHeader">
-              <MappingFragment StoreEntitySet="SalesHeader">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
-                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
-                <ScalarProperty Name="TotalNetAmount" ColumnName="TotalNetAmount" />
-                <ScalarProperty Name="TotalTaxAmount" ColumnName="TotalTaxAmount" />
-                <ScalarProperty Name="TotalGrossAmount" ColumnName="TotalGrossAmount" />
-                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
-                <ScalarProperty Name="TotalSalesAmount" ColumnName="TotalSalesAmount" />
-                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
-                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
-                <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="SalesCode" ColumnName="SalesCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesLineItems">
-            <EntityTypeMapping TypeName="HerbalModel.SalesLineItem">
-              <MappingFragment StoreEntitySet="SalesLineItem">
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="TotalTax" ColumnName="TotalTax" />
-                <ScalarProperty Name="IGST" ColumnName="IGST" />
-                <ScalarProperty Name="SGST" ColumnName="SGST" />
-                <ScalarProperty Name="CGST" ColumnName="CGST" />
-                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ConfigSellingPrice" ColumnName="ConfigSellingPrice" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
-                <ScalarProperty Name="SalesLineItemCode" ColumnName="SalesLineItemCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="getPurchaseReport" FunctionName="HerbalModel.Store.getPurchaseReport">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HerbalModel.getPurchaseReport_Result">
@@ -1839,6 +1473,210 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="AccessRoles">
+            <EntityTypeMapping TypeName="HerbalModel.AccessRole">
+              <MappingFragment StoreEntitySet="AccessRole">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppUsers">
+            <EntityTypeMapping TypeName="HerbalModel.AppUser">
+              <MappingFragment StoreEntitySet="AppUser">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessRoleId" ColumnName="AccessRoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="HerbalModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="HerbalModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="PackQuantity" ColumnName="PackQuantity" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseHeaders">
+            <EntityTypeMapping TypeName="HerbalModel.PurchaseHeader">
+              <MappingFragment StoreEntitySet="PurchaseHeader">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="TotalNetAmount" ColumnName="TotalNetAmount" />
+                <ScalarProperty Name="TotalTaxAmount" ColumnName="TotalTaxAmount" />
+                <ScalarProperty Name="TotalGrossAmount" ColumnName="TotalGrossAmount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalPurchaseAmount" ColumnName="TotalPurchaseAmount" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="ClientInvoiceNumber" ColumnName="ClientInvoiceNumber" />
+                <ScalarProperty Name="ClientMobileNumber" ColumnName="ClientMobileNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="PurchaseCode" ColumnName="PurchaseCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseLineItems">
+            <EntityTypeMapping TypeName="HerbalModel.PurchaseLineItem">
+              <MappingFragment StoreEntitySet="PurchaseLineItem">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="PurchaseLineItemCode" ColumnName="PurchaseLineItemCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesHeaders">
+            <EntityTypeMapping TypeName="HerbalModel.SalesHeader">
+              <MappingFragment StoreEntitySet="SalesHeader">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DueAmount" ColumnName="DueAmount" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="TotalNetAmount" ColumnName="TotalNetAmount" />
+                <ScalarProperty Name="TotalTaxAmount" ColumnName="TotalTaxAmount" />
+                <ScalarProperty Name="TotalGrossAmount" ColumnName="TotalGrossAmount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalSalesAmount" ColumnName="TotalSalesAmount" />
+                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="SalesCode" ColumnName="SalesCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockDetails">
+            <EntityTypeMapping TypeName="HerbalModel.StockDetail">
+              <MappingFragment StoreEntitySet="StockDetail">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AvilableQuantity" ColumnName="AvilableQuantity" />
+                <ScalarProperty Name="TotalSalesQuantity" ColumnName="TotalSalesQuantity" />
+                <ScalarProperty Name="TotalPurchaseQuantity" ColumnName="TotalPurchaseQuantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyDetails">
+            <EntityTypeMapping TypeName="HerbalModel.CompanyDetail">
+              <MappingFragment StoreEntitySet="CompanyDetail">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RevisedNote" ColumnName="RevisedNote" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="GSTINCertifiedBy" ColumnName="GSTINCertifiedBy" />
+                <ScalarProperty Name="GSTINNumber" ColumnName="GSTINNumber" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="PrimaryEmailAddress" ColumnName="PrimaryEmailAddress" />
+                <ScalarProperty Name="SecondaryContactNumber" ColumnName="SecondaryContactNumber" />
+                <ScalarProperty Name="PrimaryContactNumber" ColumnName="PrimaryContactNumber" />
+                <ScalarProperty Name="AuthorisedDealer" ColumnName="AuthorisedDealer" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taxes">
+            <EntityTypeMapping TypeName="HerbalModel.Tax">
+              <MappingFragment StoreEntitySet="Tax">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IGSTPercentage" ColumnName="IGSTPercentage" />
+                <ScalarProperty Name="SGSTPercentage" ColumnName="SGSTPercentage" />
+                <ScalarProperty Name="CGSTPercentage" ColumnName="CGSTPercentage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesLineItems">
+            <EntityTypeMapping TypeName="HerbalModel.SalesLineItem">
+              <MappingFragment StoreEntitySet="SalesLineItem">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="ConfigSellingPrice" ColumnName="ConfigSellingPrice" />
+                <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
+                <ScalarProperty Name="SalesLineItemCode" ColumnName="SalesLineItemCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

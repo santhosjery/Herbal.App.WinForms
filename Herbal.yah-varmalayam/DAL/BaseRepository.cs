@@ -9,7 +9,7 @@ namespace Herbal.yah_varmalayam
 {
     public static class BaseRepository
     {
-        internal static HerbalEntities herbalContext = new HerbalEntities();
+        internal static HerbalEntities herbalContext = new HerbalEntities(Utility.GetEntityConnectionString());
 
         internal static bool IsProductHasPurchaseOrSales(int productId)
         {
@@ -29,7 +29,8 @@ namespace Herbal.yah_varmalayam
 
         internal static bool IsScaleHasPurchaseOrSales(int scaleId)
         {
-            return herbalContext.Products.Where(_ => _.ScaleId == scaleId).Any();
+            return true;
+            //return herbalContext.Products.Where(_ => _.ScaleId == scaleId).Any();
         }
 
         public static string GetNextPurchaseCode()

@@ -21,8 +21,10 @@ namespace Herbal.yah_varmalayam.Models
         public long PrimaryContactNumber { get; set; }
         public Nullable<long> SecondaryContactNumber { get; set; }
         public string PrimaryEmailAddress { get; set; }
+        public string WebSite { get; set; }
         public string CompanyAddress { get; set; }
         public string GSTINNumber { get; set; }
+        public string GSTINCertifiedBy { get; set; }
         public string Note { get; set; }
         public string RevisedNote { get; set; }
         public bool IsActive { get; set; }
@@ -30,8 +32,6 @@ namespace Herbal.yah_varmalayam.Models
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public string GSTINCertifiedBy { get; set; }
-        public string WebSite { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }

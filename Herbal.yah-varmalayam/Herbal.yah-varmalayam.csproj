@@ -271,9 +271,6 @@
     <Compile Include="Models\SalesLineItem.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Scale.cs">
-      <DependentUpon>HerbalModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\StockDetail.cs">
       <DependentUpon>HerbalModel.tt</DependentUpon>
     </Compile>
@@ -409,12 +406,11 @@
     <Content Include="DB\Sprint-1\01_Tables\03_Product.sql" />
     <Content Include="DB\Sprint-1\01_Tables\01_AccessRole.sql" />
     <Content Include="DB\Sprint-1\01_Tables\02_AppUser.sql" />
-    <Content Include="DB\Sprint-1\01_Tables\03_Scale.sql" />
     <Content Include="DB\Sprint-1\01_Tables\04_Tax.sql" />
     <Content Include="DB\Sprint-1\01_Tables\05_CompanyDetail.sql" />
-    <Content Include="DB\Sprint-1\01_Tables\06_PurchaseHeader.sql" />
-    <Content Include="DB\Sprint-1\01_Tables\07_PurchaseLineItem.sql" />
-    <Content Include="DB\Sprint-1\01_Tables\08_PaymentType.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\07_PurchaseHeader.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\08_PurchaseLineItem.sql" />
+    <Content Include="DB\Sprint-1\01_Tables\06_PaymentType.sql" />
     <Content Include="DB\Sprint-1\01_Tables\09_StockDetail.sql" />
     <Content Include="DB\Sprint-1\01_Tables\10_SalesHeader.sql" />
     <Content Include="DB\Sprint-1\01_Tables\11_SalesLineItem.sql" />

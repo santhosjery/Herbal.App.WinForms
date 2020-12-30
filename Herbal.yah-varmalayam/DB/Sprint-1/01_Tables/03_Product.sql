@@ -1,5 +1,4 @@
-﻿
-/****** Object:  Table [dbo].[Product]    Script Date: 10/09/2020 16:42:41 ******/
+﻿/****** Object:  Table [dbo].[Product]    Script Date: 10/09/2020 16:42:41 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,8 +9,9 @@ CREATE TABLE [dbo].[Product](
 	[CategoryId] [int] NOT NULL,
 	[ProductCode] [varchar](50) NOT NULL,
 	[ProductName] [nvarchar](250) NOT NULL,
-	[ScaleId] [int] NOT NULL,
-	[SellingPrice] decimal(18,2) NULL,
+	[PackQuantity] [varchar](50) NOT NULL,
+	[SellingPrice] decimal(18,2) NOT NULL,
+	[GST] decimal(18,2) NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[CreatedBy] [int] NOT NULL,
@@ -37,11 +37,3 @@ GO
 
 ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_AppUser1]
 GO
-
-ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Scale] FOREIGN KEY([ScaleId])
-REFERENCES [dbo].[Scale] ([Id])
-GO
-
-ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Scale]
-GO
-

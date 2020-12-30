@@ -18,15 +18,11 @@ namespace Herbal.yah_varmalayam.Models
         public string SalesLineItemCode { get; set; }
         public int SalesId { get; set; }
         public int ProductId { get; set; }
-        public decimal ConfigSellingPrice { get; set; }
         public decimal Quantity { get; set; }
         public decimal SalesAmount { get; set; }
-        public Nullable<decimal> Discount { get; set; }
+        public decimal ConfigSellingPrice { get; set; }
         public decimal GrossAmount { get; set; }
-        public Nullable<decimal> CGST { get; set; }
-        public Nullable<decimal> SGST { get; set; }
-        public Nullable<decimal> IGST { get; set; }
-        public Nullable<decimal> TotalTax { get; set; }
+        public Nullable<decimal> GST { get; set; }
         public decimal NetAmount { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }

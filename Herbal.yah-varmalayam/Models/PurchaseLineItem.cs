@@ -19,12 +19,9 @@ namespace Herbal.yah_varmalayam.Models
         public int PurchaseId { get; set; }
         public int ProductId { get; set; }
         public decimal Quantity { get; set; }
+        public decimal PurchaseAmount { get; set; }
         public decimal GrossAmount { get; set; }
-        public Nullable<decimal> Discount { get; set; }
-        public Nullable<decimal> CGST { get; set; }
-        public Nullable<decimal> SGST { get; set; }
-        public Nullable<decimal> IGST { get; set; }
-        public Nullable<decimal> TotalTax { get; set; }
+        public Nullable<decimal> GST { get; set; }
         public decimal NetAmount { get; set; }
         public Nullable<decimal> SellingPrice { get; set; }
         public bool IsActive { get; set; }
@@ -32,11 +29,10 @@ namespace Herbal.yah_varmalayam.Models
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public decimal PurchaseAmount { get; set; }
     
-        public virtual PurchaseHeader PurchaseHeader { get; set; }
-        public virtual Product Product { get; set; }
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual PurchaseHeader PurchaseHeader { get; set; }
     }
 }

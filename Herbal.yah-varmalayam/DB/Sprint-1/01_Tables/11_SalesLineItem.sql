@@ -1,4 +1,4 @@
-﻿
+﻿drop table [SalesLineItem]
 /****** Object:  Table [dbo].[SalesLineItem]    Script Date: 10/30/2020 14:27:25 ******/
 SET ANSI_NULLS ON
 GO
@@ -13,12 +13,8 @@ CREATE TABLE [dbo].[SalesLineItem](
 	[Quantity] [decimal](18, 2) NOT NULL,
 	[SalesAmount] [decimal](18, 2) NOT NULL,
 	[ConfigSellingPrice] [decimal](18, 2) NOT NULL,
-	[Discount] [decimal](18, 2) NULL,
 	[GrossAmount] [decimal](18, 2) NOT NULL,
-	[CGST] [decimal](18, 2) NULL,
-	[SGST] [decimal](18, 2) NULL,
-	[IGST] [decimal](18, 2) NULL,
-	[TotalTax] [decimal](18, 2) NULL,
+	[GST] [decimal](18, 2) NULL,
 	[NetAmount] [decimal](18, 2) NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreatedOn] [datetime] NOT NULL,

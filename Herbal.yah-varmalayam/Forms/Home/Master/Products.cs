@@ -75,7 +75,6 @@ namespace Herbal.yah_varmalayam.Forms
                     products.ModifiedOn = DateTime.Now;
                 }
                 products.CategoryId = (int)Utility.CategoryTypes.Herbal;
-                products.ScaleId = (int)DropDownScaleName.SelectedValue;
                 products.ProductCode = TxtProductCode.Text.ToString();
                 products.ProductName = TxtProductName.Text.ToString();
                 products.SellingPrice = string.IsNullOrEmpty(TxtSellingPrice.Text) ? 0 : Convert.ToDecimal(TxtSellingPrice.Text);
@@ -212,7 +211,6 @@ namespace Herbal.yah_varmalayam.Forms
                 TxtProductName.Text = productDetail.ProductName;
                 TxtSellingPrice.Text = productDetail.SellingPrice.ToString(); 
                 ChkIsActive.Checked = productDetail.IsActive;
-                DropDownScaleName.SelectedValue = productDetail.ScaleId;
             }
             catch(Exception ex)
             {

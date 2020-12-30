@@ -13,7 +13,7 @@ namespace Herbal.yah_varmalayam.Forms
 {
     public class FormBase : Form
     {
-        protected HerbalEntities herbalContext = new HerbalEntities();
+        protected HerbalEntities herbalContext = new HerbalEntities(Utility.GetEntityConnectionString());
         public MsgBoxMessages showMessageBox = new MsgBoxMessages();
         public UserViewModel userViewModel = new UserViewModel();
         public DataTable dataTable = new DataTable();
@@ -62,7 +62,7 @@ namespace Herbal.yah_varmalayam.Forms
         internal void LoadScaleItemsToDropDown(ComboBox combobox, string searchText)
         {
             //Call this method to append the Scale list
-            try
+            /*try
             {
                 Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
                 combobox.Refresh();
@@ -84,7 +84,7 @@ namespace Herbal.yah_varmalayam.Forms
             catch(Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
+            }*/
         }
 
 

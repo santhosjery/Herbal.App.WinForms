@@ -10,7 +10,7 @@ namespace Herbal.yah_varmalayam
     public class BaseViewModel
     {
 
-        protected HerbalEntities herbalContext = new HerbalEntities();
+        protected HerbalEntities herbalContext = new HerbalEntities(Utility.GetEntityConnectionString());
 
         public bool IsActive { get; set; }
         public string IsActiveText { get; set; }

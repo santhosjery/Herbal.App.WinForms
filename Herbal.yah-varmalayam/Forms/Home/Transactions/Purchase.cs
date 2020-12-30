@@ -223,12 +223,7 @@ namespace Herbal.yah_varmalayam.Forms
             purchaseLineItem.ProductId = (int)DropDownProductName.SelectedValue;
             purchaseLineItem.Quantity = StringToDecimal(TxtQuantity.Text);
             purchaseLineItem.PurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
-            purchaseLineItem.Discount = StringToDecimal(TxtDiscount.Text);
             purchaseLineItem.GrossAmount = _getLineItemGrossAmount();
-            purchaseLineItem.CGST = StringToDecimal(TxtCgstPercentage.Text); 
-            purchaseLineItem.SGST = StringToDecimal(TxtSgstPercentage.Text);
-            purchaseLineItem.IGST = null;
-            purchaseLineItem.TotalTax = _getLineItemTaxAmount();
             purchaseLineItem.NetAmount = StringToDecimal(TxtNetAmount.Text);
             purchaseLineItem.SellingPrice = null;
             herbalContext.SaveChanges();
@@ -323,22 +318,7 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void DropDownProductName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (DropDownProductName.SelectedIndex > 0)
-                {
-                    var _scaleName = new ProductViewModel((int)DropDownProductName.SelectedValue).ScaleName;
-                    LblScaleName.Text = string.Format(Utility.ScaleNameConcat, _scaleName);
-                }
-                else
-                {
-                    LblScaleName.Text = Utility.ScaleNameNotApplicable;
-                }
-            }
-            catch(Exception ex)
-            {
-                showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
+            
         }
 
         private void TxtQuantity_TextChanged(object sender, EventArgs e)
@@ -459,8 +439,7 @@ namespace Herbal.yah_varmalayam.Forms
                     var purchaseHeader = herbalContext.PurchaseHeaders.Where(_ => _.Id == purchaseId).First();
                     purchaseHeader.TotalPurchaseAmount = purchaseHeader.TotalPurchaseAmount - deleteLineItem.PurchaseAmount;
                     purchaseHeader.TotalGrossAmount = purchaseHeader.TotalGrossAmount - deleteLineItem.GrossAmount;
-                    purchaseHeader.TotalDiscount = purchaseHeader.TotalDiscount - deleteLineItem.Discount ?? 0;
-                    purchaseHeader.TotalTaxAmount = purchaseHeader.TotalTaxAmount - deleteLineItem.TotalTax;
+                    purchaseHeader.TotalTaxAmount = purchaseHeader.TotalTaxAmount - deleteLineItem.GST;
                     purchaseHeader.TotalNetAmount = purchaseHeader.TotalNetAmount - deleteLineItem.NetAmount;
                     purchaseHeader.AmountPaid = purchaseHeader.AmountPaid - deleteLineItem.NetAmount;
                     purchaseHeader.DueAmount = purchaseHeader.TotalNetAmount - purchaseHeader.AmountPaid;
@@ -497,8 +476,6 @@ namespace Herbal.yah_varmalayam.Forms
                 var lineItemDetail = new PurchaseLineItemViewModel(false, purchaseLineItemId);
 
                 existingLineItemPurchaseAmount = lineItemDetail.PurchaseAmount;
-                existingLineItemDiscountAmount = lineItemDetail.Discount ?? 0;
-                existingLineItemTaxAmount = lineItemDetail.TotalTax ?? 0;
                 existingLineItemGrossAmount = lineItemDetail.GrossAmount;
                 existingLineItemQuantity = lineItemDetail.Quantity;
                 existingLineItemProductId = lineItemDetail.ProductId;
@@ -506,9 +483,7 @@ namespace Herbal.yah_varmalayam.Forms
                 DropDownProductName.SelectedValue = lineItemDetail.ProductId;
                 TxtQuantity.Text = lineItemDetail.Quantity.ToString();
                 TxtPurchaseAmount.Text = lineItemDetail.PurchaseAmount.ToString();
-                TxtCgstPercentage.Text = lineItemDetail.CGST.ToString();
-                TxtSgstPercentage.Text = lineItemDetail.SGST.ToString();
-                TxtDiscount.Text = lineItemDetail.Discount.ToString();
+                TxtSgstPercentage.Text = lineItemDetail.GST.ToString();
                 TxtNetAmount.Text = lineItemDetail.NetAmount.ToString();
             }
             catch (Exception ex)

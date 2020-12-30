@@ -17,8 +17,8 @@ namespace Herbal.yah_varmalayam.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.StockDetails = new HashSet<StockDetail>();
             this.PurchaseLineItems = new HashSet<PurchaseLineItem>();
+            this.StockDetails = new HashSet<StockDetail>();
             this.SalesLineItems = new HashSet<SalesLineItem>();
         }
     
@@ -26,21 +26,21 @@ namespace Herbal.yah_varmalayam.Models
         public int CategoryId { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
+        public string PackQuantity { get; set; }
+        public decimal SellingPrice { get; set; }
+        public decimal GST { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
-        public int ScaleId { get; set; }
-        public Nullable<decimal> SellingPrice { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
-        public virtual Scale Scale { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StockDetail> StockDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StockDetail> StockDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesLineItem> SalesLineItems { get; set; }
     }

@@ -5,45 +5,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3a11a1c6b6524a3ca1507aa2c1efbaf7" Name="Diagram1" ZoomLevel="60">
-        <EntityTypeShape EntityType="HerbalModel.AccessRole" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="HerbalModel.AccessRole" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="HerbalModel.AppUser" Width="1.5" PointX="3" PointY="7.125" />
+        <EntityTypeShape EntityType="HerbalModel.PaymentType" Width="1.5" PointX="5.25" PointY="5.75" />
+        <EntityTypeShape EntityType="HerbalModel.Product" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="HerbalModel.PurchaseHeader" Width="1.5" PointX="7.5" PointY="6.5" />
+        <EntityTypeShape EntityType="HerbalModel.PurchaseLineItem" Width="1.5" PointX="12.75" PointY="7.875" />
+        <EntityTypeShape EntityType="HerbalModel.SalesHeader" Width="1.5" PointX="10.5" PointY="6.625" />
+        <EntityTypeShape EntityType="HerbalModel.StockDetail" Width="1.5" PointX="7.5" PointY="12.75" />
         <AssociationConnector Association="HerbalModel.FK_User_AccessRole" />
-        <EntityTypeShape EntityType="HerbalModel.Product" Width="1.5" PointX="5.25" PointY="1.125" />
-        <AssociationConnector Association="HerbalModel.FK_Product_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_Product_AppUser1" />
-        <EntityTypeShape EntityType="HerbalModel.CompanyDetail" Width="1.5" PointX="5.25" PointY="6.875" />
-        <EntityTypeShape EntityType="HerbalModel.Tax" Width="1.5" PointX="5.25" PointY="12.375" />
-        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser1" />
-        <EntityTypeShape EntityType="HerbalModel.Scale" Width="1.5" PointX="5.25" PointY="16.75" />
-        <AssociationConnector Association="HerbalModel.FK_Scale_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_Scale_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_Product_Scale" />
-        <EntityTypeShape EntityType="HerbalModel.PurchaseHeader" Width="1.5" PointX="5.25" PointY="21.125" />
-        <EntityTypeShape EntityType="HerbalModel.PurchaseLineItem" Width="1.5" PointX="7.5" PointY="21.625" />
-        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" />
-        <EntityTypeShape EntityType="HerbalModel.PaymentType" Width="1.5" PointX="5.25" PointY="27.125" />
         <AssociationConnector Association="HerbalModel.FK_PaymentType_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_PaymentType_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_PaymentType" />
-        <EntityTypeShape EntityType="HerbalModel.StockDetail" Width="1.5" PointX="7.5" PointY="2" />
-        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser" />
-        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_StockDetail_Product" />
-        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItems_Product" />
+        <AssociationConnector Association="HerbalModel.FK_Product_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_Product_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_AppUser1" />
         <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_AppUser1" />
-        <EntityTypeShape EntityType="HerbalModel.SalesHeader" Width="1.5" PointX="7.5" PointY="13" />
-        <EntityTypeShape EntityType="HerbalModel.SalesLineItem" Width="1.5" PointX="10.5" PointY="1.625" />
         <AssociationConnector Association="HerbalModel.FK_SalesHeader_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_SalesHeader_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_AppUser1" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseHeader_PaymentType" />
+        <AssociationConnector Association="HerbalModel.FK_SalesHeader_PaymentType" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItems_Product" />
+        <AssociationConnector Association="HerbalModel.FK_StockDetail_Product" />
+        <AssociationConnector Association="HerbalModel.FK_PurchaseLineItem_PurchaseHeader1" />
+        <EntityTypeShape EntityType="HerbalModel.CompanyDetail" Width="1.5" PointX="5.25" PointY="14.75" />
+        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_CompanyDetail_AppUser1" />
+        <EntityTypeShape EntityType="HerbalModel.Tax" Width="1.5" PointX="5.25" PointY="1.75" />
+        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser" />
+        <AssociationConnector Association="HerbalModel.FK_Tax_AppUser1" />
+        <EntityTypeShape EntityType="HerbalModel.SalesLineItem" Width="1.5" PointX="15.75" PointY="7.875" />
         <AssociationConnector Association="HerbalModel.FK_SalesLineItem_AppUser" />
         <AssociationConnector Association="HerbalModel.FK_SalesLineItem_AppUser1" />
-        <AssociationConnector Association="HerbalModel.FK_SalesHeader_PaymentType" />
         <AssociationConnector Association="HerbalModel.FK_SalesLineItems_Product" />
         <AssociationConnector Association="HerbalModel.FK_SalesLineItem_SalesHeader" />
       </Diagram>

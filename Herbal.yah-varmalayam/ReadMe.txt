@@ -17,3 +17,6 @@
     #Product Page: TODO: 1. Grid slownees.</p>
 <p>
     &nbsp;</p>
+<p>
+    public HerbalEntities(string ConnectionString) : base(ConnectionString) { }</p>
+

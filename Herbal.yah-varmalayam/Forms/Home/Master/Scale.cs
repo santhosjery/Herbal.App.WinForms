@@ -55,8 +55,8 @@ namespace Herbal.yah_varmalayam.Forms
                 dataTable.Clear();
                 DataGridScaleMaster.Refresh();
                 DataGridScaleMaster.AutoGenerateColumns = false;
-                var scaleList = new ScaleViewModel(TxtSearchItem.text ?? "");
-                dataTable = ConvertListToDataTable.ToDataTable(scaleList.scaleViewModel);
+                /*var scaleList = new ScaleViewModel(TxtSearchItem.text ?? "");
+                    dataTable = ConvertListToDataTable.ToDataTable(scaleList.scaleViewModel);*/
                 bindingSource.DataSource = dataTable;
                 DataGridScaleMaster.DataSource = bindingSource;
             }
@@ -73,7 +73,7 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void BtnSaveScale_Click(object sender, EventArgs e)
         {
-            try
+           /* try
             {
                 if (string.IsNullOrEmpty(TxtScaleName.Text))
                 {
@@ -110,13 +110,14 @@ namespace Herbal.yah_varmalayam.Forms
             catch (Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
+            }*/
         }
 
         private bool _isScaleNameAlreadyExists(string name)
         {
-            return herbalContext.Scales.Where(_ => _.ScaleName == name
-                                        && (scaleId == 0 || _.Id != scaleId)).Any();
+            /*return herbalContext.Scales.Where(_ => _.ScaleName == name
+                                        && (scaleId == 0 || _.Id != scaleId)).Any();*/
+            return true;
         }
 
         private void TxtSearchItem_OnTextChange(object sender, EventArgs e)
@@ -149,7 +150,7 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void _deleteScale()
         {
-            try
+            /*try
             {
                 int RowIndex = DataGridScaleMaster.CurrentCell.RowIndex;
                 scaleId = Convert.ToInt32(DataGridScaleMaster.Rows[RowIndex].Cells["Id"].Value);
@@ -176,7 +177,7 @@ namespace Herbal.yah_varmalayam.Forms
             catch (Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
+            }*/
         }
 
         private void _editScale()

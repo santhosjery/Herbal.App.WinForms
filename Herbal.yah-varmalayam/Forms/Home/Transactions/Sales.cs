@@ -214,8 +214,7 @@ namespace Herbal.yah_varmalayam.Forms
                     var salesHeader = herbalContext.SalesHeaders.Where(_ => _.Id == salesId).First();
                     salesHeader.TotalSalesAmount = salesHeader.TotalSalesAmount - deleteLineItem.SalesAmount;
                     salesHeader.TotalGrossAmount = salesHeader.TotalGrossAmount - deleteLineItem.GrossAmount;
-                    salesHeader.TotalDiscount = salesHeader.TotalDiscount - deleteLineItem.Discount ?? 0;
-                    salesHeader.TotalTaxAmount = salesHeader.TotalTaxAmount - deleteLineItem.TotalTax;
+                    salesHeader.TotalTaxAmount = salesHeader.TotalTaxAmount - deleteLineItem.GST;
                     salesHeader.TotalNetAmount = salesHeader.TotalNetAmount - deleteLineItem.NetAmount;
                     salesHeader.AmountPaid = salesHeader.AmountPaid - deleteLineItem.NetAmount;
                     salesHeader.DueAmount = salesHeader.TotalNetAmount - salesHeader.AmountPaid;
@@ -252,8 +251,6 @@ namespace Herbal.yah_varmalayam.Forms
                 var lineItemDetail = new SalesLineItemViewModel(false, salesLineItemId);
 
                 existingLineItemSalesAmount = lineItemDetail.SalesAmount;
-                existingLineItemDiscountAmount = lineItemDetail.Discount ?? 0;
-                existingLineItemTaxAmount = lineItemDetail.TotalTax ?? 0;
                 existingLineItemGrossAmount = lineItemDetail.GrossAmount;
                 existingLineItemQuantity = lineItemDetail.Quantity;
                 existingLineItemProductId = lineItemDetail.ProductId;
@@ -261,9 +258,7 @@ namespace Herbal.yah_varmalayam.Forms
                 DropDownProductName.SelectedValue = lineItemDetail.ProductId;
                 TxtQuantity.Text = lineItemDetail.Quantity.ToString();
                 TxtSalesAmount.Text = lineItemDetail.SalesAmount.ToString();
-                TxtCgstPercentage.Text = lineItemDetail.CGST.ToString();
-                TxtSgstPercentage.Text = lineItemDetail.SGST.ToString();
-                TxtDiscount.Text = lineItemDetail.Discount.ToString();
+                TxtCgstPercentage.Text = lineItemDetail.GST.ToString();
                 TxtNetAmount.Text = lineItemDetail.NetAmount.ToString();
             }
             catch (Exception ex)
@@ -323,7 +318,7 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void DropDownProductName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 if (DropDownProductName.SelectedIndex > 0)
                 {
@@ -340,7 +335,7 @@ namespace Herbal.yah_varmalayam.Forms
             catch (Exception ex)
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
+            }*/
         }
 
         private void BtnResetLineItem_Click(object sender, EventArgs e)
@@ -504,12 +499,8 @@ namespace Herbal.yah_varmalayam.Forms
             salesLineItem.ProductId = (int)DropDownProductName.SelectedValue;
             salesLineItem.Quantity = StringToDecimal(TxtQuantity.Text);
             salesLineItem.SalesAmount = StringToDecimal(TxtSalesAmount.Text);
-            salesLineItem.Discount = StringToDecimal(TxtDiscount.Text);
             salesLineItem.GrossAmount = _getLineItemGrossAmount();
-            salesLineItem.CGST = StringToDecimal(TxtCgstPercentage.Text);
-            salesLineItem.SGST = StringToDecimal(TxtSgstPercentage.Text);
-            salesLineItem.IGST = null;
-            salesLineItem.TotalTax = _getLineItemTaxAmount();
+            salesLineItem.GST = StringToDecimal(TxtCgstPercentage.Text);
             salesLineItem.NetAmount = StringToDecimal(TxtNetAmount.Text);
             salesLineItem.ConfigSellingPrice = configSellingPrice;
             herbalContext.SaveChanges();

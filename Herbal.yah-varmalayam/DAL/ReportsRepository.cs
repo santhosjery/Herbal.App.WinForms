@@ -9,7 +9,7 @@ namespace Herbal.yah_varmalayam
 {
     public class ReportsRepository
     {
-        internal static HerbalEntities herbalContext = new HerbalEntities();
+        internal static HerbalEntities herbalContext = new HerbalEntities(Utility.GetEntityConnectionString());
 
         public static IEnumerable<getPurchaseReport_Result> getPurchaseReportResult(
             string purchaseCode, Nullable<int> purchaseId, 

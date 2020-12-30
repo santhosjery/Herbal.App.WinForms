@@ -16,12 +16,8 @@ namespace Herbal.yah_varmalayam
         public string ProductName { get; set; }
         public decimal Quantity { get; set; }
         public decimal PurchaseAmount { get; set; }
-        public decimal? Discount { get; set; }
         public decimal GrossAmount { get; set; }
-        public decimal? CGST { get; set; }
-        public decimal? SGST { get; set; }
-        public decimal? IGST { get; set; }
-        public decimal? TotalTax { get; set; }
+        public decimal? GST { get; set; }
         public decimal NetAmount { get; set; }
         public decimal? SellingPrice { get; set; }
 
@@ -45,12 +41,8 @@ namespace Herbal.yah_varmalayam
             ProductName = productLineList.Product.ProductName;
             Quantity = productLineList.Quantity;
             PurchaseAmount = productLineList.PurchaseAmount;
-            Discount = productLineList.Discount;
             GrossAmount = productLineList.GrossAmount;
-            CGST = productLineList.CGST;
-            SGST = productLineList.SGST;
-            IGST = productLineList.IGST;
-            TotalTax = productLineList.TotalTax;
+            GST = productLineList.GST;
             NetAmount = productLineList.NetAmount;
             SellingPrice = productLineList.SellingPrice;
             IsActive = productLineList.IsActive;

@@ -52,7 +52,6 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainmenu = new System.Windows.Forms.MenuStrip();
             this.PictureBoxHome = new System.Windows.Forms.PictureBox();
-            this.scaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.mainmenu.SuspendLayout();
@@ -207,7 +206,6 @@
             // masterToolStripMenuItem
             // 
             this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleToolStripMenuItem,
             this.MenuItemProduct,
             this.MenuItemCompanyDetail});
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
@@ -224,7 +222,6 @@
             // 
             this.mainmenu.BackColor = System.Drawing.Color.Silver;
             this.mainmenu.Font = new System.Drawing.Font("Georgia", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainmenu.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mainmenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.mainmenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mainmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -259,13 +256,6 @@
             this.PictureBoxHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBoxHome.TabIndex = 3;
             this.PictureBoxHome.TabStop = false;
-            // 
-            // scaleToolStripMenuItem
-            // 
-            this.scaleToolStripMenuItem.Name = "scaleToolStripMenuItem";
-            this.scaleToolStripMenuItem.Size = new System.Drawing.Size(301, 38);
-            this.scaleToolStripMenuItem.Text = "Scale";
-            this.scaleToolStripMenuItem.Click += new System.EventHandler(this.scaleToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -315,6 +305,5 @@
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.MenuStrip mainmenu;
-        private System.Windows.Forms.ToolStripMenuItem scaleToolStripMenuItem;
     }
 }
