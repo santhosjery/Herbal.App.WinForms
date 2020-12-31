@@ -110,15 +110,15 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void TxtQuantity_TextChanged(object sender, EventArgs e)
         {
-            decimal a;
-            if (!decimal.TryParse(TxtQuantity.Text, out a))
+            int a;
+            if (!int.TryParse(TxtQuantity.Text, out a))
             {
                 // If not int clear textbox text or Undo() last operation
                 TxtQuantity.Clear();
             }
             else
             {
-                _calculateValuesToLineItem();
+
             }
         }
 
@@ -235,7 +235,7 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemProductId = lineItemDetail.ProductId;
                 selectedProductID = lineItemDetail.ProductId;
                 TxtAutoCompleteProduct.Text = getProductCodeAndNameById(lineItemDetail.ProductId);
-                TxtQuantity.Text = lineItemDetail.Quantity.ToString();
+                TxtQuantity.Text = ((int)lineItemDetail.Quantity).ToString();
                 TxtSalesAmount.Text = lineItemDetail.SalesAmount.ToString();
                 TxtGST.Text = lineItemDetail.GST.ToString();
                 TxtNetAmount.Text = lineItemDetail.NetAmount.ToString();

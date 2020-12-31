@@ -19,19 +19,13 @@ namespace Herbal.yah_varmalayam.Models
         public Nullable<long> ClientMobileNumber { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public int ScaleId { get; set; }
-        public string ScaleName { get; set; }
         public Nullable<int> PaymentTypeId { get; set; }
         public string PaymentTypeName { get; set; }
         public System.DateTime PurchaseDate { get; set; }
         public decimal Quantity { get; set; }
         public decimal PurchaseAmount { get; set; }
-        public Nullable<decimal> Discount { get; set; }
         public decimal GrossAmount { get; set; }
-        public Nullable<decimal> CGST { get; set; }
-        public Nullable<decimal> SGST { get; set; }
-        public Nullable<decimal> IGST { get; set; }
-        public Nullable<decimal> TotalTax { get; set; }
+        public Nullable<decimal> GST { get; set; }
         public decimal NetAmount { get; set; }
     }
 }

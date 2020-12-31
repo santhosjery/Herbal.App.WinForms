@@ -297,27 +297,15 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             private global::System.Data.DataColumn columnSalesAmount;
             
-            private global::System.Data.DataColumn columnDiscount;
-            
             private global::System.Data.DataColumn columnGrossAmount;
             
-            private global::System.Data.DataColumn columnCGST;
-            
-            private global::System.Data.DataColumn columnSGST;
-            
-            private global::System.Data.DataColumn columnIGST;
-            
-            private global::System.Data.DataColumn columnTotalTax;
+            private global::System.Data.DataColumn columnGST;
             
             private global::System.Data.DataColumn columnNetAmount;
             
             private global::System.Data.DataColumn columnProductId;
             
             private global::System.Data.DataColumn columnProductName;
-            
-            private global::System.Data.DataColumn columnScaleId;
-            
-            private global::System.Data.DataColumn columnScaleName;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -426,14 +414,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DiscountColumn {
-                get {
-                    return this.columnDiscount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn GrossAmountColumn {
                 get {
                     return this.columnGrossAmount;
@@ -442,33 +422,9 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CGSTColumn {
+            public global::System.Data.DataColumn GSTColumn {
                 get {
-                    return this.columnCGST;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn SGSTColumn {
-                get {
-                    return this.columnSGST;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IGSTColumn {
-                get {
-                    return this.columnIGST;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn TotalTaxColumn {
-                get {
-                    return this.columnTotalTax;
+                    return this.columnGST;
                 }
             }
             
@@ -493,22 +449,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             public global::System.Data.DataColumn ProductNameColumn {
                 get {
                     return this.columnProductName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ScaleIdColumn {
-                get {
-                    return this.columnScaleId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ScaleNameColumn {
-                get {
-                    return this.columnScaleName;
                 }
             }
             
@@ -549,27 +489,7 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTableRow AddDataTableRow(
-                        int SalesId, 
-                        string SalesCode, 
-                        string CustomerName, 
-                        long CustomerMobileNumber, 
-                        int PaymentTypeId, 
-                        string PaymentTypeName, 
-                        System.DateTime SalesDate, 
-                        decimal Quantity, 
-                        decimal SalesAmount, 
-                        decimal Discount, 
-                        decimal GrossAmount, 
-                        decimal CGST, 
-                        decimal SGST, 
-                        decimal IGST, 
-                        decimal TotalTax, 
-                        decimal NetAmount, 
-                        int ProductId, 
-                        string ProductName, 
-                        int ScaleId, 
-                        string ScaleName) {
+            public DataTableRow AddDataTableRow(int SalesId, string SalesCode, string CustomerName, long CustomerMobileNumber, int PaymentTypeId, string PaymentTypeName, System.DateTime SalesDate, decimal Quantity, decimal SalesAmount, decimal GrossAmount, decimal GST, decimal NetAmount, int ProductId, string ProductName) {
                 DataTableRow rowDataTableRow = ((DataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SalesId,
@@ -581,17 +501,11 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                         SalesDate,
                         Quantity,
                         SalesAmount,
-                        Discount,
                         GrossAmount,
-                        CGST,
-                        SGST,
-                        IGST,
-                        TotalTax,
+                        GST,
                         NetAmount,
                         ProductId,
-                        ProductName,
-                        ScaleId,
-                        ScaleName};
+                        ProductName};
                 rowDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableRow);
                 return rowDataTableRow;
@@ -623,17 +537,11 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 this.columnSalesDate = base.Columns["SalesDate"];
                 this.columnQuantity = base.Columns["Quantity"];
                 this.columnSalesAmount = base.Columns["SalesAmount"];
-                this.columnDiscount = base.Columns["Discount"];
                 this.columnGrossAmount = base.Columns["GrossAmount"];
-                this.columnCGST = base.Columns["CGST"];
-                this.columnSGST = base.Columns["SGST"];
-                this.columnIGST = base.Columns["IGST"];
-                this.columnTotalTax = base.Columns["TotalTax"];
+                this.columnGST = base.Columns["GST"];
                 this.columnNetAmount = base.Columns["NetAmount"];
                 this.columnProductId = base.Columns["ProductId"];
                 this.columnProductName = base.Columns["ProductName"];
-                this.columnScaleId = base.Columns["ScaleId"];
-                this.columnScaleName = base.Columns["ScaleName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -657,28 +565,16 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 base.Columns.Add(this.columnQuantity);
                 this.columnSalesAmount = new global::System.Data.DataColumn("SalesAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSalesAmount);
-                this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiscount);
                 this.columnGrossAmount = new global::System.Data.DataColumn("GrossAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGrossAmount);
-                this.columnCGST = new global::System.Data.DataColumn("CGST", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCGST);
-                this.columnSGST = new global::System.Data.DataColumn("SGST", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSGST);
-                this.columnIGST = new global::System.Data.DataColumn("IGST", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIGST);
-                this.columnTotalTax = new global::System.Data.DataColumn("TotalTax", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotalTax);
+                this.columnGST = new global::System.Data.DataColumn("GST", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGST);
                 this.columnNetAmount = new global::System.Data.DataColumn("NetAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNetAmount);
                 this.columnProductId = new global::System.Data.DataColumn("ProductId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductId);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
-                this.columnScaleId = new global::System.Data.DataColumn("ScaleId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnScaleId);
-                this.columnScaleName = new global::System.Data.DataColumn("ScaleName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnScaleName);
                 this.columnSalesId.Caption = "PurchaseId";
                 this.columnSalesCode.Caption = "PurchaseCode";
                 this.columnCustomerName.Caption = "ClientName";
@@ -971,22 +867,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal Discount {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTable.DiscountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Discount\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.DiscountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public decimal GrossAmount {
                 get {
                     try {
@@ -1003,65 +883,17 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal CGST {
+            public decimal GST {
                 get {
                     try {
-                        return ((decimal)(this[this.tableDataTable.CGSTColumn]));
+                        return ((decimal)(this[this.tableDataTable.GSTColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CGST\' in table \'DataTable\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GST\' in table \'DataTable\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable.CGSTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal SGST {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTable.SGSTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SGST\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.SGSTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal IGST {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTable.IGSTColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IGST\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.IGSTColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public decimal TotalTax {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTable.TotalTaxColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TotalTax\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.TotalTaxColumn] = value;
+                    this[this.tableDataTable.GSTColumn] = value;
                 }
             }
             
@@ -1110,38 +942,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 }
                 set {
                     this[this.tableDataTable.ProductNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int ScaleId {
-                get {
-                    try {
-                        return ((int)(this[this.tableDataTable.ScaleIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ScaleId\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.ScaleIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ScaleName {
-                get {
-                    try {
-                        return ((string)(this[this.tableDataTable.ScaleNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ScaleName\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.ScaleNameColumn] = value;
                 }
             }
             
@@ -1255,18 +1055,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDiscountNull() {
-                return this.IsNull(this.tableDataTable.DiscountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDiscountNull() {
-                this[this.tableDataTable.DiscountColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsGrossAmountNull() {
                 return this.IsNull(this.tableDataTable.GrossAmountColumn);
             }
@@ -1279,50 +1067,14 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsCGSTNull() {
-                return this.IsNull(this.tableDataTable.CGSTColumn);
+            public bool IsGSTNull() {
+                return this.IsNull(this.tableDataTable.GSTColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetCGSTNull() {
-                this[this.tableDataTable.CGSTColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsSGSTNull() {
-                return this.IsNull(this.tableDataTable.SGSTColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetSGSTNull() {
-                this[this.tableDataTable.SGSTColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsIGSTNull() {
-                return this.IsNull(this.tableDataTable.IGSTColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetIGSTNull() {
-                this[this.tableDataTable.IGSTColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsTotalTaxNull() {
-                return this.IsNull(this.tableDataTable.TotalTaxColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetTotalTaxNull() {
-                this[this.tableDataTable.TotalTaxColumn] = global::System.Convert.DBNull;
+            public void SetGSTNull() {
+                this[this.tableDataTable.GSTColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1359,30 +1111,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetProductNameNull() {
                 this[this.tableDataTable.ProductNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsScaleIdNull() {
-                return this.IsNull(this.tableDataTable.ScaleIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetScaleIdNull() {
-                this[this.tableDataTable.ScaleIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsScaleNameNull() {
-                return this.IsNull(this.tableDataTable.ScaleNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetScaleNameNull() {
-                this[this.tableDataTable.ScaleNameColumn] = global::System.Convert.DBNull;
             }
         }
         

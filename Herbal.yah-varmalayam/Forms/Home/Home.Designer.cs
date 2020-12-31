@@ -134,6 +134,7 @@
             this.adminstrationToolStripMenuItem.Name = "adminstrationToolStripMenuItem";
             this.adminstrationToolStripMenuItem.Size = new System.Drawing.Size(197, 34);
             this.adminstrationToolStripMenuItem.Text = "Adminstration";
+            this.adminstrationToolStripMenuItem.Visible = false;
             // 
             // MenuItemStockReport
             // 
@@ -222,6 +223,7 @@
             // 
             this.mainmenu.BackColor = System.Drawing.Color.Silver;
             this.mainmenu.Font = new System.Drawing.Font("Georgia", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainmenu.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.mainmenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.mainmenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.mainmenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
