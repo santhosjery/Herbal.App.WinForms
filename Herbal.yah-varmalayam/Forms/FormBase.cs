@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsControlLibrary1;
 
 namespace Herbal.yah_varmalayam.Forms
 {
@@ -123,6 +124,43 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
+        }
+
+        internal void LoadProductItemsToAutoSuggestTextBox(BunifuCustomTextbox txtAutoCompleteProduct, string searchText)
+        {
+            //Call this method to append the Scale list
+            try
+            {
+                AutoCompleteStringCollection allowedTypes = new AutoCompleteStringCollection();
+                Dictionary<int, string> listItemDictionary = new Dictionary<int, string>();
+                txtAutoCompleteProduct.Refresh();
+                listItemDictionary.Clear();
+                //combobox.DataSource = new BindingSource(listItemDictionary, null);
+                var list = new ProductViewModel(searchText, true).productViewList;
+                List<string> productList = new List<string>();
+                if(list.Any())
+                {
+                    productList.AddRange(list.Select(_ => string.Concat(_.ProductName, " - ", _.ProductCode)));
+                }
+                allowedTypes.AddRange(productList.ToArray());
+                txtAutoCompleteProduct.AutoCompleteCustomSource = allowedTypes;
+                txtAutoCompleteProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
+                txtAutoCompleteProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
+            }
+        }
+
+        internal int? getProductIdByCodeAndName(string selectedValue)
+        {
+            return herbalContext.Products.FirstOrDefault(_ => string.Concat(_.ProductName.ToLower(), " - ", _.ProductCode.ToLower()) == selectedValue.ToLower()).Id;
+        }
+
+        internal string getProductCodeAndNameById(int productID)
+        {
+            return herbalContext.Products.Where(_ => _.Id == productID).Select(_ => string.Concat(_.ProductName, " - ", _.ProductCode)).FirstOrDefault();
         }
 
         internal void LoadPaymentTypeToDropDown(ComboBox combobox, string searchText)

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.PanelPurchase = new System.Windows.Forms.Panel();
             this.DataGridPurchaseMaster = new System.Windows.Forms.DataGridView();
@@ -59,7 +59,6 @@
             this.bunifuCustomLabel11 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtQuantity = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.DropDownProductName = new System.Windows.Forms.ComboBox();
             this.bunifuCustomLabel5 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtTotalPurchaseAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
@@ -86,6 +85,7 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtTotalGrossAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel15 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.TxtAutoCompleteProduct = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelPurchase.SuspendLayout();
@@ -134,14 +134,14 @@
             this.DataGridPurchaseMaster.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DataGridPurchaseMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridPurchaseMaster.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Georgia", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Georgia", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridPurchaseMaster.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridPurchaseMaster.ColumnHeadersHeight = 40;
             this.DataGridPurchaseMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridPurchaseMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -343,6 +343,7 @@
             // 
             // Grouppurchase
             // 
+            this.Grouppurchase.Controls.Add(this.TxtAutoCompleteProduct);
             this.Grouppurchase.Controls.Add(this.BtnResetLineItem);
             this.Grouppurchase.Controls.Add(this.TxtNetAmount);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel4);
@@ -353,7 +354,6 @@
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel11);
             this.Grouppurchase.Controls.Add(this.TxtQuantity);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel9);
-            this.Grouppurchase.Controls.Add(this.DropDownProductName);
             this.Grouppurchase.Controls.Add(this.bunifuCustomLabel5);
             this.Grouppurchase.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Bold);
             this.Grouppurchase.Location = new System.Drawing.Point(54, 265);
@@ -491,19 +491,6 @@
             this.bunifuCustomLabel9.Size = new System.Drawing.Size(89, 21);
             this.bunifuCustomLabel9.TabIndex = 30;
             this.bunifuCustomLabel9.Text = "Quantity*";
-            // 
-            // DropDownProductName
-            // 
-            this.DropDownProductName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.DropDownProductName.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.DropDownProductName.FormattingEnabled = true;
-            this.DropDownProductName.Location = new System.Drawing.Point(29, 68);
-            this.DropDownProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DropDownProductName.Name = "DropDownProductName";
-            this.DropDownProductName.Size = new System.Drawing.Size(478, 33);
-            this.DropDownProductName.TabIndex = 4;
-            this.DropDownProductName.SelectedIndexChanged += new System.EventHandler(this.DropDownProductName_SelectedIndexChanged);
-            this.DropDownProductName.TextChanged += new System.EventHandler(this.DropDownProductName_TextChanged);
             // 
             // bunifuCustomLabel5
             // 
@@ -813,6 +800,17 @@
             this.bunifuCustomLabel15.TabIndex = 22;
             this.bunifuCustomLabel15.Text = "Total Gross Amount*";
             // 
+            // TxtAutoCompleteProduct
+            // 
+            this.TxtAutoCompleteProduct.BorderColor = System.Drawing.Color.SeaGreen;
+            this.TxtAutoCompleteProduct.Font = new System.Drawing.Font("Verdana", 10.5F);
+            this.TxtAutoCompleteProduct.Location = new System.Drawing.Point(29, 69);
+            this.TxtAutoCompleteProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtAutoCompleteProduct.Name = "TxtAutoCompleteProduct";
+            this.TxtAutoCompleteProduct.Size = new System.Drawing.Size(478, 33);
+            this.TxtAutoCompleteProduct.TabIndex = 66;
+            this.TxtAutoCompleteProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAutoCompleteProduct_KeyDown);
+            // 
             // Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -852,7 +850,6 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtQuantity;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel9;
-        private System.Windows.Forms.ComboBox DropDownProductName;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel5;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtTotalGrossAmount;
         private System.Windows.Forms.Panel PanelPurchase;
@@ -896,5 +893,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtAutoCompleteProduct;
     }
 }

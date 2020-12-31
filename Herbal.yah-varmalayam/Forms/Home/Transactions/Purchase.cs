@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsControlLibrary1;
 
 namespace Herbal.yah_varmalayam.Forms
 {
@@ -21,6 +22,7 @@ namespace Herbal.yah_varmalayam.Forms
         decimal existingLineItemGrossAmount = 0;
         decimal existingLineItemQuantity = 0;
         int existingLineItemProductId = 0;
+        int? selectedProductID = 0;
         public Purchase(UserViewModel userViewModel)
         {
             this.userViewModel = userViewModel;
@@ -49,13 +51,15 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemQuantity = 0;
                 existingLineItemProductId = 0;
                 purchaseLineItemId = 0;
+                selectedProductID = 0;
                 TxtQuantity.Text = "";
                 TxtPurchaseAmount.Text = "";
                 TxtGST.Text = "5";
                 TxtNetAmount.Text = "";
                 BtnSaveLineItem.Text = Utility.SaveLineItemButton;
-                LoadProductItemsToDropDown(DropDownProductName, "");
+                TxtAutoCompleteProduct.Text = "";
                 LoadPaymentTypeToDropDown(DropDownPaymentType, "");
+                LoadProductItemsToAutoSuggestTextBox(TxtAutoCompleteProduct, "");
                 _resetLineItemsFromDatabase();
                 //Don't reset other's when line items called. 
                 if (isResetOnlyLineItems == false)
@@ -80,6 +84,7 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
+
         private void _resetLineItemsFromDatabase()
         {
             try
@@ -131,7 +136,7 @@ namespace Herbal.yah_varmalayam.Forms
             {
                 stockViewModel.CreatedBy = userViewModel.UserId;
                 stockViewModel.ModifiedBy = userViewModel.UserId;
-                if (existingLineItemProductId > 0 && (existingLineItemProductId != (int)DropDownProductName.SelectedValue))
+                if (existingLineItemProductId > 0 && (existingLineItemProductId != selectedProductID))
                 {
                     var stockDetail = new StockViewModel(existingLineItemProductId);
                     if (stockDetail != null)
@@ -144,11 +149,11 @@ namespace Herbal.yah_varmalayam.Forms
                         existingLineItemQuantity = 0;
                     }
                 }
-                var stockDetailUpdate = new StockViewModel((int)DropDownProductName.SelectedValue);
+                var stockDetailUpdate = new StockViewModel(selectedProductID.Value);
                 stockViewModel.TotalPurchaseQuantity = stockDetailUpdate.TotalPurchaseQuantity + (StringToDecimal(TxtQuantity.Text) - existingLineItemQuantity);
                 stockViewModel.TotalSalesQuantity = stockDetailUpdate.TotalSalesQuantity;
                 stockViewModel.AvilableQuantity = (stockViewModel.TotalPurchaseQuantity - stockViewModel.TotalSalesQuantity);
-                stockViewModel.ProductId = (int)DropDownProductName.SelectedValue;
+                stockViewModel.ProductId = selectedProductID.Value;
                 stockViewModel.UpdateStockDetail(stockViewModel);
             }
             catch(Exception ex)
@@ -217,7 +222,7 @@ namespace Herbal.yah_varmalayam.Forms
             }
             purchaseLineItem.PurchaseLineItemCode = null;
             purchaseLineItem.PurchaseId = purchaseId;
-            purchaseLineItem.ProductId = (int)DropDownProductName.SelectedValue;
+            purchaseLineItem.ProductId = selectedProductID.Value;
             purchaseLineItem.Quantity = StringToDecimal(TxtQuantity.Text);
             purchaseLineItem.GST = _getLineItemTaxAmount();
             purchaseLineItem.PurchaseAmount = StringToDecimal(TxtPurchaseAmount.Text);
@@ -230,7 +235,7 @@ namespace Herbal.yah_varmalayam.Forms
         {
             string message = "";
             List<string> requiredFields = new List<string>();
-            if ((int)DropDownProductName.SelectedIndex <= 0)
+            if (string.IsNullOrEmpty(TxtAutoCompleteProduct.Text) || selectedProductID <= 0)
             {
                 requiredFields.Add("Product Name");
             }
@@ -307,24 +312,6 @@ namespace Herbal.yah_varmalayam.Forms
         private void BtnResetLineItem_Click(object sender, EventArgs e)
         {
             _resetAllControls(true);
-        }
-
-        private void DropDownProductName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DropDownProductName.SelectedIndex > 0)
-                {
-                    var _productDetail = new ProductViewModel((int)DropDownProductName.SelectedValue);
-                    TxtQuantity.Text = "1";
-                    TxtGST.Text = _productDetail.GST.ToString();
-                    TxtPurchaseAmount.Text = (_productDetail.SellingPrice - (_productDetail.SellingPrice / 100 * Utility.SellingPricePercentage)).ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                showMessageBox.ShowMessage(Utility.LogException(ex));
-            }
         }
 
         private void TxtQuantity_TextChanged(object sender, EventArgs e)
@@ -473,8 +460,8 @@ namespace Herbal.yah_varmalayam.Forms
                 existingLineItemGrossAmount = lineItemDetail.GrossAmount;
                 existingLineItemQuantity = lineItemDetail.Quantity;
                 existingLineItemProductId = lineItemDetail.ProductId;
-
-                DropDownProductName.SelectedValue = lineItemDetail.ProductId;
+                selectedProductID = lineItemDetail.ProductId;
+                TxtAutoCompleteProduct.Text = getProductCodeAndNameById(lineItemDetail.ProductId);
                 TxtQuantity.Text = ((int)lineItemDetail.Quantity).ToString();
                 TxtPurchaseAmount.Text = lineItemDetail.PurchaseAmount.ToString();
                 TxtGST.Text = lineItemDetail.GST.ToString();
@@ -573,11 +560,34 @@ namespace Herbal.yah_varmalayam.Forms
             }
         }
 
-        private void DropDownProductName_TextChanged(object sender, EventArgs e)
+        private void TxtAutoCompleteProduct_KeyDown(object sender, KeyEventArgs e)
         {
-            if (DropDownProductName.SelectedIndex <= 0)
+            if (e.KeyData == Keys.Enter)
             {
-                LoadProductItemsToDropDown(DropDownProductName, DropDownProductName.Text.ToString());
+                getProductDetail(this.TxtAutoCompleteProduct.Text);
+            }
+        }
+
+        private void getProductDetail(string selectedProduct)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(selectedProduct))
+                {
+                    return;
+                }
+                selectedProductID = getProductIdByCodeAndName(selectedProduct);
+                if (selectedProductID > 0)
+                {
+                    var _productDetail = new ProductViewModel(selectedProductID.Value);
+                    TxtQuantity.Text = "1";
+                    TxtGST.Text = _productDetail.GST.ToString();
+                    TxtPurchaseAmount.Text = (_productDetail.SellingPrice - (_productDetail.SellingPrice / 100 * Utility.SellingPricePercentage)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
     }
