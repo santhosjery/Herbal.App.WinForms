@@ -773,17 +773,17 @@
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
             <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getStockReport" ReturnType="Collection(HerbalModel.getStockReport_Result)">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="SortBy" Mode="In" Type="String" />
+            <Parameter Name="SortByDirection" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="getSalesReport" ReturnType="Collection(HerbalModel.getSalesReport_Result)">
             <Parameter Name="SalesCode" Mode="In" Type="String" />
             <Parameter Name="SalesId" Mode="In" Type="Int32" />
             <Parameter Name="StartDate" Mode="In" Type="DateTime" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
             <Parameter Name="ProductId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="getStockReport" ReturnType="Collection(HerbalModel.getStockReport_Result)">
-            <Parameter Name="ProductId" Mode="In" Type="Int32" />
-            <Parameter Name="SortBy" Mode="In" Type="String" />
-            <Parameter Name="SortByDirection" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="AccessRole">
@@ -1359,22 +1359,6 @@
           <Property Type="Decimal" Name="GST" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
-        <ComplexType Name="getSalesReport_Result">
-          <Property Type="Int32" Name="SalesId" Nullable="false" />
-          <Property Type="String" Name="SalesCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="150" />
-          <Property Type="Int64" Name="CustomerMobileNumber" Nullable="true" />
-          <Property Type="Int32" Name="ProductId" Nullable="false" />
-          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="PaymentTypeId" Nullable="true" />
-          <Property Type="String" Name="PaymentTypeName" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="SalesDate" Nullable="false" Precision="23" />
-          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="GrossAmount" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="GST" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
-        </ComplexType>
         <ComplexType Name="getStockReport_Result">
           <Property Type="Int32" Name="StockId" Nullable="false" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
@@ -1386,6 +1370,25 @@
           <Property Type="Decimal" Name="TotalPurchaseAmount" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalSalesAmount" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalAvilableSalesAmount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="getSalesReport_Result">
+          <Property Type="Int32" Name="SalesId" Nullable="false" />
+          <Property Type="String" Name="SalesCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="150" />
+          <Property Type="Int64" Name="CustomerMobileNumber" Nullable="true" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="PackQuantity" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PaymentTypeId" Nullable="true" />
+          <Property Type="String" Name="PaymentTypeName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="SalesDate" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SalesAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="GrossAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="GST" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="NetAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalDiscount" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1617,26 +1620,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="getSalesReport" FunctionName="HerbalModel.Store.getSalesReport">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="HerbalModel.getSalesReport_Result">
-                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
-                <ScalarProperty Name="SalesCode" ColumnName="SalesCode" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
-                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
-                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
-                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
-                <ScalarProperty Name="GST" ColumnName="GST" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getStockReport" FunctionName="HerbalModel.Store.getStockReport">
             <ResultMapping>
               <ComplexTypeMapping TypeName="HerbalModel.getStockReport_Result">
@@ -1650,6 +1633,29 @@
                 <ScalarProperty Name="TotalPurchaseAmount" ColumnName="TotalPurchaseAmount" />
                 <ScalarProperty Name="TotalSalesAmount" ColumnName="TotalSalesAmount" />
                 <ScalarProperty Name="TotalAvilableSalesAmount" ColumnName="TotalAvilableSalesAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getSalesReport" FunctionName="HerbalModel.Store.getSalesReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HerbalModel.getSalesReport_Result">
+                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
+                <ScalarProperty Name="SalesCode" ColumnName="SalesCode" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="PackQuantity" ColumnName="PackQuantity" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
+                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SalesAmount" ColumnName="SalesAmount" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -18,7 +18,9 @@ namespace Herbal.yah_varmalayam.Models
         public string CustomerName { get; set; }
         public Nullable<long> CustomerMobileNumber { get; set; }
         public int ProductId { get; set; }
+        public string ProductCode { get; set; }
         public string ProductName { get; set; }
+        public string PackQuantity { get; set; }
         public Nullable<int> PaymentTypeId { get; set; }
         public string PaymentTypeName { get; set; }
         public System.DateTime SalesDate { get; set; }
@@ -27,5 +29,6 @@ namespace Herbal.yah_varmalayam.Models
         public decimal GrossAmount { get; set; }
         public Nullable<decimal> GST { get; set; }
         public decimal NetAmount { get; set; }
+        public decimal TotalDiscount { get; set; }
     }
 }

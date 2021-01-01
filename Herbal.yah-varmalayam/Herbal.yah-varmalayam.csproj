@@ -167,6 +167,12 @@
     <Compile Include="Forms\Home\Reports\Purchase\PurchaseReport.Designer.cs">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Home\Reports\Sales\PrintReport\SalesPrintReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Home\Reports\Sales\PrintReport\SalesPrintReport.Designer.cs">
+      <DependentUpon>SalesPrintReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home\Reports\Sales\SalesDataSet.cs">
       <DependentUpon>SalesDataSet.xsd</DependentUpon>
     </Compile>
@@ -322,6 +328,10 @@
     <EmbeddedResource Include="Forms\Home\Reports\Purchase\PurchaseReport.resx">
       <DependentUpon>PurchaseReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\Sales\PrintReport\SalesPrintReport.rdlc" />
+    <EmbeddedResource Include="Forms\Home\Reports\Sales\PrintReport\SalesPrintReport.resx">
+      <DependentUpon>SalesPrintReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.rdlc" />
     <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.resx">
       <DependentUpon>SalesReport.cs</DependentUpon>
@@ -421,7 +431,7 @@
     </Content>
     <Content Include="DB\Sprint-1\03_SPs\02_getSalesReport.sql" />
     <Content Include="DB\Sprint-1\03_SPs\03_getStockReport.sql" />
-    <Content Include="DB\Sprint-1\03_SPs\04_ProductListInsertList.sql" />
+    <Content Include="DB\Sprint-1\02_Alter Scripts\02_ProductListInsertList.sql" />
     <Content Include="Images\123.ico" />
     <Content Include="Images\164577 .png.png" />
     <Content Include="Images\164577 .png1.png" />

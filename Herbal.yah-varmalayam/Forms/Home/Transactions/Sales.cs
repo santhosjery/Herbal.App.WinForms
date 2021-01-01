@@ -577,5 +577,25 @@ namespace Herbal.yah_varmalayam.Forms
                 showMessageBox.ShowMessage(Utility.LogException(ex));
             }
         }
+
+        private void BtnPrintSummary_Click(object sender, EventArgs e)
+        {
+            if(salesId <= 0)
+            {
+                showMessageBox.ShowMessage("Invalid sales ID");
+            }
+            _updateSalesHeader();
+            var form = new SalesPrintReport(salesId);
+            //Use this as common method to view appropriate view model.
+            /*form.TopLevel = false;
+                this.Controls.Add(form);
+                form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                form.Dock = DockStyle.Fill;
+                form.BringToFront();*/
+            form.Show();
+            _resetAllControls(false);
+            salesId = 0;
+            salesLineItemId = 0;
+        }
     }
 }

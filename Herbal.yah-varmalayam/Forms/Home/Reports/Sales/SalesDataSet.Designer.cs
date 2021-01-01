@@ -307,6 +307,12 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             private global::System.Data.DataColumn columnProductName;
             
+            private global::System.Data.DataColumn columnPackQuantity;
+            
+            private global::System.Data.DataColumn columnProductCode;
+            
+            private global::System.Data.DataColumn columnTotalDiscount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public DataTableDataTable() {
@@ -454,6 +460,30 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PackQuantityColumn {
+                get {
+                    return this.columnPackQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ProductCodeColumn {
+                get {
+                    return this.columnProductCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn TotalDiscountColumn {
+                get {
+                    return this.columnTotalDiscount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +519,24 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTableRow AddDataTableRow(int SalesId, string SalesCode, string CustomerName, long CustomerMobileNumber, int PaymentTypeId, string PaymentTypeName, System.DateTime SalesDate, decimal Quantity, decimal SalesAmount, decimal GrossAmount, decimal GST, decimal NetAmount, int ProductId, string ProductName) {
+            public DataTableRow AddDataTableRow(
+                        int SalesId, 
+                        string SalesCode, 
+                        string CustomerName, 
+                        long CustomerMobileNumber, 
+                        int PaymentTypeId, 
+                        string PaymentTypeName, 
+                        System.DateTime SalesDate, 
+                        decimal Quantity, 
+                        decimal SalesAmount, 
+                        decimal GrossAmount, 
+                        decimal GST, 
+                        decimal NetAmount, 
+                        int ProductId, 
+                        string ProductName, 
+                        string PackQuantity, 
+                        string ProductCode, 
+                        decimal TotalDiscount) {
                 DataTableRow rowDataTableRow = ((DataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SalesId,
@@ -505,7 +552,10 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                         GST,
                         NetAmount,
                         ProductId,
-                        ProductName};
+                        ProductName,
+                        PackQuantity,
+                        ProductCode,
+                        TotalDiscount};
                 rowDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableRow);
                 return rowDataTableRow;
@@ -542,6 +592,9 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 this.columnNetAmount = base.Columns["NetAmount"];
                 this.columnProductId = base.Columns["ProductId"];
                 this.columnProductName = base.Columns["ProductName"];
+                this.columnPackQuantity = base.Columns["PackQuantity"];
+                this.columnProductCode = base.Columns["ProductCode"];
+                this.columnTotalDiscount = base.Columns["TotalDiscount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -575,6 +628,12 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 base.Columns.Add(this.columnProductId);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
+                this.columnPackQuantity = new global::System.Data.DataColumn("PackQuantity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPackQuantity);
+                this.columnProductCode = new global::System.Data.DataColumn("ProductCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductCode);
+                this.columnTotalDiscount = new global::System.Data.DataColumn("TotalDiscount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalDiscount);
                 this.columnSalesId.Caption = "PurchaseId";
                 this.columnSalesCode.Caption = "PurchaseCode";
                 this.columnCustomerName.Caption = "ClientName";
@@ -947,6 +1006,54 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string PackQuantity {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable.PackQuantityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PackQuantity\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.PackQuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string ProductCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable.ProductCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductCode\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.ProductCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal TotalDiscount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDataTable.TotalDiscountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalDiscount\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.TotalDiscountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsSalesIdNull() {
                 return this.IsNull(this.tableDataTable.SalesIdColumn);
             }
@@ -1111,6 +1218,42 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetProductNameNull() {
                 this[this.tableDataTable.ProductNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsPackQuantityNull() {
+                return this.IsNull(this.tableDataTable.PackQuantityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPackQuantityNull() {
+                this[this.tableDataTable.PackQuantityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsProductCodeNull() {
+                return this.IsNull(this.tableDataTable.ProductCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetProductCodeNull() {
+                this[this.tableDataTable.ProductCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsTotalDiscountNull() {
+                return this.IsNull(this.tableDataTable.TotalDiscountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetTotalDiscountNull() {
+                this[this.tableDataTable.TotalDiscountColumn] = global::System.Convert.DBNull;
             }
         }
         

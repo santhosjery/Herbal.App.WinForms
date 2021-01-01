@@ -69,6 +69,23 @@ namespace Herbal.yah_varmalayam.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPurchaseReport_Result>("getPurchaseReport", purchaseCodeParameter, purchaseIdParameter, startDateParameter, endDateParameter, productIdParameter);
         }
     
+        public virtual ObjectResult<getStockReport_Result> getStockReport(Nullable<int> productId, string sortBy, string sortByDirection)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            var sortByParameter = sortBy != null ?
+                new ObjectParameter("SortBy", sortBy) :
+                new ObjectParameter("SortBy", typeof(string));
+    
+            var sortByDirectionParameter = sortByDirection != null ?
+                new ObjectParameter("SortByDirection", sortByDirection) :
+                new ObjectParameter("SortByDirection", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStockReport_Result>("getStockReport", productIdParameter, sortByParameter, sortByDirectionParameter);
+        }
+    
         public virtual ObjectResult<getSalesReport_Result> getSalesReport(string salesCode, Nullable<int> salesId, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<int> productId)
         {
             var salesCodeParameter = salesCode != null ?
@@ -92,23 +109,6 @@ namespace Herbal.yah_varmalayam.Models
                 new ObjectParameter("ProductId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSalesReport_Result>("getSalesReport", salesCodeParameter, salesIdParameter, startDateParameter, endDateParameter, productIdParameter);
-        }
-    
-        public virtual ObjectResult<getStockReport_Result> getStockReport(Nullable<int> productId, string sortBy, string sortByDirection)
-        {
-            var productIdParameter = productId.HasValue ?
-                new ObjectParameter("ProductId", productId) :
-                new ObjectParameter("ProductId", typeof(int));
-    
-            var sortByParameter = sortBy != null ?
-                new ObjectParameter("SortBy", sortBy) :
-                new ObjectParameter("SortBy", typeof(string));
-    
-            var sortByDirectionParameter = sortByDirection != null ?
-                new ObjectParameter("SortByDirection", sortByDirection) :
-                new ObjectParameter("SortByDirection", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStockReport_Result>("getStockReport", productIdParameter, sortByParameter, sortByDirectionParameter);
         }
     }
 }

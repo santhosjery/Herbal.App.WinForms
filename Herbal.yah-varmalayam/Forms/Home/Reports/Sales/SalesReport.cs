@@ -52,7 +52,7 @@ namespace Herbal.yah_varmalayam.Forms
             try
             {
                 string purchaseCode = TxtSalesCode.Text.ToString();
-                int? purchaseId = null;
+                int? salesId = null;
                 DateTime? startDate = DtPickerStartDate.Value;
                 DateTime? endDate = DtPickerEndDate.Value;
                 int? productId = null;
@@ -61,7 +61,7 @@ namespace Herbal.yah_varmalayam.Forms
                     productId = (int)DropDownProductName.SelectedValue;
                 }
                 var result = ReportsRepository.getSalesReportResult(
-                    purchaseCode, purchaseId, startDate, endDate, productId
+                    purchaseCode, salesId, startDate, endDate, productId
                     );
                 ReportDataSource datasource = new ReportDataSource("SalesDataSet", result);
                 this.reportViewer1.LocalReport.DataSources.Clear();

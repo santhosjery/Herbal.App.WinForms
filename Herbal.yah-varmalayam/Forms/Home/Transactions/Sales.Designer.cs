@@ -32,6 +32,17 @@
             this.LblHeaderText = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.PanelSales = new System.Windows.Forms.Panel();
             this.DataGridSalesMaster = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrossAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NetAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnPrintSummary = new System.Windows.Forms.Button();
             this.BtnSaveSummary = new System.Windows.Forms.Button();
@@ -73,17 +84,6 @@
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtTotalGrossAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel15 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalesAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GrossAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NetAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedOn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.PanelSales.SuspendLayout();
@@ -166,6 +166,106 @@
             this.DataGridSalesMaster.TabIndex = 69;
             this.DataGridSalesMaster.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DataGridSalesMaster_MouseClick);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 8;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // SrNo
+            // 
+            this.SrNo.DataPropertyName = "SrNo";
+            this.SrNo.FillWeight = 50F;
+            this.SrNo.HeaderText = "Sr.No";
+            this.SrNo.MinimumWidth = 8;
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.FillWeight = 230F;
+            this.ProductName.HeaderText = "Medicine Name";
+            this.ProductName.MinimumWidth = 8;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 8;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // SalesAmount
+            // 
+            this.SalesAmount.DataPropertyName = "SalesAmount";
+            this.SalesAmount.FillWeight = 110F;
+            this.SalesAmount.HeaderText = "Selling Price";
+            this.SalesAmount.MinimumWidth = 8;
+            this.SalesAmount.Name = "SalesAmount";
+            this.SalesAmount.ReadOnly = true;
+            // 
+            // GrossAmount
+            // 
+            this.GrossAmount.DataPropertyName = "GrossAmount";
+            this.GrossAmount.FillWeight = 120F;
+            this.GrossAmount.HeaderText = "Gross Amount";
+            this.GrossAmount.MinimumWidth = 8;
+            this.GrossAmount.Name = "GrossAmount";
+            this.GrossAmount.ReadOnly = true;
+            // 
+            // GST
+            // 
+            this.GST.DataPropertyName = "GST";
+            this.GST.HeaderText = "GST(Rs.)";
+            this.GST.MinimumWidth = 8;
+            this.GST.Name = "GST";
+            this.GST.ReadOnly = true;
+            // 
+            // NetAmount
+            // 
+            this.NetAmount.DataPropertyName = "NetAmount";
+            this.NetAmount.FillWeight = 120F;
+            this.NetAmount.HeaderText = "Net Amount";
+            this.NetAmount.MinimumWidth = 8;
+            this.NetAmount.Name = "NetAmount";
+            this.NetAmount.ReadOnly = true;
+            // 
+            // CreatedOn
+            // 
+            this.CreatedOn.DataPropertyName = "CreatedOn";
+            this.CreatedOn.FillWeight = 140F;
+            this.CreatedOn.HeaderText = "Created On";
+            this.CreatedOn.MinimumWidth = 8;
+            this.CreatedOn.Name = "CreatedOn";
+            this.CreatedOn.ReadOnly = true;
+            this.CreatedOn.Visible = false;
+            // 
+            // Edit
+            // 
+            this.Edit.DataPropertyName = "Edit";
+            this.Edit.FillWeight = 60F;
+            this.Edit.HeaderText = "Edit";
+            this.Edit.MinimumWidth = 8;
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Delete
+            // 
+            this.Delete.DataPropertyName = "Delete";
+            this.Delete.FillWeight = 70F;
+            this.Delete.HeaderText = "Delete";
+            this.Delete.MinimumWidth = 8;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.BtnPrintSummary);
@@ -197,6 +297,7 @@
             this.BtnPrintSummary.TabIndex = 67;
             this.BtnPrintSummary.Text = "Print";
             this.BtnPrintSummary.UseVisualStyleBackColor = false;
+            this.BtnPrintSummary.Click += new System.EventHandler(this.BtnPrintSummary_Click);
             // 
             // BtnSaveSummary
             // 
@@ -677,106 +778,6 @@
             this.bunifuCustomLabel15.Size = new System.Drawing.Size(200, 24);
             this.bunifuCustomLabel15.TabIndex = 22;
             this.bunifuCustomLabel15.Text = "Total Gross Amount*";
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 8;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // SrNo
-            // 
-            this.SrNo.DataPropertyName = "SrNo";
-            this.SrNo.FillWeight = 50F;
-            this.SrNo.HeaderText = "Sr.No";
-            this.SrNo.MinimumWidth = 8;
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.FillWeight = 230F;
-            this.ProductName.HeaderText = "Medicine Name";
-            this.ProductName.MinimumWidth = 8;
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 8;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // SalesAmount
-            // 
-            this.SalesAmount.DataPropertyName = "SalesAmount";
-            this.SalesAmount.FillWeight = 110F;
-            this.SalesAmount.HeaderText = "Selling Price";
-            this.SalesAmount.MinimumWidth = 8;
-            this.SalesAmount.Name = "SalesAmount";
-            this.SalesAmount.ReadOnly = true;
-            // 
-            // GrossAmount
-            // 
-            this.GrossAmount.DataPropertyName = "GrossAmount";
-            this.GrossAmount.FillWeight = 120F;
-            this.GrossAmount.HeaderText = "Gross Amount";
-            this.GrossAmount.MinimumWidth = 8;
-            this.GrossAmount.Name = "GrossAmount";
-            this.GrossAmount.ReadOnly = true;
-            // 
-            // GST
-            // 
-            this.GST.DataPropertyName = "GST";
-            this.GST.HeaderText = "GST(Rs.)";
-            this.GST.MinimumWidth = 8;
-            this.GST.Name = "GST";
-            this.GST.ReadOnly = true;
-            // 
-            // NetAmount
-            // 
-            this.NetAmount.DataPropertyName = "NetAmount";
-            this.NetAmount.FillWeight = 120F;
-            this.NetAmount.HeaderText = "Net Amount";
-            this.NetAmount.MinimumWidth = 8;
-            this.NetAmount.Name = "NetAmount";
-            this.NetAmount.ReadOnly = true;
-            // 
-            // CreatedOn
-            // 
-            this.CreatedOn.DataPropertyName = "CreatedOn";
-            this.CreatedOn.FillWeight = 140F;
-            this.CreatedOn.HeaderText = "Created On";
-            this.CreatedOn.MinimumWidth = 8;
-            this.CreatedOn.Name = "CreatedOn";
-            this.CreatedOn.ReadOnly = true;
-            this.CreatedOn.Visible = false;
-            // 
-            // Edit
-            // 
-            this.Edit.DataPropertyName = "Edit";
-            this.Edit.FillWeight = 60F;
-            this.Edit.HeaderText = "Edit";
-            this.Edit.MinimumWidth = 8;
-            this.Edit.Name = "Edit";
-            this.Edit.ReadOnly = true;
-            this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Delete
-            // 
-            this.Delete.DataPropertyName = "Delete";
-            this.Delete.FillWeight = 70F;
-            this.Delete.HeaderText = "Delete";
-            this.Delete.MinimumWidth = 8;
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Sales
             // 
