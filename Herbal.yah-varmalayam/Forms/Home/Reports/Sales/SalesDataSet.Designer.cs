@@ -285,8 +285,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             private global::System.Data.DataColumn columnCustomerName;
             
-            private global::System.Data.DataColumn columnCustomerMobileNumber;
-            
             private global::System.Data.DataColumn columnPaymentTypeId;
             
             private global::System.Data.DataColumn columnPaymentTypeName;
@@ -312,6 +310,12 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             private global::System.Data.DataColumn columnProductCode;
             
             private global::System.Data.DataColumn columnTotalDiscount;
+            
+            private global::System.Data.DataColumn columnCustomerMobileNumbers;
+            
+            private global::System.Data.DataColumn columnCustomerGSTIN;
+            
+            private global::System.Data.DataColumn columnCustomerAddress;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -367,14 +371,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             public global::System.Data.DataColumn CustomerNameColumn {
                 get {
                     return this.columnCustomerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CustomerMobileNumberColumn {
-                get {
-                    return this.columnCustomerMobileNumber;
                 }
             }
             
@@ -484,6 +480,30 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CustomerMobileNumbersColumn {
+                get {
+                    return this.columnCustomerMobileNumbers;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CustomerGSTINColumn {
+                get {
+                    return this.columnCustomerGSTIN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CustomerAddressColumn {
+                get {
+                    return this.columnCustomerAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -523,7 +543,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                         int SalesId, 
                         string SalesCode, 
                         string CustomerName, 
-                        long CustomerMobileNumber, 
                         int PaymentTypeId, 
                         string PaymentTypeName, 
                         System.DateTime SalesDate, 
@@ -536,13 +555,15 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                         string ProductName, 
                         string PackQuantity, 
                         string ProductCode, 
-                        decimal TotalDiscount) {
+                        decimal TotalDiscount, 
+                        string CustomerMobileNumbers, 
+                        string CustomerGSTIN, 
+                        string CustomerAddress) {
                 DataTableRow rowDataTableRow = ((DataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SalesId,
                         SalesCode,
                         CustomerName,
-                        CustomerMobileNumber,
                         PaymentTypeId,
                         PaymentTypeName,
                         SalesDate,
@@ -555,7 +576,10 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                         ProductName,
                         PackQuantity,
                         ProductCode,
-                        TotalDiscount};
+                        TotalDiscount,
+                        CustomerMobileNumbers,
+                        CustomerGSTIN,
+                        CustomerAddress};
                 rowDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTableRow);
                 return rowDataTableRow;
@@ -581,7 +605,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 this.columnSalesId = base.Columns["SalesId"];
                 this.columnSalesCode = base.Columns["SalesCode"];
                 this.columnCustomerName = base.Columns["CustomerName"];
-                this.columnCustomerMobileNumber = base.Columns["CustomerMobileNumber"];
                 this.columnPaymentTypeId = base.Columns["PaymentTypeId"];
                 this.columnPaymentTypeName = base.Columns["PaymentTypeName"];
                 this.columnSalesDate = base.Columns["SalesDate"];
@@ -595,6 +618,9 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 this.columnPackQuantity = base.Columns["PackQuantity"];
                 this.columnProductCode = base.Columns["ProductCode"];
                 this.columnTotalDiscount = base.Columns["TotalDiscount"];
+                this.columnCustomerMobileNumbers = base.Columns["CustomerMobileNumbers"];
+                this.columnCustomerGSTIN = base.Columns["CustomerGSTIN"];
+                this.columnCustomerAddress = base.Columns["CustomerAddress"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -606,8 +632,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 base.Columns.Add(this.columnSalesCode);
                 this.columnCustomerName = new global::System.Data.DataColumn("CustomerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomerName);
-                this.columnCustomerMobileNumber = new global::System.Data.DataColumn("CustomerMobileNumber", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerMobileNumber);
                 this.columnPaymentTypeId = new global::System.Data.DataColumn("PaymentTypeId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentTypeId);
                 this.columnPaymentTypeName = new global::System.Data.DataColumn("PaymentTypeName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -634,10 +658,15 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 base.Columns.Add(this.columnProductCode);
                 this.columnTotalDiscount = new global::System.Data.DataColumn("TotalDiscount", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalDiscount);
+                this.columnCustomerMobileNumbers = new global::System.Data.DataColumn("CustomerMobileNumbers", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerMobileNumbers);
+                this.columnCustomerGSTIN = new global::System.Data.DataColumn("CustomerGSTIN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerGSTIN);
+                this.columnCustomerAddress = new global::System.Data.DataColumn("CustomerAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerAddress);
                 this.columnSalesId.Caption = "PurchaseId";
                 this.columnSalesCode.Caption = "PurchaseCode";
                 this.columnCustomerName.Caption = "ClientName";
-                this.columnCustomerMobileNumber.Caption = "ClientMobileNumber";
                 this.columnSalesDate.Caption = "PurchaseDate";
                 this.columnSalesAmount.Caption = "PurchaseAmount";
             }
@@ -825,22 +854,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
                 }
                 set {
                     this[this.tableDataTable.CustomerNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public long CustomerMobileNumber {
-                get {
-                    try {
-                        return ((long)(this[this.tableDataTable.CustomerMobileNumberColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerMobileNumber\' in table \'DataTable\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable.CustomerMobileNumberColumn] = value;
                 }
             }
             
@@ -1054,6 +1067,54 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CustomerMobileNumbers {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable.CustomerMobileNumbersColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerMobileNumbers\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.CustomerMobileNumbersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CustomerGSTIN {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable.CustomerGSTINColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerGSTIN\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.CustomerGSTINColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CustomerAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable.CustomerAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerAddress\' in table \'DataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable.CustomerAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsSalesIdNull() {
                 return this.IsNull(this.tableDataTable.SalesIdColumn);
             }
@@ -1086,18 +1147,6 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCustomerNameNull() {
                 this[this.tableDataTable.CustomerNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsCustomerMobileNumberNull() {
-                return this.IsNull(this.tableDataTable.CustomerMobileNumberColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetCustomerMobileNumberNull() {
-                this[this.tableDataTable.CustomerMobileNumberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1254,6 +1303,42 @@ namespace Herbal.yah_varmalayam.Forms.Home.Reports.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTotalDiscountNull() {
                 this[this.tableDataTable.TotalDiscountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCustomerMobileNumbersNull() {
+                return this.IsNull(this.tableDataTable.CustomerMobileNumbersColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCustomerMobileNumbersNull() {
+                this[this.tableDataTable.CustomerMobileNumbersColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCustomerGSTINNull() {
+                return this.IsNull(this.tableDataTable.CustomerGSTINColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCustomerGSTINNull() {
+                this[this.tableDataTable.CustomerGSTINColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCustomerAddressNull() {
+                return this.IsNull(this.tableDataTable.CustomerAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCustomerAddressNull() {
+                this[this.tableDataTable.CustomerAddressColumn] = global::System.Convert.DBNull;
             }
         }
         
