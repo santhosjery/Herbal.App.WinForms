@@ -11,7 +11,9 @@ namespace Herbal.yah_varmalayam
         public int Id { get; set; }
         public string SalesCode { get; set; }
         public string CustomerName { get; set; }
-        public long? CustomerMobileNumber { get; set; }
+        public string CustomerMobileNumbers { get; set; }
+        public string CustomerGSTIN { get; set; }
+        public string CustomerAddress { get; set; }
         public int? PaymentTypeId { get; set; }
         public DateTime SalesDate { get; set; }
         public decimal TotalSalesAmount { get; set; }
@@ -40,7 +42,9 @@ namespace Herbal.yah_varmalayam
             Id = salesHeaderDetail.Id;
             SalesCode = salesHeaderDetail.SalesCode;
             CustomerName = salesHeaderDetail.CustomerName;
-            CustomerMobileNumber = salesHeaderDetail.CustomerMobileNumber;
+            CustomerMobileNumbers = salesHeaderDetail.CustomerMobileNumbers;
+            CustomerGSTIN = salesHeaderDetail.CustomerGSTIN;
+            CustomerAddress = salesHeaderDetail.CustomerAddress;
             PaymentTypeId = salesHeaderDetail.PaymentTypeId;
             SalesDate = salesHeaderDetail.SalesDate;
             TotalSalesAmount = salesHeaderDetail.TotalSalesAmount;

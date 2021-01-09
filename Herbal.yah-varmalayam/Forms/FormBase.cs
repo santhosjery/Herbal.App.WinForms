@@ -140,7 +140,7 @@ namespace Herbal.yah_varmalayam.Forms
                 List<string> productList = new List<string>();
                 if(list.Any())
                 {
-                    productList.AddRange(list.Select(_ => string.Concat(_.ProductName, " - ", _.ProductCode)));
+                    productList.AddRange(list.Select(_ => string.Concat(_.ProductCode, " - ", _.ProductName)));
                 }
                 allowedTypes.AddRange(productList.ToArray());
                 txtAutoCompleteProduct.AutoCompleteCustomSource = allowedTypes;
@@ -155,12 +155,12 @@ namespace Herbal.yah_varmalayam.Forms
 
         internal int? getProductIdByCodeAndName(string selectedValue)
         {
-            return herbalContext.Products.FirstOrDefault(_ => string.Concat(_.ProductName.ToLower(), " - ", _.ProductCode.ToLower()) == selectedValue.ToLower()).Id;
+            return herbalContext.Products.FirstOrDefault(_ => string.Concat(_.ProductCode.ToLower(), " - ", _.ProductName.ToLower()) == selectedValue.ToLower()).Id;
         }
 
         internal string getProductCodeAndNameById(int productID)
         {
-            return herbalContext.Products.Where(_ => _.Id == productID).Select(_ => string.Concat(_.ProductName, " - ", _.ProductCode)).FirstOrDefault();
+            return herbalContext.Products.Where(_ => _.Id == productID).Select(_ => string.Concat(_.ProductCode, " - ", _.ProductName)).FirstOrDefault();
         }
 
         internal void LoadPaymentTypeToDropDown(ComboBox combobox, string searchText)

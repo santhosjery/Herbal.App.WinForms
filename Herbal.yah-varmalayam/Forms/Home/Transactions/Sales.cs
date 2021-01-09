@@ -68,7 +68,9 @@ namespace Herbal.yah_varmalayam.Forms
                     salesId = 0;
                     TxtSalesCode.Text = BaseRepository.GetNextSalesCode();
                     TxtCustomerName.Text = "";
-                    TxtCustomerMobileNumber.Text = "";
+                    TxtCustomerMobileNumbers.Text = "";
+                    TxtCustomerGSTIN.Text = "";
+                    TxtAreaCustomerAddress.Text = "";
                     DtPickerInvoiceDate.Value = DateTime.Now;
                     TxtTotalGrossAmount.Text = "";
                     TxtTotalDiscount.Text = "";
@@ -168,12 +170,6 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void TxtCustomerMobileNumber_TextChanged(object sender, EventArgs e)
         {
-            int a;
-            if (!int.TryParse(TxtCustomerMobileNumber.Text, out a))
-            {
-                // If not int clear textbox text or Undo() last operation
-                TxtCustomerMobileNumber.Clear();
-            }
         }
 
         private void _deleteLineItem()
@@ -261,7 +257,9 @@ namespace Herbal.yah_varmalayam.Forms
                 TxtSalesCode.Text = salesHeaderDetail.SalesCode;
                 DtPickerInvoiceDate.Value = salesHeaderDetail.SalesDate;
                 TxtCustomerName.Text = salesHeaderDetail.CustomerName;
-                TxtCustomerMobileNumber.Text = salesHeaderDetail.CustomerMobileNumber.ToString();
+                TxtCustomerMobileNumbers.Text = salesHeaderDetail.CustomerMobileNumbers.ToString();
+                TxtCustomerGSTIN.Text = salesHeaderDetail.CustomerGSTIN.ToString();
+                TxtAreaCustomerAddress.Text = salesHeaderDetail.CustomerAddress.ToString();
                 TxtTotalSalesAmount.Text = salesHeaderDetail.TotalSalesAmount.ToString();
                 TxtTotalDiscount.Text = salesHeaderDetail.TotalDiscount.ToString();
                 TxtTotalGrossAmount.Text = salesHeaderDetail.TotalGrossAmount.ToString();
@@ -428,11 +426,6 @@ namespace Herbal.yah_varmalayam.Forms
                 salesHeader.ModifiedBy = userViewModel.UserId;
                 salesHeader.ModifiedOn = DateTime.Now;
             }
-            Int64? _clientMobileNumber = null;
-            if (string.IsNullOrEmpty(TxtCustomerMobileNumber.Text) == false)
-            {
-                _clientMobileNumber = Convert.ToInt64(TxtCustomerMobileNumber.Text);
-            }
             int? paymentTypeId = null;
             if ((int)DropDownPaymentType.SelectedIndex > 0)
             {
@@ -440,7 +433,9 @@ namespace Herbal.yah_varmalayam.Forms
             }
             salesHeader.SalesCode = TxtSalesCode.Text.ToString();
             salesHeader.CustomerName = TxtCustomerName.Text.ToString();
-            salesHeader.CustomerMobileNumber = _clientMobileNumber;
+            salesHeader.CustomerMobileNumbers = TxtCustomerMobileNumbers.Text;
+            salesHeader.CustomerGSTIN = TxtGST.Text.ToString();
+            salesHeader.CustomerAddress = TxtAreaCustomerAddress.Text.ToString();
             salesHeader.PaymentTypeId = paymentTypeId;
             salesHeader.SalesDate = DtPickerInvoiceDate.Value;
             salesHeader.TotalSalesAmount = StringToDecimal(TxtTotalSalesAmount.Text);

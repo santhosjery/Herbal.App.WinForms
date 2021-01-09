@@ -69,7 +69,7 @@ namespace Herbal.yah_varmalayam.Forms
                     return;
                 }
                 //Check product name already exists or not
-                if (_isProductNameAlreadyExists(TxtProductName.Text))
+                if (_isProductNameAlreadyExists(TxtProductCode.Text, TxtProductName.Text))
                 {
                     showMessageBox.ShowMessage(string.Format(Utility.AlreadyExists, "Product Name"));
                     TxtProductName.Focus();
@@ -126,9 +126,9 @@ namespace Herbal.yah_varmalayam.Forms
             }
         }
 
-        private bool _isProductNameAlreadyExists(string productName)
+        private bool _isProductNameAlreadyExists(string productCode, string productName)
         {
-            return herbalContext.Products.Where(_ => _.ProductName == productName
+            return herbalContext.Products.Where(_ => _.ProductName == productName && _.ProductCode == productCode
                                         && (productId == 0 || _.Id != productId)).Any();
         }
         private void BtnReset_Click(object sender, EventArgs e)

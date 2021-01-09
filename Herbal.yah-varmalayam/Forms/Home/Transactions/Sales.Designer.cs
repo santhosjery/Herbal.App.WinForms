@@ -62,6 +62,10 @@
             this.bunifuCustomLabel9 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel5 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtAreaCustomerAddress = new System.Windows.Forms.RichTextBox();
+            this.bunifuCustomLabel12 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.TxtCustomerGSTIN = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.bunifuCustomLabel6 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtTotalSalesAmount = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel17 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.DtPickerInvoiceDate = new System.Windows.Forms.DateTimePicker();
@@ -78,7 +82,7 @@
             this.bunifuCustomLabel7 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.TxtSalesCode = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.TxtCustomerMobileNumber = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.TxtCustomerMobileNumbers = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.TxtCustomerName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
@@ -507,6 +511,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtAreaCustomerAddress);
+            this.groupBox1.Controls.Add(this.bunifuCustomLabel12);
+            this.groupBox1.Controls.Add(this.TxtCustomerGSTIN);
+            this.groupBox1.Controls.Add(this.bunifuCustomLabel6);
             this.groupBox1.Controls.Add(this.TxtTotalSalesAmount);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel17);
             this.groupBox1.Controls.Add(this.DtPickerInvoiceDate);
@@ -523,27 +531,68 @@
             this.groupBox1.Controls.Add(this.bunifuCustomLabel7);
             this.groupBox1.Controls.Add(this.TxtSalesCode);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel2);
-            this.groupBox1.Controls.Add(this.TxtCustomerMobileNumber);
+            this.groupBox1.Controls.Add(this.TxtCustomerMobileNumbers);
             this.groupBox1.Controls.Add(this.TxtCustomerName);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel3);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel1);
             this.groupBox1.Controls.Add(this.TxtTotalGrossAmount);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel15);
             this.groupBox1.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(54, 18);
+            this.groupBox1.Location = new System.Drawing.Point(54, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(1756, 227);
+            this.groupBox1.Size = new System.Drawing.Size(1756, 240);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Header Info";
+            // 
+            // TxtAreaCustomerAddress
+            // 
+            this.TxtAreaCustomerAddress.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtAreaCustomerAddress.Location = new System.Drawing.Point(1415, 20);
+            this.TxtAreaCustomerAddress.Name = "TxtAreaCustomerAddress";
+            this.TxtAreaCustomerAddress.Size = new System.Drawing.Size(334, 98);
+            this.TxtAreaCustomerAddress.TabIndex = 68;
+            this.TxtAreaCustomerAddress.Text = "";
+            // 
+            // bunifuCustomLabel12
+            // 
+            this.bunifuCustomLabel12.AutoSize = true;
+            this.bunifuCustomLabel12.Font = new System.Drawing.Font("Georgia", 10F);
+            this.bunifuCustomLabel12.Location = new System.Drawing.Point(1234, 41);
+            this.bunifuCustomLabel12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bunifuCustomLabel12.Name = "bunifuCustomLabel12";
+            this.bunifuCustomLabel12.Size = new System.Drawing.Size(174, 24);
+            this.bunifuCustomLabel12.TabIndex = 67;
+            this.bunifuCustomLabel12.Text = "Customer Address";
+            // 
+            // TxtCustomerGSTIN
+            // 
+            this.TxtCustomerGSTIN.BorderColor = System.Drawing.Color.SeaGreen;
+            this.TxtCustomerGSTIN.Font = new System.Drawing.Font("Verdana", 10.5F);
+            this.TxtCustomerGSTIN.Location = new System.Drawing.Point(1011, 85);
+            this.TxtCustomerGSTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtCustomerGSTIN.Name = "TxtCustomerGSTIN";
+            this.TxtCustomerGSTIN.Size = new System.Drawing.Size(233, 33);
+            this.TxtCustomerGSTIN.TabIndex = 66;
+            // 
+            // bunifuCustomLabel6
+            // 
+            this.bunifuCustomLabel6.AutoSize = true;
+            this.bunifuCustomLabel6.Font = new System.Drawing.Font("Georgia", 10F);
+            this.bunifuCustomLabel6.Location = new System.Drawing.Point(1007, 41);
+            this.bunifuCustomLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bunifuCustomLabel6.Name = "bunifuCustomLabel6";
+            this.bunifuCustomLabel6.Size = new System.Drawing.Size(164, 24);
+            this.bunifuCustomLabel6.TabIndex = 65;
+            this.bunifuCustomLabel6.Text = "Customer GSTIN";
             // 
             // TxtTotalSalesAmount
             // 
             this.TxtTotalSalesAmount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtTotalSalesAmount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtTotalSalesAmount.Location = new System.Drawing.Point(12, 170);
+            this.TxtTotalSalesAmount.Location = new System.Drawing.Point(12, 183);
             this.TxtTotalSalesAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTotalSalesAmount.Name = "TxtTotalSalesAmount";
             this.TxtTotalSalesAmount.ReadOnly = true;
@@ -554,7 +603,7 @@
             // 
             this.bunifuCustomLabel17.AutoSize = true;
             this.bunifuCustomLabel17.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel17.Location = new System.Drawing.Point(8, 132);
+            this.bunifuCustomLabel17.Location = new System.Drawing.Point(8, 145);
             this.bunifuCustomLabel17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel17.Name = "bunifuCustomLabel17";
             this.bunifuCustomLabel17.Size = new System.Drawing.Size(194, 24);
@@ -565,9 +614,9 @@
             // 
             this.DtPickerInvoiceDate.Font = new System.Drawing.Font("Georgia", 10.5F, System.Drawing.FontStyle.Bold);
             this.DtPickerInvoiceDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtPickerInvoiceDate.Location = new System.Drawing.Point(289, 74);
+            this.DtPickerInvoiceDate.Location = new System.Drawing.Point(172, 87);
             this.DtPickerInvoiceDate.Name = "DtPickerInvoiceDate";
-            this.DtPickerInvoiceDate.Size = new System.Drawing.Size(275, 31);
+            this.DtPickerInvoiceDate.Size = new System.Drawing.Size(195, 31);
             this.DtPickerInvoiceDate.TabIndex = 62;
             this.DtPickerInvoiceDate.Value = new System.DateTime(2020, 10, 11, 13, 25, 57, 0);
             // 
@@ -575,7 +624,7 @@
             // 
             this.bunifuCustomLabel18.AutoSize = true;
             this.bunifuCustomLabel18.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel18.Location = new System.Drawing.Point(285, 31);
+            this.bunifuCustomLabel18.Location = new System.Drawing.Point(168, 44);
             this.bunifuCustomLabel18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel18.Name = "bunifuCustomLabel18";
             this.bunifuCustomLabel18.Size = new System.Drawing.Size(132, 24);
@@ -586,7 +635,7 @@
             // 
             this.TxtDuesAmount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtDuesAmount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtDuesAmount.Location = new System.Drawing.Point(1541, 170);
+            this.TxtDuesAmount.Location = new System.Drawing.Point(1541, 183);
             this.TxtDuesAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtDuesAmount.Name = "TxtDuesAmount";
             this.TxtDuesAmount.ReadOnly = true;
@@ -597,7 +646,7 @@
             // 
             this.bunifuCustomLabel14.AutoSize = true;
             this.bunifuCustomLabel14.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel14.Location = new System.Drawing.Point(1537, 129);
+            this.bunifuCustomLabel14.Location = new System.Drawing.Point(1537, 142);
             this.bunifuCustomLabel14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel14.Name = "bunifuCustomLabel14";
             this.bunifuCustomLabel14.Size = new System.Drawing.Size(134, 24);
@@ -608,7 +657,7 @@
             // 
             this.TxtPaidAmount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtPaidAmount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtPaidAmount.Location = new System.Drawing.Point(1285, 170);
+            this.TxtPaidAmount.Location = new System.Drawing.Point(1285, 183);
             this.TxtPaidAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtPaidAmount.Name = "TxtPaidAmount";
             this.TxtPaidAmount.Size = new System.Drawing.Size(192, 33);
@@ -619,7 +668,7 @@
             // 
             this.bunifuCustomLabel10.AutoSize = true;
             this.bunifuCustomLabel10.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel10.Location = new System.Drawing.Point(1280, 128);
+            this.bunifuCustomLabel10.Location = new System.Drawing.Point(1280, 141);
             this.bunifuCustomLabel10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel10.Name = "bunifuCustomLabel10";
             this.bunifuCustomLabel10.Size = new System.Drawing.Size(136, 24);
@@ -631,7 +680,7 @@
             this.DropDownPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DropDownPaymentType.Font = new System.Drawing.Font("Verdana", 10.5F);
             this.DropDownPaymentType.FormattingEnabled = true;
-            this.DropDownPaymentType.Location = new System.Drawing.Point(1041, 170);
+            this.DropDownPaymentType.Location = new System.Drawing.Point(1041, 183);
             this.DropDownPaymentType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DropDownPaymentType.Name = "DropDownPaymentType";
             this.DropDownPaymentType.Size = new System.Drawing.Size(186, 33);
@@ -641,7 +690,7 @@
             // 
             this.bunifuCustomLabel16.AutoSize = true;
             this.bunifuCustomLabel16.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel16.Location = new System.Drawing.Point(1037, 129);
+            this.bunifuCustomLabel16.Location = new System.Drawing.Point(1037, 142);
             this.bunifuCustomLabel16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel16.Name = "bunifuCustomLabel16";
             this.bunifuCustomLabel16.Size = new System.Drawing.Size(132, 24);
@@ -652,7 +701,7 @@
             // 
             this.TxtTotalDiscount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtTotalDiscount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtTotalDiscount.Location = new System.Drawing.Point(289, 170);
+            this.TxtTotalDiscount.Location = new System.Drawing.Point(289, 183);
             this.TxtTotalDiscount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTotalDiscount.Name = "TxtTotalDiscount";
             this.TxtTotalDiscount.Size = new System.Drawing.Size(145, 33);
@@ -663,7 +712,7 @@
             // 
             this.bunifuCustomLabel8.AutoSize = true;
             this.bunifuCustomLabel8.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel8.Location = new System.Drawing.Point(285, 132);
+            this.bunifuCustomLabel8.Location = new System.Drawing.Point(285, 145);
             this.bunifuCustomLabel8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel8.Name = "bunifuCustomLabel8";
             this.bunifuCustomLabel8.Size = new System.Drawing.Size(142, 24);
@@ -674,7 +723,7 @@
             // 
             this.TxtTotalTax.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtTotalTax.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtTotalTax.Location = new System.Drawing.Point(774, 170);
+            this.TxtTotalTax.Location = new System.Drawing.Point(774, 183);
             this.TxtTotalTax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTotalTax.Name = "TxtTotalTax";
             this.TxtTotalTax.ReadOnly = true;
@@ -685,7 +734,7 @@
             // 
             this.bunifuCustomLabel7.AutoSize = true;
             this.bunifuCustomLabel7.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel7.Location = new System.Drawing.Point(771, 132);
+            this.bunifuCustomLabel7.Location = new System.Drawing.Point(771, 145);
             this.bunifuCustomLabel7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel7.Name = "bunifuCustomLabel7";
             this.bunifuCustomLabel7.Size = new System.Drawing.Size(171, 24);
@@ -696,61 +745,61 @@
             // 
             this.TxtSalesCode.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtSalesCode.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtSalesCode.Location = new System.Drawing.Point(12, 72);
+            this.TxtSalesCode.Location = new System.Drawing.Point(12, 85);
             this.TxtSalesCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtSalesCode.Name = "TxtSalesCode";
             this.TxtSalesCode.ReadOnly = true;
-            this.TxtSalesCode.Size = new System.Drawing.Size(226, 33);
+            this.TxtSalesCode.Size = new System.Drawing.Size(111, 33);
             this.TxtSalesCode.TabIndex = 25;
             // 
             // bunifuCustomLabel2
             // 
             this.bunifuCustomLabel2.AutoSize = true;
             this.bunifuCustomLabel2.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel2.Location = new System.Drawing.Point(8, 28);
+            this.bunifuCustomLabel2.Location = new System.Drawing.Point(8, 41);
             this.bunifuCustomLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel2.Name = "bunifuCustomLabel2";
             this.bunifuCustomLabel2.Size = new System.Drawing.Size(115, 24);
             this.bunifuCustomLabel2.TabIndex = 24;
             this.bunifuCustomLabel2.Text = "Sales Code*";
             // 
-            // TxtCustomerMobileNumber
+            // TxtCustomerMobileNumbers
             // 
-            this.TxtCustomerMobileNumber.BorderColor = System.Drawing.Color.SeaGreen;
-            this.TxtCustomerMobileNumber.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtCustomerMobileNumber.Location = new System.Drawing.Point(1042, 75);
-            this.TxtCustomerMobileNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtCustomerMobileNumber.Name = "TxtCustomerMobileNumber";
-            this.TxtCustomerMobileNumber.Size = new System.Drawing.Size(350, 33);
-            this.TxtCustomerMobileNumber.TabIndex = 23;
-            this.TxtCustomerMobileNumber.TextChanged += new System.EventHandler(this.TxtCustomerMobileNumber_TextChanged);
+            this.TxtCustomerMobileNumbers.BorderColor = System.Drawing.Color.SeaGreen;
+            this.TxtCustomerMobileNumbers.Font = new System.Drawing.Font("Verdana", 10.5F);
+            this.TxtCustomerMobileNumbers.Location = new System.Drawing.Point(748, 85);
+            this.TxtCustomerMobileNumbers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtCustomerMobileNumbers.Name = "TxtCustomerMobileNumbers";
+            this.TxtCustomerMobileNumbers.Size = new System.Drawing.Size(232, 33);
+            this.TxtCustomerMobileNumbers.TabIndex = 23;
+            this.TxtCustomerMobileNumbers.TextChanged += new System.EventHandler(this.TxtCustomerMobileNumber_TextChanged);
             // 
             // TxtCustomerName
             // 
             this.TxtCustomerName.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtCustomerName.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtCustomerName.Location = new System.Drawing.Point(611, 75);
+            this.TxtCustomerName.Location = new System.Drawing.Point(408, 85);
             this.TxtCustomerName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtCustomerName.Name = "TxtCustomerName";
-            this.TxtCustomerName.Size = new System.Drawing.Size(369, 33);
+            this.TxtCustomerName.Size = new System.Drawing.Size(304, 33);
             this.TxtCustomerName.TabIndex = 22;
             // 
             // bunifuCustomLabel3
             // 
             this.bunifuCustomLabel3.AutoSize = true;
             this.bunifuCustomLabel3.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel3.Location = new System.Drawing.Point(607, 31);
+            this.bunifuCustomLabel3.Location = new System.Drawing.Point(404, 41);
             this.bunifuCustomLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel3.Name = "bunifuCustomLabel3";
-            this.bunifuCustomLabel3.Size = new System.Drawing.Size(156, 24);
+            this.bunifuCustomLabel3.Size = new System.Drawing.Size(250, 24);
             this.bunifuCustomLabel3.TabIndex = 18;
-            this.bunifuCustomLabel3.Text = "Customer Name";
+            this.bunifuCustomLabel3.Text = "Customer/Company Name";
             // 
             // bunifuCustomLabel1
             // 
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(1038, 31);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(744, 41);
             this.bunifuCustomLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
             this.bunifuCustomLabel1.Size = new System.Drawing.Size(245, 24);
@@ -761,7 +810,7 @@
             // 
             this.TxtTotalGrossAmount.BorderColor = System.Drawing.Color.SeaGreen;
             this.TxtTotalGrossAmount.Font = new System.Drawing.Font("Verdana", 10.5F);
-            this.TxtTotalGrossAmount.Location = new System.Drawing.Point(506, 170);
+            this.TxtTotalGrossAmount.Location = new System.Drawing.Point(506, 183);
             this.TxtTotalGrossAmount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtTotalGrossAmount.Name = "TxtTotalGrossAmount";
             this.TxtTotalGrossAmount.ReadOnly = true;
@@ -772,7 +821,7 @@
             // 
             this.bunifuCustomLabel15.AutoSize = true;
             this.bunifuCustomLabel15.Font = new System.Drawing.Font("Georgia", 10F);
-            this.bunifuCustomLabel15.Location = new System.Drawing.Point(502, 132);
+            this.bunifuCustomLabel15.Location = new System.Drawing.Point(502, 145);
             this.bunifuCustomLabel15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.bunifuCustomLabel15.Name = "bunifuCustomLabel15";
             this.bunifuCustomLabel15.Size = new System.Drawing.Size(200, 24);
@@ -841,7 +890,7 @@
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel7;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtSalesCode;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtCustomerMobileNumber;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtCustomerMobileNumbers;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtCustomerName;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
@@ -860,5 +909,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedOn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox TxtCustomerGSTIN;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel6;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel12;
+        private System.Windows.Forms.RichTextBox TxtAreaCustomerAddress;
     }
 }

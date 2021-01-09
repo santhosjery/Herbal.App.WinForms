@@ -13,6 +13,7 @@ namespace Herbal.yah_varmalayam
     {
         private const string _exportFileLocation = @"C:\Data\";
         private const string _connectionString = "data source=SANTHON-LR0D1A0;initial catalog=Herbal;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;";
+        //private const string _connectionString = @"data source=YAHVARMALAYAM\SQLEXPRESS;initial catalog=Herbal;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;";
         public const string Prodcut = "Prodcut";
         public const string ExitTitle = "Exit";
         public const string ExitTitleMessage = "Do you want to Exit?";

@@ -272,7 +272,6 @@ namespace Herbal.yah_varmalayam.Forms
                 {
                     TxtTotalGrossAmount.Text = (StringToDecimal(TxtTotalGrossAmount.Text) - existingLineItemGrossAmount).ToString();
                     TxtTotalPurchaseAmount.Text = (StringToDecimal(TxtTotalPurchaseAmount.Text) - existingLineItemPurchaseAmount).ToString();
-                    TxtTotalDiscount.Text = (StringToDecimal(TxtTotalDiscount.Text) - existingLineItemDiscountAmount).ToString();
                     TxtTotalTax.Text = (StringToDecimal(TxtTotalTax.Text) - existingLineItemTaxAmount).ToString();
                 }
                 var totalPurchaseAmount = StringToDecimal(TxtTotalPurchaseAmount.Text) + StringToDecimal(TxtPurchaseAmount.Text);
@@ -372,7 +371,7 @@ namespace Herbal.yah_varmalayam.Forms
             }
             else
             {
-
+                _calculateValuesToHeader();
             }
         }
 
@@ -515,7 +514,12 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void BtnPrintSummary_Click(object sender, EventArgs e)
         {
-
+            _updatePurchaseHeader();
+            showMessageBox.ShowMessage(string.Format((purchaseId > 0 ? Utility.UpdateMessage : Utility.SaveMessage), "Purchase"));
+            purchaseId = 0;
+            purchaseLineItemId = 0;
+            _resetAllControls(false);
+            showMessageBox.ShowMessage("Currently reporting feature is not avilable for Purchase!");
         }
 
         private void TxtQuantity_TabIndexChanged(object sender, EventArgs e)
@@ -582,7 +586,7 @@ namespace Herbal.yah_varmalayam.Forms
                     var _productDetail = new ProductViewModel(selectedProductID.Value);
                     TxtQuantity.Text = "1";
                     TxtGST.Text = _productDetail.GST.ToString();
-                    TxtPurchaseAmount.Text = (_productDetail.SellingPrice - (_productDetail.SellingPrice / 100 * Utility.SellingPricePercentage)).ToString();
+                    TxtPurchaseAmount.Text = _productDetail.SellingPrice.ToString();// (_productDetail.SellingPrice - (_productDetail.SellingPrice / 100 * Utility.SellingPricePercentage)).ToString();
                 }
             }
             catch (Exception ex)

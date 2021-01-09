@@ -23,7 +23,6 @@ namespace Herbal.yah_varmalayam.Models
         public int Id { get; set; }
         public string SalesCode { get; set; }
         public string CustomerName { get; set; }
-        public Nullable<long> CustomerMobileNumber { get; set; }
         public Nullable<int> PaymentTypeId { get; set; }
         public System.DateTime SalesDate { get; set; }
         public decimal TotalSalesAmount { get; set; }
@@ -38,6 +37,9 @@ namespace Herbal.yah_varmalayam.Models
         public int CreatedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<int> ModifiedBy { get; set; }
+        public string CustomerMobileNumbers { get; set; }
+        public string CustomerGSTIN { get; set; }
+        public string CustomerAddress { get; set; }
     
         public virtual AppUser AppUser { get; set; }
         public virtual AppUser AppUser1 { get; set; }
