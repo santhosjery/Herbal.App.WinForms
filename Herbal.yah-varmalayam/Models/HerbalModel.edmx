@@ -1379,7 +1379,9 @@
           <Property Type="Int32" Name="SalesId" Nullable="false" />
           <Property Type="String" Name="SalesCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="150" />
-          <Property Type="Int64" Name="CustomerMobileNumber" Nullable="true" />
+          <Property Type="String" Name="CustomerMobileNumbers" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerGSTIN" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="2000" />
           <Property Type="Int32" Name="ProductId" Nullable="false" />
           <Property Type="String" Name="ProductCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ProductName" Nullable="true" MaxLength="150" />
@@ -1648,7 +1650,9 @@
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
                 <ScalarProperty Name="SalesCode" ColumnName="SalesCode" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerMobileNumber" ColumnName="CustomerMobileNumber" />
+                <ScalarProperty Name="CustomerMobileNumbers" ColumnName="CustomerMobileNumbers" />
+                <ScalarProperty Name="CustomerGSTIN" ColumnName="CustomerGSTIN" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />

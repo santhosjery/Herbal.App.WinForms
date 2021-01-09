@@ -57,10 +57,10 @@ namespace Herbal.yah_varmalayam.Forms
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "SalesPrintReport";
+            reportDataSource1.Name = "SalesDataSet";
             reportDataSource1.Value = this.DataTableBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Herbal.yah_varmalayam.Forms.Home.Reports.Sales.PrintReport.SalesPrintReport.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Herbal.yah_varmalayam.Forms.Home.Reports.Sales.PrintReport.SalesReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;

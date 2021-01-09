@@ -332,6 +332,7 @@
     <EmbeddedResource Include="Forms\Home\Reports\Sales\PrintReport\SalesPrintReport.resx">
       <DependentUpon>SalesPrintReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Home\Reports\Sales\PrintReport\SalesReport.rdlc" />
     <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.rdlc" />
     <EmbeddedResource Include="Forms\Home\Reports\Sales\SalesReport.resx">
       <DependentUpon>SalesReport.cs</DependentUpon>

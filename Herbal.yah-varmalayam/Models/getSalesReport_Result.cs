@@ -16,7 +16,9 @@ namespace Herbal.yah_varmalayam.Models
         public int SalesId { get; set; }
         public string SalesCode { get; set; }
         public string CustomerName { get; set; }
-        public Nullable<long> CustomerMobileNumber { get; set; }
+        public string CustomerMobileNumbers { get; set; }
+        public string CustomerGSTIN { get; set; }
+        public string CustomerAddress { get; set; }
         public int ProductId { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
