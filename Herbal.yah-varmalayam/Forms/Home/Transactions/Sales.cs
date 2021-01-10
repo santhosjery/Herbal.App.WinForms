@@ -575,7 +575,9 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void BtnPrintSummary_Click(object sender, EventArgs e)
         {
-            if(salesId <= 0)
+            var form = new SalesPrintReport(26);
+            form.Show();
+            /*if (salesId <= 0)
             {
                 showMessageBox.ShowMessage("Invalid sales ID");
             }
@@ -586,11 +588,11 @@ namespace Herbal.yah_varmalayam.Forms
                 this.Controls.Add(form);
                 form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 form.Dock = DockStyle.Fill;
-                form.BringToFront();*/
+                form.BringToFront();
             form.Show();
             _resetAllControls(false);
             salesId = 0;
-            salesLineItemId = 0;
+            salesLineItemId = 0;*/
         }
     }
 }
