@@ -575,7 +575,7 @@ namespace Herbal.yah_varmalayam.Forms
 
         private void BtnPrintSummary_Click(object sender, EventArgs e)
         {
-            var form = new SalesPrintReport(26);
+            var form = new SalesPrintReport(27);
             form.Show();
             /*if (salesId <= 0)
             {
