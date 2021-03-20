@@ -1,11 +1,11 @@
 ﻿
-
-/****** Object:  Table [dbo].[PurchaseLineItem]    Script Date: 10/10/2020 22:49:37 ******/
+/****** Object:  Table [dbo].[PurchaseLineItem]    Script Date: 3/20/2021 2:05:21 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 CREATE TABLE [dbo].[PurchaseLineItem](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[PurchaseLineItemCode] [nvarchar](50) NULL,
@@ -13,12 +13,8 @@ CREATE TABLE [dbo].[PurchaseLineItem](
 	[ProductId] [int] NOT NULL,
 	[Quantity] [decimal](18, 2) NOT NULL,
 	[PurchaseAmount] [decimal](18, 2) NOT NULL,
-	[Discount] [decimal](18, 2) NULL,
 	[GrossAmount] [decimal](18, 2) NOT NULL,
-	[CGST] [decimal](18, 2) NULL,
-	[SGST] [decimal](18, 2) NULL,
-	[IGST] [decimal](18, 2) NULL,
-	[TotalTax] [decimal](18, 2) NULL,
+	[GST] [decimal](18, 2) NULL,
 	[NetAmount] [decimal](18, 2) NOT NULL,
 	[SellingPrice] [decimal](18, 2) NULL,
 	[IsActive] [bit] NOT NULL,
@@ -29,22 +25,8 @@ CREATE TABLE [dbo].[PurchaseLineItem](
  CONSTRAINT [PK_PurchaseLineItem] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItem_PurchaseHeader1] FOREIGN KEY([PurchaseId])
-REFERENCES [dbo].[PurchaseHeader] ([Id])
-GO
-
-ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_PurchaseHeader1]
-GO
-
-
-ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItems_Product] FOREIGN KEY([ProductId])
-REFERENCES [dbo].[Product] ([Id])
-GO
-ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItems_Product]
 GO
 
 ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItem_AppUser] FOREIGN KEY([CreatedBy])
@@ -60,3 +42,19 @@ GO
 
 ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_AppUser1]
 GO
+
+ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItem_PurchaseHeader1] FOREIGN KEY([PurchaseId])
+REFERENCES [dbo].[PurchaseHeader] ([Id])
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItem_PurchaseHeader1]
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem]  WITH CHECK ADD  CONSTRAINT [FK_PurchaseLineItems_Product] FOREIGN KEY([ProductId])
+REFERENCES [dbo].[Product] ([Id])
+GO
+
+ALTER TABLE [dbo].[PurchaseLineItem] CHECK CONSTRAINT [FK_PurchaseLineItems_Product]
+GO
+
+
